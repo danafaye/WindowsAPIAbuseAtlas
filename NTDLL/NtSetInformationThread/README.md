@@ -69,6 +69,10 @@ Here are some signs defenders can look for when spotting misuse of `NtSetInforma
 
 ## 🦠 Malware & Threat Actors Documented Abusing NtSetInformationThread
 
+Below is a curated list of malware families, threat actors, and offensive tools known to abuse or patch `NtSetInformationThread` for defense evasion.  
+
+For the latest technical write-ups, search for the malware or tool name together with "NtSetInformationThread" on reputable security blogs, threat intelligence portals, or simply google. (Direct links are not included to reduce maintenance.)
+
 ### Ransomware
 - BlackCat/ALPHV
 - LockBit (v2, v3, v4)

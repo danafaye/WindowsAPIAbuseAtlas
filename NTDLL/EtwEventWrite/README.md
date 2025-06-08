@@ -2,7 +2,7 @@
 
 ## 🚀 Executive Summary
 
-**Event Tracing for Windows (ETW)** is a core telemetry mechanism leveraged by security products and defenders. In 2025, patching or disabling `EtwEventWrite` remains a *top-tier* evasion tactic for both commodity malware and advanced threat actors. This project provides actionable detection strategies, technical context, and curated resources to help blue teams, researchers, and red teamers stay ahead of evolving tradecraft.
+**`EtwEventWrite` abuse** is a long-running and reliable tactic used by attackers to quietly turn off telemetry that defenders rely on. By patching or disabling this function, malware can hide from security tools that depend on Event Tracing for Windows (ETW). This trick has shown up in everything from basic commodity malware to advanced targeted attacks — because it works. In this entry, we break down how `EtwEventWrite` gets tampered with, why it matters, and what defenders can do about it.
 
 ---
 

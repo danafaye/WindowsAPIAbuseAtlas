@@ -117,3 +117,6 @@ For the latest technical write-ups, search for the malware or tool name together
 ## 📚 Resources
 [Microsoft](https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/nf-ntifs-ntsetinformationthread)
 
+> **Know of more?**  
+> Open a PR or issue to help keep this list up to date!
+

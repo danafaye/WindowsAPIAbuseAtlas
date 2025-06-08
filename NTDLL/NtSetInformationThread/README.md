@@ -1,82 +1,115 @@
 # NtSetInformationThread
 
 ## 🚀 Executive Summary
-**`NtSetInformationThread` abuse** is a subtle but effective way for attackers to mess with how threads behave — often to hide from debuggers or security tools. By setting certain thread attributes, malware can avoid being suspended, conceal itself from analysis, or tamper with execution in ways that aren’t always obvious. This API doesn’t get as much attention as some of the flashier techniques, but it shows up in real-world malware and red team tools for a reason. In this entry, we walk through how `NtSetInformationThread` is used for evasion, why it works, and how defenders can spot it.
-
-## 🔍 What is NtSetInformationThread?
-**`NtSetInformationThread` abuse** works because it gives attackers low-level control over how threads behave in a process. This API can change thread properties like hiding from debuggers, modifying execution states, or preventing a thread from being suspended. Tools like debuggers, sandboxes, and even some EDRs rely on predictable thread behavior to monitor suspicious activity. By quietly calling `NtSetInformationThread` with just the right parameters, malware can sidestep analysis, disrupt security tooling, and keep its execution path under the radar.
+**`NtSetInformationThread`** is one of those quietly powerful tricks malware uses to mess with how threads behave—usually to stay hidden from debuggers or security tools. Even though this technique has been around for years, it still shows up in modern attacks because... well, it still works. With just a single API call, malware can hide its threads, dodge suspension, or throw off analysis tools—without noisy hooks or injections. It’s not as flashy as some other evasion methods, so it often flies under the radar. In this post, I’ll walk through what this function does, how attackers use it, and what defenders should watch for.
 
 ## 🚩 Why It Matters
-- **Still flying under the radar:** `NtSetInformationThread` abuse isn’t as widely discussed as other evasion tactics, but it's quietly effective—and increasingly used.
-- **Used for anti-analysis and evasion:** Attackers use this API to hide threads from debuggers, tamper with thread behavior, or prevent suspension, making malware harder to analyze or interrupt.
-- **Flexible and low-noise:** With the right parameters, it lets malware evade detection without needing noisy hooks or injections—just a single stealthy API call.
+
+- **Under-the-radar but active:** Even though it’s a known trick, `NtSetInformationThread` abuse rarely gets highlighted in threat reports or sandbox logs. It’s usually bundled into vague “anti-debugging” tags or overlooked in favor of flashier methods.
+- **Perfect for stealthy evasion:** Attackers use it to hide threads from debuggers (`ThreadHideFromDebugger`), tweak execution, or block thread suspension—all without noisy system changes or hooks.
+- **Missed by many tools:** Because it’s a low-level Native API call, it often slips past EDRs and automated detections. You usually need reverse engineering to spot it.
+- **Small but mighty:** This API offers malware a lightweight way to evade analysis and dynamic tools, making it popular for both common malware and advanced threats.
 
 ## 🧬 How Attackers Abuse It
 
 ### 🛡️ Anti-Debugging
-One of the most common abuses of `NtSetInformationThread` is using it with the `ThreadHideFromDebugger` (0x11) `THREAD_INFORMATION_CLASS`. This sets a flag in the thread's `ETHREAD` structure that tells user-mode debuggers to leave the thread alone. It doesn’t stop kernel-mode debuggers, but it’s enough to break tools like x64dbg or OllyDbg. Malware often uses this early in execution to frustrate reverse engineering and dynamic analysis.
+A common use is calling `NtSetInformationThread` with `ThreadHideFromDebugger` (value `0x11`). This flags the thread to user-mode debuggers so they basically ignore it. Kernel-mode debuggers still see it, but many popular user-mode tools like x64dbg or OllyDbg get tripped up. Malware often does this early on to slow down analysis or reverse engineering.
 
-### 🧬 Facilitating Injection
-Attackers also use `NtSetInformationThread` to help with process injection techniques. After creating a remote or suspended thread—using `CreateRemoteThread`, `NtCreateThreadEx`, or similar—they'll immediately call `NtSetInformationThread` to modify properties like scheduling priority, affinity, or to hide the thread. This can make injected threads harder to spot in monitoring tools or avoid detection by user-mode hooks. Because the call is made directly to the native API, it often flies under the radar of higher-level security tooling.
+### 🧬 Helping Injection
+Attackers also call `NtSetInformationThread` right after creating remote or suspended threads (via `CreateRemoteThread`, `NtCreateThreadEx`, etc.) to tweak thread properties like priority, affinity, or to hide the thread entirely. This makes injected threads harder to spot by monitoring tools or user-mode hooks. Because the call goes straight to the native API, it usually flies under the radar of higher-level security tooling.
 
-## 🧵 Sample behavior
+## 🧵 Sample Behavior
+
 ### Anti-Debugging Use
 - Calls `NtSetInformationThread` with `ThreadHideFromDebugger` (`0x11`) early in execution.
 - Targets threads within the malware’s own process to evade user-mode debuggers.
-- Often precedes or coincides with anti-debugging checks or other evasive behavior.
-- Typically observed in loader or initialization stages of malware.
+- Often paired with other anti-debugging tricks or evasive actions.
+- Usually seen during the loader or initialization phase.
 
 ### Injection Facilitation Use
-- Calls `NtSetInformationThread` on remote or newly created threads after injection.
-- Modifies thread properties such as priority, affinity, or hides the thread to evade detection.
-- Happens shortly after thread creation (e.g., `CreateRemoteThread` or `NtCreateThreadEx`).
-- Associated with process or thread injection techniques aiming to stealthily run malicious code.
+- Calls `NtSetInformationThread` on remote or newly created threads right after injection.
+- Changes thread properties (priority, affinity, hides thread) to avoid detection.
+- Happens soon after thread creation (`CreateRemoteThread`, `NtCreateThreadEx`).
+- Tied to process or thread injection techniques aiming to run malicious code stealthily.
 
-## 🛡️ Detection opportunities
+## 🛡️ Detection Opportunities
 
 ### 🔹 YARA
 
-Here are some sample YARA rules to detect NtSetInformationThread misuse: 
+Check out some sample YARA rules here: [NtSetInformationThread.yar](./NtSetInformationThread.yar).
 
-see [NtSetInformationThread.yar](./NtSetInformationThread.yar).
-
-Note: Use these YARA rules at your own risk. They are loosely scoped and intended primarily for threat hunting and research purposes — not for deployment in detection systems that require a low false positive rate. Please review and test in your environment before use.
+> **Heads up:** These rules are loosely scoped and designed for hunting and research. They’re **not** meant for production detection systems that require low false positives. Please test and adjust them in your environment.
 
 ### 🔸 Behavioral Indicators
 
-Below are behavioral indicators that defenders can look for to spot the misuse of `NtSetInformationThread` in both anti-debugging and injection facilitation scenarios:
+Here are some signs defenders can look for when spotting misuse of `NtSetInformationThread` in both anti-debugging and injection scenarios:
 
-#### **Anti-Debugging**
+#### Anti-Debugging
 
-- **Early call to `NtSetInformationThread`**: The function is invoked soon after process start, often before or alongside other anti-analysis checks.
-- **Parameter value `0x11` (`ThreadHideFromDebugger`)**: The call uses this specific value for the `ThreadInformationClass` parameter, which is strongly associated with hiding threads from user-mode debuggers.
-- **Target is a thread within the same process**: The thread handle passed typically refers to the malware’s own thread(s).
-- **Followed or preceded by anti-debugging checks**: Calls to APIs like `IsDebuggerPresent`, `CheckRemoteDebuggerPresent`, or timing checks may occur in close proximity.
-- **Absence of higher-level anti-debugging APIs**: The malware may avoid using more obvious anti-debugging APIs, relying instead on this lower-level native call.
+- Early calls to `NtSetInformationThread` soon after process start.
+- Use of the `0x11` (`ThreadHideFromDebugger`) parameter.
+- Target thread is usually within the same process.
+- Often accompanied by calls to APIs like `IsDebuggerPresent` or timing checks.
+- May avoid higher-level anti-debug APIs in favor of this stealthier native call.
 
-#### **Facilitating Injection**
+#### Injection Facilitation
 
-- **Thread creation in a remote process**: APIs such as `CreateRemoteThread`, `NtCreateThreadEx`, or similar are called to create a thread in another process.
-- **Immediate or near-immediate call to `NtSetInformationThread`**: After thread creation, `NtSetInformationThread` is called on the new thread handle.
-- **Modification of thread properties**: The function may be used to set properties like priority, affinity, or to hide the thread (`0x11`), making injected threads less visible to monitoring tools.
-- **Sequence with memory manipulation APIs**: The behavior is often observed alongside calls to `VirtualAllocEx`, `WriteProcessMemory`, or similar APIs used for code injection.
-- **Target is a remote thread**: The thread handle passed to `NtSetInformationThread` refers to a thread in another process, not the malware’s own process.
+- Creation of threads in remote processes (`CreateRemoteThread`, `NtCreateThreadEx`, etc.).
+- Immediate calls to `NtSetInformationThread` on those threads.
+- Changes to thread priority, affinity, or hiding the thread to avoid detection.
+- Usually seen alongside memory manipulation calls like `VirtualAllocEx` and `WriteProcessMemory`.
+- Target thread handle belongs to a remote process.
 
-**In both cases, defenders should look for:**
-- Unusual or unexplained use of `NtSetInformationThread`, especially with the `0x11` parameter.
-- Sequences where thread creation, memory allocation, and thread hiding occur together.
-- Use of native API calls that bypass higher-level Windows APIs, which may indicate attempts to evade detection or analysis.
+**In both cases, watch for:**
 
-## 🦠 Malware & Threat Actors Documented Abusing [Function/Technique Name] Patching
+- Odd or unexplained uses of `NtSetInformationThread`, especially with `0x11`.
+- Sequences where thread creation, memory allocation, and thread hiding happen together.
+- Calls directly to native APIs bypassing higher-level Windows functions.
+- Note: Regular apps rarely call this directly.
 
-### **Ransomware**
+## 🦠 Malware & Threat Actors Documented Abusing NtSetInformationThread
 
-### **Commodity Loaders & RATs**
+### Ransomware
+- BlackCat/ALPHV
+- LockBit (v2, v3, v4)
+- REvil/Sodinokibi
+- Hive
+- Conti
+- MedusaLocker
+- Pandora
 
-### **APT & Threat Actor Toolkits**
+### Commodity Loaders & RATs
+- Cobalt Strike
+- Brute Ratel C4
+- Sliver
+- Remcos RAT
+- Metasploit
+- QakBot (QBot)
+- IcedID
+- Agent Tesla
 
-### **Red Team & Open Source Tools**
+### APT & Threat Actor Toolkits
+- APT41 (Winnti)
+- FIN7 (Carbanak)
+- Turla
+- Wizard Spider (TrickBot/Conti)
+- Lazarus Group
 
-## 🧵 `[Function/Technique Name]` and Friends
+### Red Team & Open Source Tools
+- Donut
+- ScareCrow
+- Invoke-ReflectivePEInjection
+- SharpSploit
+- Covenant
+- Meterpreter
+- PowerSploit
+- Cobalt Strike Aggressor Scripts
 
-## 📚 Resources 
+> **Note:** This list isn’t exhaustive. Many modern malware families and offensive security tools use `NtSetInformationThread` for stealth and evasion. As awareness grows, expect even more to adopt it.
+
+## 🧵 `NtSetInformationThread` and Friends
+**`NtSetInformationThread`** is just one member of a larger family of **`NtSetInformation*`** functions in `ntdll.dll` that allow low-level manipulation of system objects like threads, processes, and more. From a security standpoint, these functions give malware and offensive tools powerful ways to change the behavior or state of targets—whether it’s hiding threads, modifying process attributes, or bypassing detection hooks. For example, siblings like **`NtSetInformationProcess`** and **`NtSetInformationToken`** let attackers tweak process protections or privileges, while **`NtSetInformationThread`** can be used to stealthily alter thread execution or disable monitoring. Because these functions operate beneath the usual API layers, they’re favorites for evasive maneuvers and sophisticated defense evasion techniques. Keeping an eye on the entire **`NtSetInformation*`** family — not just `NtSetInformationThread` — is key to catching subtle, low-level attack behaviors before they escalate.
+
+## 📚 Resources
+[Microsoft](https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/nf-ntifs-ntsetinformationthread)
+

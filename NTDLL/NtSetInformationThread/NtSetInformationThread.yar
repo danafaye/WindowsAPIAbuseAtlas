@@ -211,3 +211,40 @@ rule NtSetInformationThread_Injection_Facilitation_Hunt
             )
         )
 }
+
+rule NtSetInformationThread_Early_AntiDebugging_Cluster
+{
+    meta:
+        description = "Detects likely early use of NtSetInformationThread in combination with anti-debugging APIs"
+        reference = "windows-api-abuse-atlas"
+    strings:
+        $ntset = "NtSetInformationThread" ascii nocase
+        $isdbg = "IsDebuggerPresent" ascii nocase
+        $chkremotedbg = "CheckRemoteDebuggerPresent" ascii nocase
+        $getstartup = "GetStartupInfo" ascii nocase
+        $outputdebug = "OutputDebugString" ascii nocase
+    condition:
+        // Look for at least two anti-debugging APIs near NtSetInformationThread
+        for any i in (1..#ntset) : (
+            (
+                for any j in (1..#isdbg) : (
+                    (@ntset[i] - @isdbg[j]) >= -1024 and (@ntset[i] - @isdbg[j]) <= 1024
+                )
+            ) or
+            (
+                for any j in (1..#chkremotedbg) : (
+                    (@ntset[i] - @chkremotedbg[j]) >= -1024 and (@ntset[i] - @chkremotedbg[j]) <= 1024
+                )
+            ) or
+            (
+                for any j in (1..#getstartup) : (
+                    (@ntset[i] - @getstartup[j]) >= -1024 and (@ntset[i] - @getstartup[j]) <= 1024
+                )
+            ) or
+            (
+                for any j in (1..#outputdebug) : (
+                    (@ntset[i] - @outputdebug[j]) >= -1024 and (@ntset[i] - @outputdebug[j]) <= 1024
+                )
+            )
+        )
+}

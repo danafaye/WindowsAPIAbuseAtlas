@@ -18,33 +18,32 @@
 
 Malware or loaders locate `EtwEventWrite` in `ntdll.dll` and overwrite its prologue with instructions like `ret` or `xor rax, rax; ret`, effectively disabling event logging.
 
-```asm
-.text:00007FFEA1B61270 48 33 C0             xor     rax, rax
-.text:00007FFEA1B61273 C3                   retn
-```
+> ```
+> .text:00007FFEA1B61270 48 33 C0             xor     rax, rax
+> .text:00007FFEA1B61273 C3                   retn
+> ```
 
-## 🧵 Sample behavior
+## 🧵 Sample Behavior
 
-* Touches `ntdll.dll` memory in-process.
-* Writes to `.text` section.
-* Occurs early in malware execution (loader stage).
+- Touches `ntdll.dll` memory in-process.
+- Writes to `.text` section.
+- Occurs early in malware execution (loader stage).
 
-## 🛡️ Detection opportunities
+## 🛡️ Detection Opportunities
 
 ### 🔹 YARA
 
 Here are some sample YARA rules to detect EtwEventWrite patching: 
 
-see [EtwEventWrite.yar](./EtwEventWrite.yar).
+See [EtwEventWrite.yar](./EtwEventWrite.yar).
 
-Note: Use these YARA rules at your own risk. They are loosely scoped and intended primarily for threat hunting and research purposes — not for deployment in detection systems that require a low false positive rate. Please review and test in your environment before use.
-
+> **Note:** Use these YARA rules at your own risk. They are loosely scoped and intended primarily for threat hunting and research purposes; **NOT** for deployment in detection systems that require a low false positive rate. Please review and test in your environment before use.
 
 ### 🔸 Behavioral Indicators
 
-* Write access to `ntdll.dll` in-process.
-* Calls to `VirtualProtect` on `ntdll.dll`.
-* Usage of `GetProcAddress` with `EtwEventWrite`.
+- Write access to `ntdll.dll` in-process.
+- Calls to `VirtualProtect` on `ntdll.dll`.
+- Usage of `GetProcAddress` with `EtwEventWrite`.
 
 ## 🦠 Malware & Threat Actors Documented Abusing EtwEventWrite Patching
 

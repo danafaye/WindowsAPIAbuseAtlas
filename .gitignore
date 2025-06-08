@@ -28,5 +28,56 @@ go.work.sum
 .env
 
 # Editor/IDE
-# .idea/
-# .vscode/
+ .idea/
+ .vscode/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VS Code settings
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
+
+# Compiled binaries and object files
+*.exe
+*.dll
+*.so
+*.o
+*.obj
+*.out
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Temporary files
+*.tmp
+*.swp
+*.bak
+*~
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Python virtual environments
+env/
+venv/
+ENV/
+.venv/
+
+# Ignore large malware samples directory (customize as needed)
+malware/
+samples/

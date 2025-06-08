@@ -8,14 +8,14 @@
 
 ## 🔍 What is EtwEventWrite?
 
-`EtwEventWrite` is a Windows API responsible for writing ETW events. Attackers frequently patch this function in-memory to suppress telemetry, blinding EDRs and SIEMs to their activity.
+**`EtwEventWrite` abuse** works because it strikes at the heart of how Windows tracks what’s happening under the hood. This API writes ETW (Event Tracing for Windows) events—fast, low-overhead logs that power everything from system diagnostics to security detections. EDRs and SIEMs lean on ETW to catch signs of process injection, module loads, and other suspicious behavior. When attackers patch `EtwEventWrite` in-memory, they can quietly kill that signal, leaving defenders in the dark.
 
 ---
 
 ## 🚩 Why It Matters in 2025
 
 - **ETW patching is now mainstream:** Used by ransomware, loaders, APTs, and red teams.
-- **Bypasses modern EDRs:** Many solutions still rely on ETW for behavioral detection.
+- **Disrupts visibility for some security tools:** While many security tools use multiple telemetry sources, some still rely on ETW for key detections. Patching `EtwEventWrite` can reduce their visibility or break specific detections.
 - **Rapidly evolving:** New obfuscation and patching techniques appear regularly.
 
 ---
@@ -25,7 +25,7 @@
 Malware or loaders locate `EtwEventWrite` in `ntdll.dll` and overwrite its prologue with instructions like `ret` or `xor rax, rax; ret`, effectively disabling event logging.
 
 ```asm
-.text:00007FFEA1B61270 48 33 C0              xor     rax, rax
+.text:00007FFEA1B61270 48 33 C0             xor     rax, rax
 .text:00007FFEA1B61273 C3                   retn
 ```
 
@@ -37,9 +37,11 @@ Malware or loaders locate `EtwEventWrite` in `ntdll.dll` and overwrite its prolo
 
 ## 🛡️ Detection opportunities
 
-### 🔹 YARA (Memory Scan)
+### 🔹 YARA
 
-Here are some sample YARA rules to detect EtwEventWrite patching (including LockBit and other malware): see [EtwEventWrite.yar](./EtwEventWrite.yar).
+Here are some sample YARA rules to detect EtwEventWrite patching: 
+
+see [EtwEventWrite.yar](./EtwEventWrite.yar).
 
 ### 🔸 Behavioral Indicators
 
@@ -53,7 +55,7 @@ Here are some sample YARA rules to detect EtwEventWrite patching (including Lock
 
 Below is a curated list of malware families, threat actors, and offensive tools known to abuse or patch `EtwEventWrite` for defense evasion.  
 
-For the latest technical write-ups, search for the malware or tool name together with "EtwEventWrite patching" or "ETW evasion" on reputable security blogs, threat intelligence portals, or Malpedia. (Direct links are not included to reduce maintenance.)
+For the latest technical write-ups, search for the malware or tool name together with "EtwEventWrite" or "ETW evasion or patch" on reputable security blogs, threat intelligence portals, or Malpedia. (Direct links are not included to reduce maintenance.)
 
 ### **Ransomware**
 - LockBit
@@ -85,10 +87,6 @@ For the latest technical write-ups, search for the malware or tool name together
 - Invoke-ReflectivePEInjection
 - SharpSploit
 - Covenant
-
----
-
-> **Tip:** For up-to-date technical details, search for the malware or tool name plus "EtwEventWrite patching" on sites like Malpedia, MITRE ATT&CK, or leading vendor blogs.
 
 ---
 

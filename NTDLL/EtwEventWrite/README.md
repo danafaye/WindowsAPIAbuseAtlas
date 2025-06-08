@@ -8,7 +8,7 @@
 
 **`EtwEventWrite` patching** works because it strikes at the heart of how Windows tracks what’s happening under the hood. This API writes ETW (Event Tracing for Windows) events—fast, low-overhead logs that power everything from system diagnostics to security detections. EDRs and SIEMs lean on ETW to catch signs of process injection, module loads, and other suspicious behavior. When attackers patch `EtwEventWrite` in-memory, they can quietly kill that signal, leaving defenders in the dark.
 
-## 🚩 Why It Matters in 2025
+## 🚩 Why It Matters
 
 - **ETW patching is now mainstream:** Used by ransomware, loaders, APTs, and red teams.
 - **Disrupts visibility for some security tools:** While many security tools use multiple telemetry sources, some still rely on ETW for key detections. Patching `EtwEventWrite` can reduce their visibility or break specific detections.
@@ -36,6 +36,9 @@ Malware or loaders locate `EtwEventWrite` in `ntdll.dll` and overwrite its prolo
 Here are some sample YARA rules to detect EtwEventWrite patching: 
 
 see [EtwEventWrite.yar](./EtwEventWrite.yar).
+
+Note: Use these YARA rules at your own risk. They are loosely scoped and intended primarily for threat hunting and research purposes — not for deployment in detection systems that require a low false positive rate. Please review and test in your environment before use.
+
 
 ### 🔸 Behavioral Indicators
 

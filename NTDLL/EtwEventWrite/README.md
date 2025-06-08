@@ -1,12 +1,12 @@
-# 🧪 EtwEventWrite Patching: Modern Threat Evasion & Detection
+# 🧪 EtwEventWrite Patching
 
 ## 🚀 Executive Summary
 
-**`EtwEventWrite` abuse** is a long-running and reliable tactic used by attackers to quietly turn off telemetry that defenders rely on. By patching or disabling this function, malware can hide from security tools that depend on Event Tracing for Windows (ETW). This trick has shown up in everything from basic commodity malware to advanced targeted attacks — because it works. In this entry, we break down how `EtwEventWrite` gets tampered with, why it matters, and what defenders can do about it.
+**`EtwEventWrite` patching** is a long-running and reliable tactic used by attackers to quietly turn off telemetry that defenders rely on. By patching or disabling this function, malware can hide from security tools that depend on Event Tracing for Windows (ETW). This trick has shown up in everything from basic commodity malware to advanced targeted attacks — because it works. In this entry, we break down how `EtwEventWrite` gets tampered with, why it matters, and what defenders can do about it.
 
 ## 🔍 What is EtwEventWrite?
 
-**`EtwEventWrite` abuse** works because it strikes at the heart of how Windows tracks what’s happening under the hood. This API writes ETW (Event Tracing for Windows) events—fast, low-overhead logs that power everything from system diagnostics to security detections. EDRs and SIEMs lean on ETW to catch signs of process injection, module loads, and other suspicious behavior. When attackers patch `EtwEventWrite` in-memory, they can quietly kill that signal, leaving defenders in the dark.
+**`EtwEventWrite` patching** works because it strikes at the heart of how Windows tracks what’s happening under the hood. This API writes ETW (Event Tracing for Windows) events—fast, low-overhead logs that power everything from system diagnostics to security detections. EDRs and SIEMs lean on ETW to catch signs of process injection, module loads, and other suspicious behavior. When attackers patch `EtwEventWrite` in-memory, they can quietly kill that signal, leaving defenders in the dark.
 
 ## 🚩 Why It Matters in 2025
 

@@ -76,6 +76,14 @@ For the latest technical write-ups, search for the malware or tool name together
 - SharpSploit
 - Covenant
 
+## 🧵 `EtwEventWrite` and Friends
+
+**`EtwEventWrite` abuse** is a long-running and reliable tactic used by attackers to quietly turn off telemetry that defenders rely on. But it's not the only ETW function worth watching. `EtwEventWrite` belongs to a small family of related functions—like `EtwEventWriteEx`, `EtwEventWriteFull`, `EtwEventWriteTransfer`, and `EtwEventWriteNoRegistration`—that all play slightly different roles in event logging.
+
+These variants extend `EtwEventWrite` with features like activity correlation (`EtwEventWriteTransfer`), additional context (`EtwEventWriteEx`, `Full`), or even bypasses to the normal registration path (`EtwEventWriteNoRegistration`). While `EtwEventWrite` is the most frequently patched or hooked, attackers looking to sidestep detection may increasingly turn to these lesser-known siblings.
+
+**If you're only monitoring or protecting `EtwEventWrite`, you're probably missing part of the picture.**
+
 ## 📚 Resources 
 
 * Microsoft Docs: [EtwEventWrite](https://learn.microsoft.com/en-us/windows/win32/devnotes/etweventwrite)

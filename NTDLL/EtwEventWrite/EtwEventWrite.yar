@@ -4,7 +4,6 @@ rule EtwEventWrite_Patch_x64
 {
     meta:
         description = "Detects x64 patching of EtwEventWrite (xor rax, rax; ret and variants)"
-        author = "GitHub Copilot"
         reference = "windows-api-abuse-atlas"
     strings:
         $xor_ret      = { 48 33 C0 C3 }
@@ -20,7 +19,6 @@ rule EtwEventWrite_Patch_x86
 {
     meta:
         description = "Detects x86 patching of EtwEventWrite (xor eax, eax; ret and variants)"
-        author = "GitHub Copilot"
         reference = "windows-api-abuse-atlas"
     strings:
         $xor_ret      = { 33 C0 C3 }
@@ -35,7 +33,6 @@ rule EtwEventWrite_Patch_Strings
 {
     meta:
         description = "Detects references to EtwEventWrite and related APIs (including stack strings, wide, hex, base64)"
-        author = "GitHub Copilot"
         reference = "windows-api-abuse-atlas"
     strings:
         $etw_ascii      = "EtwEventWrite" ascii nocase
@@ -69,7 +66,6 @@ rule EtwEventWrite_Patch_Base64
 {
     meta:
         description = "Detects base64-encoded EtwEventWrite patch shellcode"
-        author = "GitHub Copilot"
         reference = "windows-api-abuse-atlas"
     strings:
         $b64_patch1 = "SDPAww==" // 48 33 C0 C3 (xor rax, rax; ret)
@@ -84,8 +80,6 @@ rule LockBit_Etw_Patch_OnDisk
 {
     meta:
         description = "Detects on-disk LockBit v4 loader that patches EtwEventWrite"
-        author = "Dana Behling"
-        version = "1.0"
         reference = "windows-api-abuse-atlas"
     strings:
         $xor_ret        = { 48 33 C0 C3 }

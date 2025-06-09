@@ -10,7 +10,7 @@
 
 ## 🚩 Why It Matters
 
-- **ETW patching is now mainstream:** Used by ransomware, loaders, APTs, and red teams.
+- **ETW patching is mainstream:** Used by ransomware, loaders, APTs, and red teams.
 - **Disrupts visibility for some security tools:** While many security tools use multiple telemetry sources, some still rely on ETW for key detections. Patching `EtwEventWrite` can reduce their visibility or break specific detections.
 - **Rapidly evolving:** New obfuscation and patching techniques appear regularly.
 

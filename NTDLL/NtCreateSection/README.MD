@@ -2,11 +2,11 @@
 
 ## 🚀 Executive Summary
 
-`NtCreateSection` is one of those sleeper APIs that doesn’t get enough attention. It gives attackers a way to carve out memory—mapped from a file or just fresh—and drop it into a process. From there, it's open season: hollowing, reflective DLLs, shared memory tricks, you name it. Since it flies lower than the usual VirtualAlloc stuff, a lot of tooling just plain misses it.
+`NtCreateSection` is one of those sleeper APIs that doesn’t get enough attention. It gives attackers a way to carve out memorym, mapped from a file or just fresh, and drop it into a process. From there, it's open season: hollowing, reflective DLLs, shared memory tricks, you name it. Since it flies lower than the usual VirtualAlloc stuff, a lot of tooling just plain misses it.
 
 ## 🔍 What is NtCreateSection?
 
-`NtCreateSection` is one of those low-level Windows APIs that quietly does a lot of heavy lifting for attackers. It lets you carve out a chunk of memory—either fresh or tied to a file—and map it into a process’s address space. That opens the door for all kinds of fun: process hollowing, reflective DLL injection, memory sharing across processes, you name it. Because it's deeper in the stack than typical alloc APIs, a lot of security tools just don’t see it coming.
+`NtCreateSection` is one of those low-level Windows APIs that quietly does a lot of heavy lifting for attackers. It lets you carve out a chunk of memory—either fresh or tied to a file, and map it into a process’s address space. That opens the door for all kinds of fun: process hollowing, reflective DLL injection, memory sharing across processes, you name it. Because it's deeper in the stack than typical alloc APIs, a lot of security tools just don’t see it coming.
 
 ## 🚩 Why It Matters
 
@@ -52,6 +52,10 @@ See [NtCreateSection.yar](./NtCreateSection.yar).
 - Correlation with other injection or evasion techniques, such as disabling security tools, modifying access controls, or tampering with process attributes.
 
 ## 🦠 Malware & Threat Actors Documented Abusing NtCreateSection
+
+Below is a curated list of malware families, threat actors, and offensive tools known to abuse or patch `NtCreateSection`.  
+
+For the latest technical write-ups, search for the malware, tool or actor name together with "NtCreateSection" on reputable security blogs, threat intelligence portals, or simply google. (Direct links are not included to reduce maintenance.)
 
 ### **Ransomware**
 - Agenda

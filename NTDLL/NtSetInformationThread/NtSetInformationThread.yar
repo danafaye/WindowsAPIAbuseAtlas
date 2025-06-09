@@ -1,4 +1,6 @@
-// Note: Use these YARA rules at your own risk. They are loosely scoped and intended primarily for threat hunting and research purposes — not for deployment in detection systems that require a low false positive rate. Please review and test in your environment before use.
+// Note: Use these YARA rules at your own risk. They are loosely scoped and intended primarily 
+// for threat hunting and research purposes — not for deployment in detection systems that 
+// require a low false positive rate. Please review and test in your environment before use.
 
 rule NtSetInformationThread_Anti_Debugging
 {
@@ -244,6 +246,27 @@ rule NtSetInformationThread_Early_AntiDebugging_Cluster
             (
                 for any j in (1..#outputdebug) : (
                     (@ntset[i] - @outputdebug[j]) >= -1024 and (@ntset[i] - @outputdebug[j]) <= 1024
+                )
+            )
+        )
+}
+
+rule NtSetInformationThread_HideFromDebugger_x86
+{
+    meta:
+        description = "Detects x86 sequence for hiding current thread from debugger using NtSetInformationThread, with NtSetInformationThread string and parameter sequence in proximity"
+        reference = "windows-api-abuse-atlas"
+    strings:
+        $NtSetInformationThread = "NtSetInformationThread" ascii wide
+        // push 0; push 0; push 0x11; push eax; call _NtSetInformationThread@16
+        $ntset_seq = { 6A 00 6A 00 6A 11 50 FF 15 ?? ?? ?? ?? }
+    condition:
+        uint16(0) == 0x5A4D and
+        filesize < 10MB and
+        (
+            for any i in (1..#NtSetInformationThread) : (
+                for any j in (1..#ntset_seq) : (
+                    (@NtSetInformationThread[i] - @ntset_seq[j]) >= -128 and (@NtSetInformationThread[i] - @ntset_seq[j]) <= 128
                 )
             )
         )

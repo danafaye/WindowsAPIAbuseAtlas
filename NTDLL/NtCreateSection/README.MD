@@ -1,4 +1,4 @@
-# 🧩 NtCreateSection Abuse
+# 🧪 NtCreateSection: The Swiss Army Knife of Memory Abuse
 
 ## 🚀 Executive Summary
 
@@ -6,7 +6,7 @@
 
 ## 🔍 What is NtCreateSection?
 
-`NtCreateSection` is one of those low-level Windows APIs that quietly does a lot of heavy lifting for attackers. It lets you carve out a chunk of memory—either fresh or tied to a file, and map it into a process’s address space. That opens the door for all kinds of fun: process hollowing, reflective DLL injection, memory sharing across processes, you name it. Because it's deeper in the stack than typical alloc APIs, a lot of security tools just don’t see it coming.
+`NtCreateSection` is one of those low-level Windows APIs that quietly does a lot of heavy lifting for attackers. It lets you carve out a chunk of memory, either fresh or tied to a file, and map it into a process’s address space. That opens the door for all kinds of fun: process hollowing, reflective DLL injection, memory sharing across processes, you name it. Because it's deeper in the stack than typical alloc APIs, a lot of security tools just don’t see it coming.
 
 ## 🚩 Why It Matters
 

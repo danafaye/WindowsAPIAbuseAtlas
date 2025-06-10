@@ -33,16 +33,3 @@ rule NtCreateSection_NtMapViewOfSection_Proximity
         )
 }
 
-rule NtCreateSection_SyscallStub
-{
-    meta:
-        description = "Detects syscall stub for NtCreateSection (used in stealthy section-based injection)"
-        reference = "Windows API Abuse Atlas"
-    strings:
-        $stub = { B8 ?? ?? ?? ?? 0F 05 } // mov eax, syscall_id; syscall
-        // You can adjust these values based on syscall ID for NtCreateSection on target OS builds
-
-    condition:
-        $stub and
-        not pe.imports("ntdll.dll", "NtCreateSection")
-}

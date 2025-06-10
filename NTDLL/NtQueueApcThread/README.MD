@@ -79,7 +79,7 @@ For the latest technical write-ups, search for the malware, tool, or actor name 
 
 ## 🧵 `NtQueueApcThread` and Friends
 
-**`NtQueueApcThread`** is part of a family of native APIs that enable low-level thread and memory manipulation, including `NtQueueApcThreadEx`, `NtCreateThreadEx`, and `NtSetInformationThread`. Attackers often chain these APIs together for advanced injection and evasion techniques. Monitoring for the combined use of these functions can help defenders spot sophisticated attacks before they escalate.
+**`NtQueueApcThread`** is one of those native APIs that gives attackers low-level control over threads and memory. It’s often used alongside others like **`NtQueueApcThreadEx`**, **`NtCreateThreadEx`**, and **`NtSetInformationThread`** in injection chains that favor stealth and flexibility. Spotting these calls in combination can help defenders catch advanced tradecraft before it fully kicks in.
 
 ## 📚 Resources
 

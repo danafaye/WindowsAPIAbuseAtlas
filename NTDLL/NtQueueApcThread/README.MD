@@ -14,7 +14,7 @@ An `APC` (Asynchronous Procedure Call) is basically a way to sneak a function in
 
 - **Stealthy execution**: Instead of spinning up a new thread (which defenders watch like hawks), NtQueueApcThread lets you hijack an existing one. That means your code runs inside another process — quietly — and is much less likely to raise alarms.
 
-- **Off-hook execution**: in the wild ... This technique shows up in some slick tradecraft, like Early Bird (execute as preamble to hooked application) and AtomBombing (execute from OS atom table), where timing and stealth are everything. It’s not just theoretical. Real-world malware uses it to great effect.
+- **EDR Evation**: in the wild ... This technique shows up in some slick tradecraft, like Early Bird (execute as preamble to hooked application) and AtomBombing (execute from OS atom table), where timing and stealth are everything. It’s not just theoretical. Real-world malware uses it to great effect.
 
 - **Hard to distinguish**: NtQueueApcThread isn’t inherently stealthy, but it’s used by plenty of legitimate software, like antivirus tools, debuggers, and system management utilities ... to run async operations. That overlap makes it tough for security tools to draw a clean line between benign and malicious use. Unless you’re looking at the what, where, and when, like APCs queuing into suspended threads with suspicious memory mappings, it’s easy for the bad stuff to blend in.
 
@@ -57,18 +57,21 @@ Below is a curated list of malware families, threat actors, and offensive tools 
 For the latest technical write-ups, search for the malware, tool, or actor name together with "NtQueueApcThread" on reputable security blogs, threat intelligence portals, or simply google. (Direct links are not included to reduce maintenance.)
 
 ### **Ransomware**
-- Ryuk
-- Sodinokibi (REvil)
+ - Akira
+ - Mailto (Koko Ransomware, Netwalker)
+ - RansomHub
+ - Revil
 
 ### **Commodity Loaders & RATs**
-- CobaltStrike Beacon
-- Metasploit Meterpreter
-- Remcos RAT
+- DarkGate
+- Emotet
+- HeartCrypt (packer)
+- XLoader
 
 ### **APT & Threat Actor Toolkits**
-- APT29 (Cozy Bear)
-- FIN7 (Carbanak)
-- Lazarus Group
+- BumbleBee (Coldtrain, ShellSting, Shindig)
+- Earth Longzhi (SnakeCharmer)
+- Fancy Bear (APT 28)
 
 ### **Red Team & Open Source Tools**
 - CobaltStrike

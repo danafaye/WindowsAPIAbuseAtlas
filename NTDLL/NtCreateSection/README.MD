@@ -2,7 +2,7 @@
 
 ## 🚀 Executive Summary
 
-`NtCreateSection` is one of those sleeper APIs that doesn’t get enough attention. It gives attackers a way to carve out memorym, mapped from a file or just fresh, and drop it into a process. From there, it's open season: hollowing, reflective DLLs, shared memory tricks, you name it. Since it flies lower than the usual VirtualAlloc stuff, a lot of tooling just plain misses it.
+`NtCreateSection` is one of those sleeper APIs that doesn’t get enough attention. It gives attackers a way to carve out memory, mapped from a file or just fresh, and drop it into a process. From there, it's open season: hollowing, reflective DLLs, shared memory tricks, you name it. Since it flies lower than the usual VirtualAlloc stuff, a lot of tooling just plain misses it.
 
 ## 🔍 What is NtCreateSection?
 

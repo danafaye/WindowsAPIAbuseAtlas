@@ -26,7 +26,7 @@
 
 - Processes or threads making Calls to `NtImpersonateThread`, often following thread or process enumeration.
 - Prior use of `OpenThread` or `GetThreadToken` to prepare for impersonation.
-- Sudden privilege operations immediately after impresonation calls (like accessing sesntive files or spawning new processes)
+- Sudden privilege operations immediately after impersonation calls (like accessing sensitive files or spawning new processes)
 - Reverting the thread to its original security context using `NtSetInformationThread` or similar calls to clean up and avoid detection.
 
 ## 🛡️ Detection Opportunities
@@ -49,9 +49,9 @@ See [NtImpersonateThread.yar](./NtImpersonateThread.yar).
 
 ## 🦠 Malware & Threat Actors Documented Abusing NtImpersonateThread
 
-Below is a curated list of malware families, threat actors, and offensive tools known to abuse or patch `NtCreateSection`.  
+Below is a curated list of malware families, threat actors, and offensive tools known to abuse `NtImpersonateThread`.  
 
-For the latest technical write-ups, search for the malware, tool or actor name together with "NtCreateSection" on reputable security blogs, threat intelligence portals, or simply google. (Direct links are not included to reduce maintenance.)
+For the latest technical write-ups, search for the malware, tool or actor name together with "NtImpersonateThread" on reputable security blogs, threat intelligence portals, or simply google. (Direct links are not included to reduce maintenance.)
 
 ### **Ransomware**
  - Agenda
@@ -64,6 +64,7 @@ For the latest technical write-ups, search for the malware, tool or actor name t
  - DarkVision RAT
  - HijackLoader
  - IDAT Loader
+ - Siloscape
 
 ### **APT & Threat Actor Toolkits**
  - APT41

@@ -6,7 +6,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 
 ## 🧠 Thread & Execution Hijacking
 
-- [NtQueueApcThread](./NTDLL/NtQueueApcThread/README.MD)
+- [NTDLL/NtQueueApcThread](./NTDLL/NtQueueApcThread/README.MD)
 - [NTDLL/NtSetInformationThread](./NTDLL/NtSetInformationThread/README.md)
 - `NtResumeThread`
 - `NtAlertResumeThread`

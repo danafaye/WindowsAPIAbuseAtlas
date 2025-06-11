@@ -17,17 +17,17 @@
 
 ## 🧬 How Attackers Abuse It
 
-- Locate a target thread running with higher privileges (e.g., SYSTEM).
-- Use `NtImpersonateThread` to make a malicious thread impersonate the target.
-- Perform privileged actions (file access, process creation, network connections) under the stolen context.
-- Revert to the original context to avoid detection.
+- Find a thread running with higher privileges (SYSTEM)
+- Call `NtImpersonateThread` to slip into that thread's security context
+- Do the dirty work ... access files, spawn processes, or whatever, all under the borrowed identity
+- Drop the impersonation when done to keep a low profile and dodge detection
 
-## 🧵 Sample Behavior
+## 👀 Sample Behavior
 
-- Calls to `NtImpersonateThread` after enumerating threads or processes.
-- Use of `OpenThread`, `GetThreadToken`, or similar APIs before impersonation.
-- Privileged actions (e.g., accessing protected files, creating processes) immediately after impersonation.
-- Seen in token theft, privilege escalation, and lateral movement scenarios.
+- Processes or threads making Calls to `NtImpersonateThread`, often following thread or process enumeration.
+- Prior use of `OpenThread` or `GetThreadToken` to prepare for impersonation.
+- Sudden privilege operations immediately after impresonation calls (like accessing sesntive files or spawning new processes)
+- Reverting the thread to its original security context using `NtSetInformationThread` or similar calls to clean up and avoid detection.
 
 ## 🛡️ Detection Opportunities
 
@@ -41,29 +41,56 @@ See [NtImpersonateThread.yar](./NtImpersonateThread.yar).
 
 ### 🔹 Behavioral Indicators
 
-- Unusual use of `NtImpersonateThread` in processes that do not typically perform impersonation (e.g., user applications).
-- Sequence of thread enumeration, token access, and impersonation APIs.
-- Privileged actions performed shortly after impersonation.
-- Use of `NtImpersonateThread` in combination with `DuplicateToken`, `SetThreadToken`, or `RevertToSelf`.
-- Impersonation of threads belonging to SYSTEM or high-privilege services.
+ - `NtImpersonateThread` popping up in places you wouldn’t expect — like regular user apps that normally don’t mess with impersonation.
+ - Spotting a pattern of checking out threads, grabbing tokens, then jumping into impersonation calls.
+ - Watch out for any privileged moves right after impersonation happens.
+ - Seeing `NtImpersonateThread` used alongside `DuplicateToken`, `SetThreadToken`, or `RevertToSelf` — classic combo for messing with identities.
+ - Threads being impersonated that belong to SYSTEM or other high-level services.
 
 ## 🦠 Malware & Threat Actors Documented Abusing NtImpersonateThread
 
-- CobaltStrike Beacon
-- Metasploit Meterpreter
-- APT groups (various, for privilege escalation and evasion)
-- Custom red team tools
+Below is a curated list of malware families, threat actors, and offensive tools known to abuse or patch `NtCreateSection`.  
+
+For the latest technical write-ups, search for the malware, tool or actor name together with "NtCreateSection" on reputable security blogs, threat intelligence portals, or simply google. (Direct links are not included to reduce maintenance.)
+
+### **Ransomware**
+ - Agenda
+ - LockBit
+ - Magniber
+
+### **Commodity Loaders & RATs**
+ - Blister Loader
+ - CherryLoader
+ - DarkVision RAT
+ - HijackLoader
+ - IDAT Loader
+
+### **APT & Threat Actor Toolkits**
+ - APT41
+ - Earth Berberoka
+ - Winnti (APT17)
+
+### **Red Team & Open Source Tools**
+ - Atomic Read Team
+ - Brute Ratel
+ - Cobalt Strike
+ - Infection Monkey
+ - Metta
+ - MITRE Caldera
 
 > **Note:** This list isn’t exhaustive. Many advanced malware families and offensive security tools use `NtImpersonateThread` for stealth and privilege escalation.
 
 ## 🧵 `NtImpersonateThread` and Friends
 
-`NtImpersonateThread` is often used alongside other token manipulation and impersonation APIs, such as `DuplicateToken`, `SetThreadToken`, `OpenThreadToken`, and `RevertToSelf`. Monitoring for these APIs in combination can help defenders spot advanced privilege escalation and evasion techniques.
+Yes, it’s a good idea to mention `NtCreateThread` (and/or `NtCreateThreadEx`) in this context. Attackers often use thread creation APIs in combination with impersonation and token manipulation APIs to launch new threads under a stolen or elevated security context. This chaining is common in advanced privilege escalation and lateral movement techniques.
+
+**Suggested revision:**
+
+You'll often see `NtImpersonateThread` show up alongside other token-related APIs like `DuplicateToken`, `SetThreadToken`, `OpenThreadToken`, and `RevertToSelf`. Attackers may also chain these with thread creation APIs such as `NtCreateThread` or `NtCreateThreadEx` to launch new threads under an impersonated identity. When you spot these APIs used together, it's usually a sign of privilege escalation or other sneaky evasion tactics and worth investigating.
 
 ## 📚 Resources
 
-- [Microsoft Docs: NtImpersonateThread](https://learn.microsoft.com/en-us/windows/win32/api/winternl/nf-winternl-ntimpersonatethread)
-- [MITRE ATT&CK: Access Token Manipulation](https://attack.mitre.org/techniques/T1134/)
-- [Token Theft and Impersonation Techniques](https://posts.specterops.io/understanding-and-defending-against-access-token-theft-impersonation-in-windows-9e4c7a4a4d4c)
+- [NTAPI Undocumented Functions](http://undocumented.ntinternals.net/index.html?page=UserMode%2FUndocumented%20Functions%2FNT%20Objects%2FThread%2FNtImpersonateThread.html)
+- [MITRE ATT&CK](https://attack.mitre.org/techniques/T1134/001/)
 
 > Open a PR or issue to help keep this list up to date!

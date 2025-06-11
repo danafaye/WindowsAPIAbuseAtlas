@@ -38,7 +38,7 @@ Alright, so how do you spot this mess? When APC injection is in play, defenders 
 
 Here are some sample YARA rules to detect malicious use of `NtQueueApcThread`:
 
-See [NtQueueApcThread.yar](./NtQ).
+See [NtQueueApcThread.yar](./NtQueueApcThread.yar).
 
 > **Note:** Use these YARA rules at your own risk. They are loosely scoped and intended primarily for threat hunting and research purposes; **NOT** for deployment in detection systems that require a low false positive rate. Please review and test in your environment before use.
 
@@ -87,7 +87,7 @@ For the latest technical write-ups, search for the malware, tool, or actor name 
 ## 📚 Resources
 
 - [Microsoft Docs: QueueApcThread](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-queueuserapc)
-- [Home	NTAPI Undocumented Functions](http://undocumented.ntinternals.net/index.html?page=UserMode%2FUndocumented%20Functions%2FAPC%2FNtQueueApcThread.html)
+- [NTAPI Undocumented Functions](http://undocumented.ntinternals.net/index.html?page=UserMode%2FUndocumented%20Functions%2FAPC%2FNtQueueApcThread.html)
 - [MITRE ATT&CK: Process Injection](https://attack.mitre.org/techniques/T1055/)
 
 > **Know of more?**  

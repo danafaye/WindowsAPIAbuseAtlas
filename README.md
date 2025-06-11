@@ -49,7 +49,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - `AdjustTokenPrivileges`
 - `OpenProcessToken`
 - `DuplicateTokenEx`
-- `NtImpersonateThread`
+- [NTDLL/NtImpersonateThread](./NTDLL/NtImpersonateThread/)
 - `ImpersonateLoggedOnUser`
 - `NtSetInformationToken`
 

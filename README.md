@@ -6,66 +6,69 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 
 ## 🧠 Thread & Execution Hijacking
 
+- `CreateFiber` / `ConvertThreadToFiber`
+- `CreateRemoteThreadEx`
 - [NTDLL/NtQueueApcThread](./NTDLL/NtQueueApcThread/README.MD)
 - [NTDLL/NtSetInformationThread](./NTDLL/NtSetInformationThread/README.md)
-- `NtResumeThread`
 - `NtAlertResumeThread`
+- `NtCreateThreadEx`
+- `NtResumeThread`
 - `QueueUserAPC` *(less stealthy, but still relevant)*
 - `RtlCreateUserThread`
-- `NtCreateThreadEx`
-- `CreateRemoteThreadEx`
 - `SetThreadContext` / `GetThreadContext`
 
 ## 🧬 Memory & Mapping Abuse
 
 - [NTDLL/NtCreateSection](./NTLL/NtCreateSection/README.md)
+- `NtAllocateVirtualMemory`
 - `NtMapViewOfSection`
+- `NtProtectVirtualMemory`
+- `NtReadVirtualMemory`
 - `NtUnmapViewOfSection`
+- `NtWriteVirtualMemory`
 - `VirtualAllocEx`
 - `WriteProcessMemory`
-- `NtProtectVirtualMemory`
-- `NtWriteVirtualMemory`
-- `NtReadVirtualMemory`
 
 ## 🕵️ Process Masquerading / Evasion
 
-- `NtSetInformationProcess`
-- `NtQueryInformationProcess`
-- [KERNEL32/UpdateProcThreadAttribute](./KERNEL32/UpdateProcThreadAttribute/README.md)
+- `CreateProcessAsUserW`
 - `CreateProcessInternalW`
+- `CreateProcessWithTokenW`
+- [KERNEL32/UpdateProcThreadAttribute](./KERNEL32/UpdateProcThreadAttribute/README.md)
+- `NtQueryInformationProcess`
+- `NtSetInformationProcess`
 - `SetProcessMitigationPolicy`
 
 ## 🩺 Telemetry & Anti-Detection
 
+- `DbgUiRemoteBreakin`
 - [NTDLL/EtwEventWrite](./NTDLL/EtwEventWrite/README.md)
 - `EtwNotificationRegister`
 - `EtwProviderEnabled`
-- `NtTraceEvent`
 - `NtSetDebugFilterState`
-- `DbgUiRemoteBreakin`
+- `NtTraceEvent`
+- `Wow64DisableWow64FsRedirection`
 
 ## 🔐 Token & Privilege Abuse
 
 - `AdjustTokenPrivileges`
-- `OpenProcessToken`
 - `DuplicateTokenEx`
-- [NTDLL/NtImpersonateThread](./NTDLL/NtImpersonateThread/)
 - `ImpersonateLoggedOnUser`
+- [NTDLL/NtImpersonateThread](./NTDLL/NtImpersonateThread/)
 - `NtSetInformationToken`
+- `OpenProcessToken`
 
 ## 🎭 DLL/PE Loading Tricks
 
-- `LdrLoadDll`
 - `LdrGetProcedureAddress`
-- `NtOpenFile` + `NtCreateSection` *(manual mapping)*
+- `LdrLoadDll`
 - `MapViewOfFile` + `LoadLibraryA/W`
+- `NtOpenFile` + `NtCreateSection` *(manual mapping)*
 - `SetDllDirectoryA/W` + `LoadLibrary`
 
 ## 🧩 Service, Registry & Misc Control
 
-- `RegSetValueEx`
-- `RegCreateKeyEx`
-- `OpenSCManager`
-- `CreateService`
-- `ControlService`
 - [NTDLL/NtDeviceIoControlFile](./NTDLL/NtDeviceIoControlFile/)
+- `ControlService`
+- `CreateService`
+- `OpenSCManager`

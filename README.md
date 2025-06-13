@@ -68,4 +68,4 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - `OpenSCManager`
 - `CreateService`
 - `ControlService`
-- [NTLL/NtDeviceIoControlFile](./NTDLL/NtDeviceIoControlFile/)
+- [NTDLL/NtDeviceIoControlFile](./NTDLL/NtDeviceIoControlFile/)

@@ -1,4 +1,4 @@
-# 🧪 NtDeviceIoControlFile: The Swiss Army Knife for Device Abuse
+# 🦺 NtDeviceIoControlFile: Bypassing Security with Drivers & BYOVD
 
 ## 🚀 Executive Summary
 

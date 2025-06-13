@@ -32,6 +32,9 @@
 - Calls to `NtDeviceIoControlFile` using documented or undocumented IOCTL codes from apps that don’t normally talk directly to drivers.  
 - Chains like loading a driver (`NtLoadDriver`), opening device handles (`NtOpenFile`), then sending IOCTLs to take control or mess with the system.  
 - Malware chatting with its own stealthy kernel driver to disable antivirus or security tools by sending commands that shut down protections.  
+- Sample call chains
+  - `NtLoadDriver` ➝ `NtOpenFile` ➝ `NtDeviceIoControlFile`
+  - `NtOpenFile` ➝ `NtDeviceIoControlFile` ➝ `WriteFile` ➝ `CreateFile` (dump/exfil output)
 
 ## 🛡️ Detection Opportunities
 
@@ -55,17 +58,20 @@ See [NtDeviceIoControlFile.yar](./NtDeviceIoControlFile.yar)
 Below is a curated (but not exhaustive) list of malware families, threat actors, and offensive tools known to abuse `NtDeviceIoControlFile`:
 
 ### **Ransomware**
+- DarkBit
 - LockerGoga
 - RobbinHood
-- BlackByte
 
 ### **Commodity Loaders & RATs**
-- Mimikatz (when using driver-based modules)
 - Cobalt Strike (via custom BOFs or driver loaders)
+- DopplePaymer
+- Mimikatz (when using driver-based modules)
 
 ### **APT & Threat Actor Toolkits**
 - APT41 (driver-based privilege escalation)
 - FIN6
+- Lazarus
+- Winnti
 
 ### **Red Team & Open Source Tools**
 - EDRKill tools
@@ -75,7 +81,7 @@ Below is a curated (but not exhaustive) list of malware families, threat actors,
 
 ## 🧵 `NtDeviceIoControlFile` and Friends
 
-`NtDeviceIoControlFile` is often used alongside APIs like `NtOpenFile`, `NtLoadDriver`, and `NtUnloadDriver` for advanced driver and device manipulation. Monitoring for these APIs in combination can help defenders spot sophisticated kernel-level attacks.
+`NtDeviceIoControlFile` isn’t the only way for user-mode code to talk to drivers. It’s just one flavor. You’ll see the same behavior show up in cousins like `DeviceIoControl` (the high-level wrapper), `ZwDeviceIoControlFile` (same core, different name), and sometimes even `NtReadFile` or `NtWriteFile` when attackers are moving data to or from a driver. 
 
 ## 📚 Resources
 

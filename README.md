@@ -21,7 +21,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 
 - [NTDLL/NtCreateSection](./NTDLL/NtCreateSection/)
 - `NtAllocateVirtualMemory`
-- [NtMapViewOfSection](./NTDLL/NtMapViewOfSection/)
+- [NTDLL/NtMapViewOfSection](./NTDLL/NtMapViewOfSection/)
 - `NtProtectVirtualMemory`
 - `NtReadVirtualMemory`
 - `NtUnmapViewOfSection`

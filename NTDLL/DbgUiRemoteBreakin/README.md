@@ -49,22 +49,22 @@ Below is a curated list of malware families, threat actors, and offensive tools 
 For the latest technical write-ups, search for the malware or tool name together with "DbgUiRemoteBreakin" on reputable security blogs, threat intelligence portals, or simply google. (Direct links are not included to reduce maintenance.)
 
 ### Ransomware
-BlackMoon
-LockBit 3.0
-Maze
-Ragnar Locker
+ - BlackMoon
+ - LockBit 3.0
+ - Maze
+ - Ragnar Locker
 
 ### Commodity Loaders & RATs
-GuLoader
-Legion Loader
-Raccoon Stealer
+ - GuLoader
+ - Legion Loader
+ - Raccoon Stealer
 
 ### APT & Threat Actor Toolkits
-Couldn’t find any off the bat ... but there has to be some out there. If you’ve seen it show up in APT tooling or anywhere else sneaky, let me know and I’ll add it here.
+ - Couldn’t find any off the bat ... but there has to be some out there. If you’ve seen it show up in APT tooling or anywhere else sneaky, let me know and I’ll add it here.
 
 ### Red Team & Open Source Tools
-Cobalt Strike
-Sliver
+ - Cobalt Strike
+ - Sliver
 
 > **Note:** This list isn’t exhaustive. Many modern malware families and offensive security tools use `DbgUiRemoteBreakin` for stealth and evasion. As awareness grows, expect even more to adopt it.
 

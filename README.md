@@ -19,7 +19,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 
 ## 🧬 Memory & Mapping Abuse
 
-- [NTDLL/NtCreateSection](./NTLL/NtCreateSection/README.md)
+- [NTDLL/NtCreateSection](./NTDLL/NtCreateSection/README.md)
 - `NtAllocateVirtualMemory`
 - `NtMapViewOfSection`
 - `NtProtectVirtualMemory`

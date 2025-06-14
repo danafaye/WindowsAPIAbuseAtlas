@@ -1,7 +1,7 @@
 # NtMapViewOfSection
 
 ## 🚀 Executive Summary
-
+`NtMapViewOfSection` is a native Windows API from `ntdll.dll` that’s a key player in stealthy process injection techniques like process hollowing and reflective DLL loading. It lets attackers map section objects into another process’s memory space, bypassing more commonly watched APIs like `VirtualAllocEx` and `WriteProcessMemory`. Because it can map executable memory across processes with low visibility to most security tools, it’s a favorite for sophisticated malware authors. While legitimate apps sometimes use it for shared memory, seeing this API used alongside suspicious behavior, like mapping into suspended processes or right after `NtUnmapViewOfSection` calls, is a strong red flag that defenders should watch closely.
 
 ## 🚩 Why It Matters
 Defenders need to understand `NtMapViewOfSection` because it’s one of those quiet APIs that attackers love. It lets them map memory—often containing shellcode or an entire PE—into a process without touching the usual, noisy injection paths like `WriteProcessMemory` or `LoadLibrary`. Since it's low-level NTAPI, a lot of EDRs just don’t see it, especially if you're only watching for high-level calls. That makes it perfect for stealthy payload delivery and execution. If you're not hunting for this kind of activity—like odd section mappings or sketchy memory permissions—you’re missing a big part of the picture.
@@ -77,7 +77,7 @@ Empire
 ## 📚 Resources
 [NTAPI Undocumented Functions](http://undocumented.ntinternals.net/index.html?page=UserMode%2FUndocumented%20Functions%2FNT%20Objects%2FSection%2FNtMapViewOfSection.html)
 [NtQueueApcThread](../NtQueueApcThread/README.md)
-[NtCreateSection](../NtCreateSection/README.md)/README.md)
+[NtCreateSection](../NtCreateSection/README.md)
 
 
 > **Know of more?**  

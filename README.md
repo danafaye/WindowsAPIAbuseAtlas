@@ -8,8 +8,8 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 
 - `CreateFiber` / `ConvertThreadToFiber`
 - `CreateRemoteThreadEx`
-- [NTDLL/NtQueueApcThread](./NTDLL/NtQueueApcThread/README.MD)
-- [NTDLL/NtSetInformationThread](./NTDLL/NtSetInformationThread/README.md)
+- [NTDLL/NtQueueApcThread](./NTDLL/NtQueueApcThread/)
+- [NTDLL/NtSetInformationThread](./NTDLL/NtSetInformationThread/)
 - `NtAlertResumeThread`
 - `NtCreateThreadEx`
 - `NtResumeThread`
@@ -19,7 +19,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 
 ## 🧬 Memory & Mapping Abuse
 
-- [NTDLL/NtCreateSection](./NTDLL/NtCreateSection/README.md)
+- [NTDLL/NtCreateSection](./NTDLL/NtCreateSection/)
 - `NtAllocateVirtualMemory`
 - `NtMapViewOfSection`
 - `NtProtectVirtualMemory`
@@ -34,7 +34,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - `CreateProcessAsUserW`
 - `CreateProcessInternalW`
 - `CreateProcessWithTokenW`
-- [KERNEL32/UpdateProcThreadAttribute](./KERNEL32/UpdateProcThreadAttribute/README.md)
+- [KERNEL32/UpdateProcThreadAttribute](./KERNEL32/UpdateProcThreadAttribute/)
 - `NtQueryInformationProcess`
 - `NtSetInformationProcess`
 - `SetProcessMitigationPolicy`
@@ -42,7 +42,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 ## 🩺 Telemetry & Anti-Detection
 
 - `DbgUiRemoteBreakin`
-- [NTDLL/EtwEventWrite](./NTDLL/EtwEventWrite/README.md)
+- [NTDLL/EtwEventWrite](./NTDLL/EtwEventWrite/)
 - `EtwNotificationRegister`
 - `EtwProviderEnabled`
 - `NtSetDebugFilterState`

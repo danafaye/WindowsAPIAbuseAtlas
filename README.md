@@ -41,7 +41,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 
 ## 🩺 Telemetry & Anti-Detection
 
-- `DbgUiRemoteBreakin`
+- [DbgUiRemoteBreakin](./NTDLL/DbgUiRemoteBreakin/)
 - [NTDLL/EtwEventWrite](./NTDLL/EtwEventWrite/)
 - `EtwNotificationRegister`
 - `EtwProviderEnabled`

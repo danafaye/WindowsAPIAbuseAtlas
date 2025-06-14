@@ -1,3 +1,7 @@
+// WARNING:  THIS IS A SLOW SIGNATURE!!
+
+// Heads up: These rules are loosely scoped and designed for hunting and research. They’re not meant for production detection systems that require low false positives. Please test and adjust them in your environment.
+
 rule Possible_DbgUiRemoteBreakin_Abuse {
     meta:
         description = "Detects potential abuse of DbgUiRemoteBreakin for stealthy code injection or anti-debugging"

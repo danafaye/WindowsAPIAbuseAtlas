@@ -98,11 +98,12 @@ Let’s be honest ... if there’s an attacker out there, they’re probably usi
 > **Note:** This list isn't exhaustive. Many modern malware families and offensive security tools use `NtWriteVirtualMemory` for code injection and memory manipulation.
 
 ## 🧵 `NtWriteVirtualMemory` and Friends
-`NtWriteVirtualMemory` is just one player in a tight-knit squad of native Windows APIs that handle memory manipulation. It teams up with `NtAllocateVirtualMemory` to carve out space, `NtProtectVirtualMemory` to flip page permissions, and `NtReadVirtualMemory` to snoop on process memory. Attackers lean on this whole toolkit to pull off complex memory tricks — allocating, writing, tweaking protections, and eventually executing code stealthily. While `NtWriteVirtualMemory` does the heavy lifting of actually writing data, it rarely acts alone in the attack chain.
+`NtWriteVirtualMemory` is just one player in a tight-knit squad of native Windows APIs that handle memory manipulation. It works alongside `NtAllocateVirtualMemory` to carve out memory, `NtProtectVirtualMemory` to change page protections, and `NtReadVirtualMemory` to peek into process memory. Attackers use this whole toolkit to pull off complex memory tricks — allocating space, writing payloads, tweaking protections, and eventually executing code stealthily. While `NtWriteVirtualMemory` does the heavy lifting of actually writing the data at the native level, in user-mode you’ll often see `WriteProcessMemory` being called instead, which is the Win32 wrapper for this operation. So keep an eye on both, since they rarely act alone in an attack chain.
 
 
 ## 📚 Resources
-[Microsoft](https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/nf-ntifs-ntqueryvirtualmemory)
+[NTAPI Undocumented Functions](http://undocumented.ntinternals.net/index.html?page=UserMode%2FUndocumented%20Functions%2FMemory%20Management%2FVirtual%20Memory%2FNtWriteVirtualMemory.html)
+[Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas) (more like this)
 
 > **Know of more?**  
 > Open a PR or issue to help keep this list up to date!

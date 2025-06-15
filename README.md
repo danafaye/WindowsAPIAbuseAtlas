@@ -25,7 +25,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - `NtProtectVirtualMemory`
 - `NtReadVirtualMemory`
 - `NtUnmapViewOfSection`
-- `NtWriteVirtualMemory`
+- [NTDLL/NtWriteVirtualMemory](./NTDLL/NtWriteVirtualMemory/)
 - `VirtualAllocEx`
 - `WriteProcessMemory`
 

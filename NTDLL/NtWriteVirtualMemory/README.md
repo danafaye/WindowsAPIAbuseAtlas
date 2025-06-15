@@ -103,6 +103,7 @@ Let’s be honest ... if there’s an attacker out there, they’re probably usi
 
 ## 📚 Resources
 [NTAPI Undocumented Functions](http://undocumented.ntinternals.net/index.html?page=UserMode%2FUndocumented%20Functions%2FMemory%20Management%2FVirtual%20Memory%2FNtWriteVirtualMemory.html)
+
 [Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas) (more like this)
 
 > **Know of more?**  

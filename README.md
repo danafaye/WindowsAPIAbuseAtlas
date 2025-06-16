@@ -1,4 +1,4 @@
-# WindowsAPIAbuseAtlas
+# Windows API Abuse Atlas
 WindowsAPIAbuseAtlas is an evolving map of the sneaky and lesser-known ways malware twists Windows APIs to hide, evade, and attack. It’s packed with practical reverse engineering insights, ready-to-use YARA rules, and clear behavioral clues that help defenders spot these tricks in the wild. Whether you’re hunting threats, building detections, or just curious about how bad actors operate behind the scenes, this atlas sheds light on complex Windows behavior ... empowering the cyber community to stay one step ahead.
 
 # Index
@@ -13,6 +13,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - `NtAlertResumeThread`
 - `NtCreateThreadEx`
 - `NtResumeThread`
+- `NtOpenThread`
 - `QueueUserAPC` *(less stealthy, but still relevant)*
 - `RtlCreateUserThread`
 - `SetThreadContext` / `GetThreadContext`
@@ -37,6 +38,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - [KERNEL32/UpdateProcThreadAttribute](./KERNEL32/UpdateProcThreadAttribute/)
 - `NtQueryInformationProcess`
 - `NtSetInformationProcess`
+- `NtSetInformationFile`
 - `SetProcessMitigationPolicy`
 
 ## 🩺 Telemetry & Anti-Detection
@@ -45,6 +47,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - [NTDLL/EtwEventWrite](./NTDLL/EtwEventWrite/)
 - `EtwNotificationRegister`
 - `EtwProviderEnabled`
+- `NtRaiseHardError`
 - `NtSetDebugFilterState`
 - `NtTraceEvent`
 - `Wow64DisableWow64FsRedirection`
@@ -72,3 +75,21 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - `ControlService`
 - `CreateService`
 - `OpenSCManager`
+- `RegSetValueEx`
+
+## 🧭 Recon & Enumeration
+
+- `NetLocalGroupGetMembers`
+- `NetSessionEnum`
+- `NetWkstaUserEnum`
+- `WNetEnumResource`
+
+## 🪪 Credential Access & Secret Extraction
+
+- `LsaRetrievePrivateData`
+- `CryptUnprotectData`
+- `CredReadW`
+- `CredEnumerateW`
+- `LsaOpenPolicy`
+
+

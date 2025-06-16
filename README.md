@@ -79,14 +79,14 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 
 ## 🧭 Recon & Enumeration
 
-- `NetLocalGroupGetMembers`
+- [NETAPI32/NetLocalGroupGetMembers](./NETAPI32/NetLocalGroupGetMembers/)
 - `NetSessionEnum`
 - `NetWkstaUserEnum`
 - `WNetEnumResource`
 
 ## 🪪 Credential Access & Secret Extraction
 
-- `LsaRetrievePrivateData`
+- [LsaRetrievePrivateData](./ADVAPI32/LsaRetrievePrivateData/)
 - `CryptUnprotectData`
 - `CredReadW`
 - `CredEnumerateW`

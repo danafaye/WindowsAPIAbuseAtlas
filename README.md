@@ -35,11 +35,12 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - `CreateProcessAsUserW`
 - `CreateProcessInternalW`
 - `CreateProcessWithTokenW`
-- [KERNEL32/UpdateProcThreadAttribute](./KERNEL32/UpdateProcThreadAttribute/)
+- [PSAPI/EnumProcessModules](./PSAPI/EnumProcessModules/)
 - `NtQueryInformationProcess`
 - `NtSetInformationProcess`
 - `NtSetInformationFile`
 - `SetProcessMitigationPolicy`
+- [KERNEL32/UpdateProcThreadAttribute](./KERNEL32/UpdateProcThreadAttribute/)
 
 ## 🩺 Telemetry & Anti-Detection
 

@@ -23,7 +23,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - [NTDLL/NtCreateSection](./NTDLL/NtCreateSection/)
 - `NtAllocateVirtualMemory`
 - [NTDLL/NtMapViewOfSection](./NTDLL/NtMapViewOfSection/)
-- `NtProtectVirtualMemory`
+- [NTDLL/NtProtectVirtualMemory](./NTDLL/NtProtectVirtualMemory/)
 - `NtReadVirtualMemory`
 - `NtUnmapViewOfSection`
 - [NTDLL/NtWriteVirtualMemory](./NTDLL/NtWriteVirtualMemory/)
@@ -87,7 +87,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 
 ## 🪪 Credential Access & Secret Extraction
 
-- [LsaRetrievePrivateData](./ADVAPI32/LsaRetrievePrivateData/)
+- [ADVAPI32/LsaRetrievePrivateData](./ADVAPI32/LsaRetrievePrivateData/)
 - `CryptUnprotectData`
 - `CredReadW`
 - `CredEnumerateW`

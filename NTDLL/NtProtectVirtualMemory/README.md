@@ -85,7 +85,7 @@ You’re not going to catch abuse of `NtProtectVirtualMemory` just by looking fo
 > **Note:** This list isn't exhaustive. Many modern malware families and offensive security tools use `NtProtectVirtualMemory` for code injection and memory manipulation.
 
 ## 🧵 `NtProtectVirtualMemory` and Friends
-`NtProtectVirtualMemory` gets a lot of attention, but it’s not the only way attackers flip memory protections. There’s a whole set of APIs that do the same thing or close enough—just from different angles. `VirtualProtect` and `VirtualProtectEx` are the obvious ones and basically wrap the same syscall, so if you're watching one, you should be watching all three. `ZwProtectVirtualMemory` is functionally the same as `NtProtectVirtualMemory`, but shows up in tooling that’s trying to slip past lazy detections. In .NET payloads, you'll sometimes see `ChangeMemoryProtection`
+`NtProtectVirtualMemory` gets a lot of attention, but it’s not the only way attackers flip memory protections. There’s a whole set of APIs that do the same thing or close enough—just from different angles. `VirtualProtect` and `VirtualProtectEx` are the obvious ones and basically wrap the same syscall, so if you're watching one, you should be watching all three. `ZwProtectVirtualMemory` is functionally the same as `NtProtectVirtualMemory`, but shows up in tooling that’s trying to slip past lazy detections. In .NET payloads, you'll sometimes see `ChangeMemoryProtection` used to adjust page protection similarly.
 
 ## 📚 Resources
 [NTAPI Undocumented Functions](http://undocumented.ntinternals.net/index.html?page=UserMode%2FUndocumented%20Functions%2FMemory%20Management%2FVirtual%20Memory%2FNtProtectVirtualMemory.html)

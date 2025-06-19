@@ -4,93 +4,76 @@ WindowsAPIAbuseAtlas is an evolving map of the sneaky and lesser-known ways malw
 # Index
 This is a living roadmap. As I knock out each entry, I’ll link it here. If you don’t see a link yet, it’s just a placeholder for something I’ll probably get to ... or at least something worth keeping on the radar.
 
-## 🧠 Thread & Execution Hijacking
+## ADVAPI32.DLL
+- `AdjustTokenPrivileges`
+- `ControlService`
+- `CreateService`
+- `CredEnumerateW`
+- `CredReadW`
+- `DuplicateTokenEx`
+- `ImpersonateLoggedOnUser`
+- `LsaOpenPolicy`
+- [LsaRetrievePrivateData](./ADVAPI32/LsaRetrievePrivateData/)
+- `OpenProcessToken`
+- `OpenSCManager`
+- `QueryServiceStatusEx`
+- `RegSetValueEx`
 
-- `CreateFiber` / `ConvertThreadToFiber`
-- `CreateRemoteThreadEx`
-- [NTDLL/NtQueueApcThread](./NTDLL/NtQueueApcThread/)
-- [NTDLL/NtSetInformationThread](./NTDLL/NtSetInformationThread/)
-- `NtAlertResumeThread`
-- `NtCreateThreadEx`
-- `NtResumeThread`
-- `NtOpenThread`
-- `QueueUserAPC` *(less stealthy, but still relevant)*
-- `RtlCreateUserThread`
-- `SetThreadContext` / `GetThreadContext`
 
-## 🧬 Memory & Mapping Abuse
-
-- [NTDLL/NtCreateSection](./NTDLL/NtCreateSection/)
-- `NtAllocateVirtualMemory`
-- [NTDLL/NtMapViewOfSection](./NTDLL/NtMapViewOfSection/)
-- [NTDLL/NtProtectVirtualMemory](./NTDLL/NtProtectVirtualMemory/)
-- `NtReadVirtualMemory`
-- `NtUnmapViewOfSection`
-- [NTDLL/NtWriteVirtualMemory](./NTDLL/NtWriteVirtualMemory/)
-- `VirtualAllocEx`
-- `WriteProcessMemory`
-
-## 🕵️ Process Masquerading / Evasion
-
+## KERNEL32.DLL
+- `ConvertThreadToFiber`
+- `CreateFiber`
 - `CreateProcessAsUserW`
 - `CreateProcessInternalW`
 - `CreateProcessWithTokenW`
-- [PSAPI/EnumProcessModules](./PSAPI/EnumProcessModules/)
-- `NtQueryInformationProcess`
-- `NtSetInformationProcess`
-- `NtSetInformationFile`
-- `SetProcessMitigationPolicy`
-- [KERNEL32/UpdateProcThreadAttribute](./KERNEL32/UpdateProcThreadAttribute/)
-
-## 🩺 Telemetry & Anti-Detection
-
-- [NTDLL/DbgUiRemoteBreakin](./NTDLL/DbgUiRemoteBreakin/)
-- [NTDLL/EtwEventWrite](./NTDLL/EtwEventWrite/)
-- `EtwNotificationRegister`
-- `EtwProviderEnabled`
-- `NtRaiseHardError`
-- `NtSetDebugFilterState`
-- `NtTraceEvent`
-- `Wow64DisableWow64FsRedirection`
-
-## 🔐 Token & Privilege Abuse
-
-- `AdjustTokenPrivileges`
-- `DuplicateTokenEx`
-- `ImpersonateLoggedOnUser`
-- [NTDLL/NtImpersonateThread](./NTDLL/NtImpersonateThread/)
-- `NtSetInformationToken`
-- `OpenProcessToken`
-
-## 🎭 DLL/PE Loading Tricks
-
-- `LdrGetProcedureAddress`
-- `LdrLoadDll`
+- `LoadLibraryA/W`
 - `MapViewOfFile` + `LoadLibraryA/W`
-- `NtOpenFile` + `NtCreateSection` *(manual mapping)*
+- `QueueUserAPC`
 - `SetDllDirectoryA/W` + `LoadLibrary`
+- `SetProcessMitigationPolicy`
+- `VirtualAllocEx`
+- `WriteProcessMemory`
 
-## 🧩 Service, Registry & Misc Control
-
-- [NTDLL/NtDeviceIoControlFile](./NTDLL/NtDeviceIoControlFile/)
-- `ControlService`
-- `CreateService`
-- `OpenSCManager`
-- `RegSetValueEx`
-
-## 🧭 Recon & Enumeration
-
-- [NETAPI32/NetLocalGroupGetMembers](./NETAPI32/NetLocalGroupGetMembers/)
+## NETAPI32.DLL
+- `NetLocalGroupGetMembers`
 - `NetSessionEnum`
 - `NetWkstaUserEnum`
+
+## NTDLL.DLL
+- [DbgUiRemoteBreakin](./NTDLL/DbgUiRemoteBreakin/)
+- [EtwEventWrite](./NTDLL/EtwEventWrite/)
+- `EtwNotificationRegister`
+- `EtwProviderEnabled`
+- `LdrGetProcedureAddress`
+- `LdrLoadDll`
+- `NtAllocateVirtualMemory`
+- `NtAlertResumeThread`
+- `NtCreateSection`
+- `NtCreateThreadEx`
+- [NtDeviceIoControlFile](./NTDLL/NtDeviceIoControlFile/)
+- `NtMapViewOfSection`
+- `NtOpenFile`
+- `NtOpenThread`
+- [NtProtectVirtualMemory](./NTDLL/NtProtectVirtualMemory/)
+- [NtQueueApcThread](./NTDLL/NtQueueApcThread/)
+- `NtQueryInformationProcess`
+- `NtRaiseHardError`
+- `NtReadVirtualMemory`
+- `NtResumeThread`
+- `NtSetDebugFilterState`
+- `NtSetInformationFile`
+- `NtSetInformationProcess`
+- `NtSetInformationThread`
+- `NtSetInformationToken`
+- `NtTraceEvent`
+- `NtUnmapViewOfSection`
+- [NtWriteVirtualMemory](./NTDLL/NtWriteVirtualMemory/)
+- `RtlCreateUserThread`
+- `SetThreadContext` / `GetThreadContext`
+- `Wow64DisableWow64FsRedirection`
+
+## PSAPI.DLL
+- [EnumProcessModules](./PSAPI/EnumProcessModules/)
+
+## WNET.DLL
 - `WNetEnumResource`
-
-## 🪪 Credential Access & Secret Extraction
-
-- [ADVAPI32/LsaRetrievePrivateData](./ADVAPI32/LsaRetrievePrivateData/)
-- `CryptUnprotectData`
-- `CredReadW`
-- `CredEnumerateW`
-- `LsaOpenPolicy`
-
-

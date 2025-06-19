@@ -31,11 +31,12 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - `QueueUserAPC`
 - `SetDllDirectoryA/W` + `LoadLibrary`
 - `SetProcessMitigationPolicy`
+- [UpdateProcThreadAttribute](./KERNEL32/UpdateProcThreadAttribute/)
 - `VirtualAllocEx`
 - `WriteProcessMemory`
 
 ## NETAPI32.DLL
-- `NetLocalGroupGetMembers`
+- [NetLocalGroupGetMembers](./NETAPI32/NetLocalGroupGetMembers/)
 - `NetSessionEnum`
 - `NetWkstaUserEnum`
 
@@ -48,10 +49,11 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - `LdrLoadDll`
 - `NtAllocateVirtualMemory`
 - `NtAlertResumeThread`
-- `NtCreateSection`
+- [NtCreateSection](./NTDLL/NtCreateSection/)
 - `NtCreateThreadEx`
 - [NtDeviceIoControlFile](./NTDLL/NtDeviceIoControlFile/)
-- `NtMapViewOfSection`
+- [NtImpersonateThread](./NTDLL/NtImpersonateThread/)
+- [NtMapViewOfSection](./NTDLL/NtMapViewOfSection/)
 - `NtOpenFile`
 - `NtOpenThread`
 - [NtProtectVirtualMemory](./NTDLL/NtProtectVirtualMemory/)
@@ -63,7 +65,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - `NtSetDebugFilterState`
 - `NtSetInformationFile`
 - `NtSetInformationProcess`
-- `NtSetInformationThread`
+- [NtSetInformationThread](./NTDLL/NtSetInformationThread/)
 - `NtSetInformationToken`
 - `NtTraceEvent`
 - `NtUnmapViewOfSection`

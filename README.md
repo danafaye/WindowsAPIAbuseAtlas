@@ -17,6 +17,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - `OpenProcessToken`
 - `OpenSCManager`
 - `QueryServiceStatusEx`
+- [RegCreateKeyEx](./ADVAPI32/RegSetValueEx/)
 - `RegSetValueEx`
 
 

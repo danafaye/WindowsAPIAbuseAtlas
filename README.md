@@ -35,7 +35,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - [UpdateProcThreadAttribute](./KERNEL32/UpdateProcThreadAttribute/)
 - `VirtualAllocEx`
 - `WriteProcessMemory`
-- `WriteProfileString`
+- [WriteProfileString](./KERNEL32/WriteProfileString/)
 
 ## NETAPI32.DLL
 - [NetLocalGroupGetMembers](./NETAPI32/NetLocalGroupGetMembers/)

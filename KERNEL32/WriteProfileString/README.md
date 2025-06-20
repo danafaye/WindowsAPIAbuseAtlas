@@ -49,7 +49,9 @@ There isn’t much public documentation on which threat groups or malware famili
 > **Note:** This list isn’t exhaustive. Many modern malware families and offensive security tools use `WriteProfileString` for stealth and evasion.
 
 ## 🧵 `WriteProfileString` and Friends
-`WriteProfileString` writes to `.ini` files, but attackers aren’t limited to just that. There’s `WritePrivateProfileString` doing the same old-school `.ini` dance, and of course the registry or direct file writes are always options. Then there are Alternate Data Streams (ADS), we mention them here because they’re basically the same idea, hiding data in places defenders don’t usually check. ADS lets you stash payloads or configs inside existing files without messing with what you see in Explorer or your file size. It’s just another sneaky way to keep persistence or staging under the radar using built-in Windows tricks.
+`WriteProfileString` writes to `.ini` files, but attackers aren’t limited to just that. There’s `WritePrivateProfileString` doing the same old-school `.ini` dance, and of course the registry or direct file writes are always options. 
+
+Then there are Alternate Data Streams (ADS), we mention them here because they’re basically the same idea, hiding data in places defenders don’t usually check. ADS lets you stash payloads or configs inside existing files without messing with what you see in Explorer or your file size. It’s just another sneaky way to keep persistence or staging under the radar using built-in Windows tricks.
 
 
 ## 📚 Resources

@@ -18,7 +18,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - `OpenSCManager`
 - `QueryServiceStatusEx`
 - [RegCreateKeyEx](./ADVAPI32/RegSetValueEx/)
-- `RegSetValueEx`
+- [RegSetValueEx](./ADVAPI32/RegSetValueEx/)
 
 
 ## KERNEL32.DLL

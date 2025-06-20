@@ -1,8 +1,9 @@
 ### 🧪 EnumProcessModules  
 ### 🚀 Executive Summary  
-`EnumProcessModules`, exposed via `psapi.dll`, returns a list of module handles (DLLs) loaded into the address space of a specified process. When given a valid process handle, it lets the caller iterate through loaded libraries and inspect their names, base addresses, and memory ranges.
+**EnumProcessModules**, exposed via **psapi.dll**, returns a list of module handles (DLLs) loaded into the address space of a specified process. When given a valid process handle, it lets the caller iterate through loaded libraries and inspect their names, base addresses, and memory ranges.
 
-This capability is critical for legitimate tools like Task Manager and Process Explorer, but it's also incredibly valuable for adversaries doing module discovery before making surgical moves. Attackers rely on it to spot security tools, debuggers, or sandbox DLLs injected into processes. This reconnaissance guides stealthy malware decisions around evasion, patching, and code injection.
+This capability is critical for legitimate tools like Task Manager and Process Explorer, but it's also incredibly valuable for adversaries doing module discovery before making surgical moves. Attackers rely on it to spot security tools, debuggers, or sandbox DLLs injected into processes. This reconnaissance guides stealthy malware decisions around evasion, patching, code injection—and which process is safest or most advantageous to inject into next.
+
 
 ### 🔍 What is EnumProcessModules?  
 `EnumProcessModules` takes a handle to a target process and fills an array with module handles for every DLL loaded in that process’s memory space. These handles can then be used with other APIs like `GetModuleFileNameEx` or `GetModuleInformation` to pull more details—like full file paths, base addresses, and sizes.
@@ -26,7 +27,7 @@ Malware leverages `EnumProcessModules` to get a clear view of which DLLs are loa
 
 ### 🔹 YARA
 
-Check out some sample YARA rules here: [EnumProcessModule.yar](./EnumProcessModule.yar).
+Check out some sample YARA rules here: [EnumProcessModules.yar](./EnumProcessModules.yar).
 
 > **Heads up:** These rules are loosely scoped and designed for hunting and research. They're **not** meant for production detection systems that require low false positives. Please test and adjust them in your environment.
 

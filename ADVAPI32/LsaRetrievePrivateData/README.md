@@ -30,8 +30,8 @@ In red team and malware usage, it’s prized for credential harvesting; quietly 
 
 ## 🧪 Sample Behavior  
 1. Call `LsaOpenPolicy` with `POLICY_GET_PRIVATE_INFORMATION`.  
-2. Use `LsaRetrievePrivateData` with a known or brute-forced key name.  
-3. Capture and decode the resulting secret data.
+2. Use `LsaRetrievePrivateData` with a known or guessed key name.  
+3. The API returns a `LSA_UNICODE_STRING` that contains the decrypted secret in memory; no extra decryption steps are needed, the API handles it all.
 
 No injection, no dropped tools ... just native API calls and plaintext secrets.
 
@@ -50,20 +50,18 @@ No injection, no dropped tools ... just native API calls and plaintext secrets.
 
 ## 🦠 Malware & Threat Actors Documented Abusing LsaRetrievePrivateData
 
-### Ransomware  
-- Ryuk  
-- BlackMatter  
-
 ### Red Team & Open Source Tools  
-- Mimikatz (`lsadump::secrets`)  
-- Custom C# tooling in offensive frameworks
+- Mimikatz (`lsadump::secrets`) 
+- PowerView (PowerSploit) 
+- PowerView
 
-> **Note:** It’s often used post-exploitation, meaning detections require privilege escalation context and sensitive logging.
+> **Note:** You won’t often see `LsaRetrievePrivateData` called out by name in threat reports. That’s because most tooling abstracts it away—tools like `secretsdump.py`, `mimikatz`, or custom scripts handle the API calls under the hood. Reports tend to focus on the outcome (“LSA secrets dumped”) rather than the exact API used. Unless you’re capturing API-level telemetry, this activity blends into broader credential dumping behavior.
 
 ## 🧵 `LsaRetrievePrivateData` and Friends  
-This API often appears alongside `LsaStorePrivateData` and `LsaOpenPolicy`. While not as noisy as credential dumping tools, it’s a quieter cousin used to extract secrets when attackers want to avoid triggering AV with Mimikatz.
+`LsaRetrievePrivateData` doesn’t operate alone—it usually shows up in a chain of LSA operations. Attackers first call `LsaOpenPolicy` to get a handle with `POLICY_GET_PRIVATE_INFORMATION` access, then use `LsaRetrievePrivateData` to extract secrets, and occasionally pair it with `LsaStorePrivateData` when planting their own data for later retrieval or persistence.
+
+It’s not as loud as full-blown credential dumping with tools like Mimikatz. Instead, it’s the stealthy sibling, perfect for when the goal is to pull sensitive credentials without setting off every AV in the room. This API combo is favored in environments where stealth matters more than speed, especially in hands-on-keyboard post-exploitation and red team scenarios.
 
 ## 📚 Resources  
 - [Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas)  
 - [Microsoft Docs — LsaRetrievePrivateData](https://learn.microsoft.com/en-us/windows/win32/api/ntsecapi/nf-ntsecapi-lsaretrieveprivatedata)  
-- [Mimikatz Documentation](https://github.com/gentilkiwi/mimikatz)

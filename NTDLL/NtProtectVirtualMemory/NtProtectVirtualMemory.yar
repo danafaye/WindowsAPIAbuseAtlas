@@ -98,7 +98,8 @@ rule ProcessInjection_Explorer_Shellcode
         $api5 = "OpenProcess" ascii fullword
 
         // Common target process for injection
-        $target = "explorer.exe" ascii nocase fullword
+        $target1 = "explorer.exe" ascii nocase fullword
+        $target2 = "scvhost.exe" ascii nocase fullword
 
         // Typical shellcode stub pattern (common x64 prologue bytes)
         $shellcode = { FC 48 83 E4 F0 E8 }
@@ -106,6 +107,6 @@ rule ProcessInjection_Explorer_Shellcode
     condition:
         uint16(0) == 0x5A4D and filesize < 10MB and
         all of ($api*) and
-        $target and
+        any of ($target*) and
         $shellcode
 }

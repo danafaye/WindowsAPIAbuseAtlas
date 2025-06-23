@@ -5,7 +5,7 @@ WindowsAPIAbuseAtlas is an evolving map of the sneaky and lesser-known ways malw
 This is a living roadmap. As I knock out each entry, I’ll link it here. If you don’t see a link yet, it’s just a placeholder for something I’ll probably get to ... or at least something worth keeping on the radar.
 
 ## ADVAPI32.DLL
-- `AdjustTokenPrivileges`
+- [AdjustTokenPrivileges](./ADVAPI32/AdjustTokenPrivileges/)
 - `ControlService`
 - `CreateService`
 - `CredEnumerateW`

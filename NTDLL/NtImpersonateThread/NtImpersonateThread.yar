@@ -1,3 +1,7 @@
+// Note: Use these YARA rules at your own risk. They are loosely scoped and intended primarily 
+// for threat hunting and research purposes — not for deployment in detection systems that 
+// require a low false positive rate. Please review and test in your environment before use.
+
 import "pe"
 
 rule NtImpersonateThread_Token_Chaining_General

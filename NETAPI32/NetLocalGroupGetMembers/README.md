@@ -1,7 +1,7 @@
 # NetLocalGroupGetMembers
 
 ## 🚀 Executive Summary
-**`NetLocalGroupGetMembers`** enumerates local group memberships over the network. Attackers use it to find admin accounts, map lateral movement paths, and uncover misconfigurations. It’s essential for post-exploitation recon—exposing group relationships across domains for privilege escalation and persistence. Legit admins use it too, but threat actors love it for its visibility into who’s really in control.
+**`NetLocalGroupGetMembers`** enumerates members of local groups on a remote machine over the network. Attackers use it during post-exploitation to identify privileged accounts, map lateral movement paths, and find misconfigured group memberships. By revealing who has local control on each system—even across domain boundaries when allowed; it provides critical visibility for privilege escalation and persistence. While legitimate admins rely on it for local access management, adversaries exploit it to understand and expand their foothold.
 
 ## 🚩 Why It Matters
 `NetLocalGroupGetMembers` reveals local group memberships, essential for managing permissions but also a favorite tool for attackers. By quietly enumerating group members, hackers identify high-value targets like admins and privileged users. This info helps them plan privilege escalation and lateral movement early in an attack. Understanding its abuse is key to spotting and stopping stealthy reconnaissance.
@@ -34,6 +34,5 @@
 These Net* APIs are a goldmine for recon. `NetLocalGroupEnum` lets attackers list all the local groups on a system, while `NetUserEnum` spills the names of all user accounts. From there, `NetUserGetLocalGroups` maps users to their local group memberships, and `NetGroupGetUsers` does the same for domain groups. Used together, they give attackers a full picture of group structures and relationships — a perfect setup for privilege mapping, lateral movement, or just figuring out who’s worth targeting next.
 
 ## References
-
 - [Microsoft Documentation](https://learn.microsoft.com/en-us/windows/win32/api/lmaccess/nf-lmaccess-netlocalgroupgetmembers)
 - [Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas)

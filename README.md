@@ -27,6 +27,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - `CreateProcessAsUserW`
 - `CreateProcessInternalW`
 - `CreateProcessWithTokenW`
+- [CreateRemoteThread](./KERNEL32/CreateRemoteThread/)
 - `LoadLibraryA/W`
 - `MapViewOfFile` + `LoadLibraryA/W`
 - `QueueUserAPC`

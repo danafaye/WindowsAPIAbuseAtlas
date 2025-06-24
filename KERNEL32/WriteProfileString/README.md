@@ -46,7 +46,7 @@ There isn’t much public documentation on which threat groups or malware famili
 ### **Commodity Loaders & RATs**
 - htpRAT
 
-> **Note:** This list isn’t exhaustive. Many modern malware families and offensive security tools use `WriteProfileString` for stealth and evasion.
+> **Note:** This list isn’t exhaustive. It is possible more modern malware families and offensive security tools use `WriteProfileString` for stealth and evasion.
 
 ## 🧵 `WriteProfileString` and Friends
 `WriteProfileString` writes to `.ini` files, but attackers aren’t limited to just that. There’s `WritePrivateProfileString` doing the same old-school `.ini` dance, and of course the registry or direct file writes are always options. 

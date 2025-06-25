@@ -1,6 +1,10 @@
 # 🚛 NtLoadDriver: The Swiss Army Knife of Memory Abuse
 
 ## 🧩 Executive Summary
+`NtLoadDriver` is how attackers go from SYSTEM to kernel-mode royalty. It’s one of the tricks old-school rootkits used, and it still works. Load the right driver, and you can hide malware, kill security, or bend the OS to your will.
+
+It’s can be loud if you’re watching, but blends in if you’re not. That’s what makes it dangerous, and why it still deserves your attention.
+
 
 ## 🧠 What is NtLoadDriver?
 `NtLoadDriver` is the go-to Windows API for loading kernel drivers straight into the heart of the OS. It requires SYSTEM-level privileges to run, and when called with a driver’s registry path, it loads that driver into kernel memory, giving it full control over the system.
@@ -47,17 +51,21 @@ See [NtLoadDriver.yar](./NtLoadDriver.yar).
 ## 🐛 Malware & Threat Actors Documented Abusing NtLoadDriver
 
 ### **Ransomware**
-
+ - DOGE "Big Balls" Ransomware
 
 ### **Commodity Loaders & RATs**
-
+ - PurpleHaze
+ - HiddenGh0st
+ - EDR Killers (generally)
 
 ### **APT & Threat Actor Toolkits**
-Dixie-Playing Bootkit 
+ - Dixie-Playing Bootkit
 
 ### **Red Team & Open Source Tools**
- 
-> **Note:** This list isn’t exhaustive. Many modern malware families and offensive security tools use `NtLoadDriver` for stealth and evasion. As awareness grows, expect even more to adopt it.
+ - Backstab
+ - Game cheats & anti-cheat software (generally)
+
+> **Note:** This list isn’t exhaustive. It's likley more malware families and offensive security tools use `NtLoadDriver`. As awareness grows, expect even more to adopt it.
 
 ## 📎 `NtLoadDriver` and Friends
 `NtLoadDriver` is the classic move for loading kernel drivers, but it’s not the only game in town. Attackers often take a detour through the Service Control Manager (SCM), using APIs like `CreateService` and `StartService` to install and launch driver services instead. This lets them load drivers without touching `NtLoadDriver` directly, often with more persistence and flexibility.
@@ -66,10 +74,9 @@ There’s also the closely related `ZwLoadDriver`, a lower-level syscall counter
 
 Some go even deeper, abusing lesser-known or undocumented syscalls to sneak drivers in under the radar. Knowing all the ways to load drivers helps defenders spot when attackers are trying to pull the same trick ... just with a different playbook.
 
-
-
 ## 📚 Resources
 - [NtAPI Undocumented Functions](http://undocumented.ntinternals.net/index.html?page=UserMode%2FUndocumented%20Functions%2FExecutable%20Images%2FNtLoadDriver.html)
+- [Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas)
 
 > **Know of more?**  
 > Open a PR or issue to help keep this list up to date!

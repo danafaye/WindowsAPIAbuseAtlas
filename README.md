@@ -56,6 +56,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - `NtCreateThreadEx`
 - [NtDeviceIoControlFile](./NTDLL/NtDeviceIoControlFile/)
 - [NtImpersonateThread](./NTDLL/NtImpersonateThread/)
+- [NtLoadDriver](./NTDLL/NtLoadDriver/)
 - [NtMapViewOfSection](./NTDLL/NtMapViewOfSection/)
 - `NtOpenFile`
 - `NtOpenThread`

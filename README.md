@@ -2,7 +2,8 @@
 WindowsAPIAbuseAtlas is an evolving map of the sneaky and lesser-known ways malware twists Windows APIs to hide, evade, and attack. It’s packed with practical reverse engineering insights, ready-to-use YARA rules, and clear behavioral clues that help defenders spot these tricks in the wild. Whether you’re hunting threats, building detections, or just curious about how bad actors operate behind the scenes, this atlas sheds light on complex Windows behavior ... empowering the cyber community to stay one step ahead.
 
 # Index
-This is a living roadmap. As I knock out each entry, I’ll link it here. If you don’t see a link yet, it’s just a placeholder for something I’ll probably get to ... or at least something worth keeping on the radar.
+This is a living roadmap. As I knock out each entry, I’ll link it here, and I might add new ones along the way. If you don’t see a link yet, it’s either a placeholder for something I plan to write, or just an API that’s on the radar.
+
 
 ## ADVAPI32.DLL
 - [AdjustTokenPrivileges](./ADVAPI32/AdjustTokenPrivileges/)

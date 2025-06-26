@@ -33,6 +33,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here. If you
 - `QueueUserAPC`
 - `SetDllDirectoryA/W` + `LoadLibrary`
 - `SetProcessMitigationPolicy`
+- [SetThreadContext](./KERNEL32/SetThreadContext/)
 - [UpdateProcThreadAttribute](./KERNEL32/UpdateProcThreadAttribute/)
 - `VirtualAllocEx`
 - `WriteProcessMemory`

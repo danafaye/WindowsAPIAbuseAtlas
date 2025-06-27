@@ -123,8 +123,6 @@ For the latest technical write-ups, search for the malware or tool name together
 ## 🧵 `CreateRemoteThread` and Friends
 While `CreateRemoteThread` is one of the more direct and well-known APIs for remote code execution, it’s far from the only option. Adversaries often swap it out for alternatives like `NtCreateThreadEx`, `RtlCreateUserThread`, or `QueueUserAPC`, each offering different trade-offs in terms of stealth and reliability. Other approaches skip thread creation entirely by hijacking existing execution contexts with `SetThreadContext` or using section mapping and shared memory with `NtMapViewOfSection`. These substitutions are typically made to avoid detection rules that rely on spotting `CreateRemoteThread` specifically, while still achieving the same goal: executing malicious code in the context of a remote process.
 
-
-
 ## 📚 Resources 
 * Microsoft Docs: [CreateRemoteThread](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createremotethread)
 * MITRE: [Process Injection](https://attack.mitre.org/techniques/T1055/)

@@ -1,4 +1,4 @@
-### 🧪 SetWindowsHookEx  
+### 🪝 SetWindowsHookEx  
 ### 🚀 Executive Summary  
 `SetWindowsHookEx` is one of those Windows APIs that walks the line between essential and dangerous. It powers legitimate features like accessibility tools and input method editors, but it also gives attackers a ready-made injection mechanism and a front-row seat to everything a user types or clicks. Since it’s baked into the OS and relies on message hooks—a core part of how Windows GUIs work—it tends to blend in with the noise, making detection tricky. Abuse ranges from low-effort keyloggers to privilege escalation via DLL injection into high-integrity processes. Hooks like this might seem old-school, but they’re still in play across modern threat campaigns, red team toolkits, and commodity malware alike.
 
@@ -18,7 +18,9 @@ More subtle uses involve **UI surveillance and manipulation**. With `WH_CBT` or 
 ### 🛡️ Detection Opportunities  
 
 ### 🔹 YARA
+Check out some sample YARA rules here: [SetWindowsHookEx.yar](./SetWindowsHookEx.yar).
 
+> **Heads up:** These rules are loosely scoped and designed for hunting and research. They're **not** meant for production detection systems that require low false positives. Please test and adjust them in your environment.
 
 
 ### 🔸 Behavioral Indicators
@@ -65,4 +67,3 @@ More subtle uses involve **UI surveillance and manipulation**. With `WH_CBT` or 
 ### 📚 Resources  
 - Microsoft Docs: [SetWindowsHookEx](https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setwindowshookexw)
 - MITRE: [Input Capture](https://attack.mitre.org/techniques/T1056/004/)
-- Windows API Abuse Atlas: [SetWindowsHookEx](...fill this in ...)

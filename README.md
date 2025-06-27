@@ -83,5 +83,5 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 ## PSAPI.DLL
 - [EnumProcessModules](./PSAPI/EnumProcessModules/)
 
-## WNET.DLL
-- `WNetEnumResource`
+## WBEMCOMN.DLL
+- `WmiSetEvent`

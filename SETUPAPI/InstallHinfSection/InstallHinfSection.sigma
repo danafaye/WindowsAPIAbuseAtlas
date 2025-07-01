@@ -1,0 +1,24 @@
+title: Abuse of InstallHinfSectionW via rundll32.exe
+id: 8dc0fa14-11df-4d2f-b88e-cf5c893ed5d4
+status: experimental
+description: Detects potential abuse of InstallHinfSectionW via rundll32.exe executing setupapi.dll
+author: Dana Behling
+date: 2025-07-01
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|endswith: '\rundll32.exe'
+    CommandLine|contains: 'setupapi.dll,InstallHinfSection'
+  condition: selection
+fields:
+  - Image
+  - CommandLine
+  - ParentImage
+falsepositives:
+  - Rare but possible in legacy setup tools or certain driver installations
+level: high
+tags:
+  - attack.defense_evasion
+  - attack.t1218.010

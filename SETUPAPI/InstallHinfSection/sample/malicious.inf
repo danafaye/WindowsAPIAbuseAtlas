@@ -1,0 +1,8 @@
+[Version]
+Signature="$Windows NT$"
+
+[DefaultInstall]
+RunPreSetupCommands=RunMe
+
+[RunMe]
+"cmd.exe /c calc.exe"

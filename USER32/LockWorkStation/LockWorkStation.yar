@@ -1,14 +1,15 @@
+// Note: Use these YARA rules at your own risk. They are loosely scoped and intended primarily 
+// for threat hunting and research purposes — not for deployment in detection systems that 
+// require a low false positive rate. Please review and test in your environment before use.
+
+
 import "pe"
 
 rule Detect_LockWorkStation_Import
 {
     meta:
-        author = "ChatGPT"
         description = "Detects PE files importing LockWorkStation from user32.dll"
         reference = "Windows API Abuse Atlas - LockWorkStation"
-        date = "2025-06-30"
-        severity = "low"
-
     strings:
         $lock_workstation = "LockWorkStation" ascii wide
 

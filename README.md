@@ -22,7 +22,6 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [RegCreateKeyEx](./ADVAPI32/RegSetValueEx/)
 - [RegSetValueEx](./ADVAPI32/RegSetValueEx/)
 
-
 ## KERNEL32.DLL
 - `ConvertThreadToFiber`
 - `CreateFiber`
@@ -44,6 +43,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 ## NETAPI32.DLL
 - [NetLocalGroupGetMembers](./NETAPI32/NetLocalGroupGetMembers/)
 - `NetSessionEnum`
+- [NetUserAdd](./NETAPI32/NetUserAdd/)
 - `NetWkstaUserEnum`
 
 ## NTDLL.DLL
@@ -84,6 +84,10 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 ## PSAPI.DLL
 - [EnumProcessModules](./PSAPI/EnumProcessModules/)
 
+## SETUPAPI.DLL
+- [InstallHinfSection](./SETUPAPI/InstallHinfSection/)
+
 ## USER32.DLL
+- [LockWorkStation](./USER32/LockWorkStation/)
 - [SetWindowsHookEx](./USER32/SetWindowsHookEx/)
 

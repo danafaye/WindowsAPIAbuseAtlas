@@ -1,11 +1,8 @@
 rule Suspicious_INF_RunCommands
 {
     meta:
-        author = "Dana Behling"
         description = "Detects suspicious INF files that abuse InstallHinfSectionW for command execution"
         reference = "Windows API Abuse Atlas – InstallHinfSectionW"
-        date = "2025-07-01"
-        threat_level = 3
 
     strings:
         $run_pre = "RunPreSetupCommands"

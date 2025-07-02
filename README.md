@@ -23,7 +23,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [RegSetValueEx](./ADVAPI32/RegSetValueEx/)
 
 ## KERNEL32.DLL
-- `ConvertThreadToFiber`
+- [ConvertThreadToFiber](./KERNEL32/ConvertThreadToFiber/)
 - `CreateFiber`
 - `CreateProcessAsUserW`
 - `CreateProcessInternalW`

@@ -80,7 +80,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [NtWriteVirtualMemory](./NTDLL/NtWriteVirtualMemory/)
 - `RtlCreateUserThread`
 - `SetThreadContext` / `GetThreadContext`
-- `Wow64DisableWow64FsRedirection`
+- [Wow64DisableWow64FsRedirection](./NTDLL/Wow64DisableWow64FsRedirection/)
 
 ## PSAPI.DLL
 - [EnumProcessModules](./PSAPI/EnumProcessModules/)

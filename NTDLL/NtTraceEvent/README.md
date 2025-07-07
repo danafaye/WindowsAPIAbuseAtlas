@@ -94,9 +94,9 @@ Check out some sample YARA rules here: [NtTraceEvent.yar](./NtTraceEvent.yar).
 `NtTraceEvent` is just one gear in a larger telemetry machine. It’s part of the Event Tracing for Windows (ETW) core and works alongside a crew of APIs that push or shape the same stream of diagnostic data. `EtwEventWrite` is the big sibling, more common, more documented, and way more likely to show up in normal apps. Then there’s `EtwRegister`, `EtwSetInformation`, and `EtwWriteEx`, which define providers, set metadata, and structure event delivery. On the lower end, you’ve got `NtSetInformationTrace`, `NtQueryTrace`, and `NtStartTrace`, lesser-known syscalls that configure or manipulate tracing sessions directly. All of these touch the same telemetry nerve. Abuse any one of them, and you can hijack the logging stack, tamper with visibility, or straight-up fake event data. Different tools, same goal: distort the signal, break the trail, and make the bad stuff look normal.
 
 ## 📚 Resources
-Great Example: [EDRSandblast](https://github.com/wavestone-cdt/EDRSandblast)
-GeoffChappell.com: [NtTraceEvent](https://www.geoffchappell.com/studies/windows/km/ntoskrnl/api/etw/traceapi/event/index.htm)
-[Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas) (more like this)
+- Great Example: [EDRSandblast](https://github.com/wavestone-cdt/EDRSandblast)
+ - GeoffChappell.com: [NtTraceEvent](https://www.geoffchappell.com/studies/windows/km/ntoskrnl/api/etw/traceapi/event/index.htm)
+- [Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas) (more like this)
 
 > **Know of more?**  
 > Open a PR or issue to help keep this list up to date!

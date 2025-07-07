@@ -1,7 +1,6 @@
 # 🕵️‍♂️ ZwQuerySystemInformationEx
 
-## 🚀 Executive Summary
-`ZwQuerySystemInformationEx` is Windows’ best-kept secret for digging up system info beneath the radar. It’s undocumented, elusive, and perfect for attackers who want to peek behind the curtain without triggering alarms. Whether it’s ransomware, APTs, or red teams, this quiet syscall lets them scope out processes, handles, drivers, and kernel secrets with surgical precision. Detecting it means looking past the usual noisy API calls and catching sneaky syscalls, weird export parsing, or odd parameter combos. If you want to spot stealthy reconnaissance before it turns malicious, understanding `ZwQuerySystemInformationEx` is non-negotiable. It’s a silent whisper that often screams “someone knows what they’re doing.”
+## 🚀 Executive Summ
 
 ## 🔍 What is `ZwQuerySystemInformationEx` 
 This is the quiet, undocumented native syscall that lets you tap into the Windows kernel for low-level system details, offering more precision than you’ll find in most user-facing APIs. It’s not in the Win32 docs, and you won’t see it in your average developer’s toolkit. But for those who know where to look, it’s a hidden gem, feeding internal components precise data about processes, handles, and system state. It’s selective, elusive, and if you know how to ask, it’ll tell you exactly what you need to know.

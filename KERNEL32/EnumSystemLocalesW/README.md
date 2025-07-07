@@ -1,4 +1,4 @@
-# 🧪 EnumSystemLocalesW Patching
+# 🧪 EnumSystemLocalesW
 
 ## 🚀 Executive Summary
 `EnumSystemLocalesW` doesn’t look dangerous—but that’s what makes it interesting. It’s obscure, boring, and forgotten by most detection engines. But hand it the right pointer, and this quiet little API becomes a signed execution launcher. No threads, no syscalls, no noise, just Windows doing what it was told. Attackers who know about it can fly straight through most defenses, and defenders who ignore it miss a chance to spot truly low-volume, high-intent behavior. It’s not flashy, but it’s a trapdoor. Keep an eye on it.

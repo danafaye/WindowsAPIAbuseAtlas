@@ -66,7 +66,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `NtOpenThread`
 - [NtProtectVirtualMemory](./NTDLL/NtProtectVirtualMemory/)
 - [NtQueueApcThread](./NTDLL/NtQueueApcThread/)
-- `NtQueryInformationProcess`
+- [NtQueryInformationProcess](./NTDLL/NtQueryInformationProcess/)
 - `NtRaiseHardError`
 - `NtReadVirtualMemory`
 - `NtResumeThread`

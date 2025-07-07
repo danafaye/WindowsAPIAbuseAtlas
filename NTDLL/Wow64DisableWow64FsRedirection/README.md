@@ -1,10 +1,10 @@
-# Wow64DisableWow64FsRedirection
+# 🕵️‍♂️ Wow64DisableWow64FsRedirection
 
 ## 🚀 Executive Summary
 `Wow64DisableWow64FsRedirection` is a sneaky backstage pass for 32-bit processes running on 64-bit Windows. It flips off the OS’s automatic file system detour, letting code write, read, or launch files straight from the real System32 folder instead of the redirected SysWOW64. This subtle toggle opens a stealthy door for malware to drop payloads where defenders least expect, dodge common detection hooks, and impersonate legit system activity. Because it’s quiet, built into the OS, and rarely needed outside installers, spotting its misuse can be a powerful early warning sign of deeper compromise.
 
 ## 🔍 What is `Wow64DisableWow64FsRedirection` 
-Windows tries to be helpful: when a 32-bit process runs on a 64-bit system, it silently redirects file system access. Ask for `C:\Windows\System32`? You’ll get `C:\Windows\SysWOW64` instead. This keeps legacy stuff from breaking, but sometimes, a process really wants the real path—and that’s where `Wow64DisableWow64FsRedirection` steps in. Call it once, and the OS stops getting in the way. No more redirection. You get raw access to the actual 64-bit system files. It shows up in installers and setup scripts that know what they’re doing. Everyone else? They probably shouldn’t be touching it.
+Windows tries to be helpful: when a 32-bit process runs on a 64-bit system, it silently redirects file system access. Ask for `C:\Windows\System32`? You’ll get `C:\Windows\SysWOW64` instead. This keeps legacy stuff from breaking, but sometimes, a process really wants the real path, and that’s where `Wow64DisableWow64FsRedirection` steps in. Call it once, and the OS stops getting in the way. No more redirection. You get raw access to the actual 64-bit system files. It shows up in installers and setup scripts that know what they’re doing. Everyone else? They probably shouldn’t be touching it.
 
 ## 🚩 Why It Matters
 Windows plays a quiet shell game with 32-bit processes: every time they reach for `System32`, the OS sneakily hands them `SysWOW64` instead. It’s meant to keep things compatible, but that redirection also becomes part of our detection assumptions. Most defenders, tools, and logs rely on it. Enter `Wow64DisableWow64FsRedirection`, and suddenly those assumptions fall apart. A 32-bit process can now access the real 64-bit file system, sidestep visibility, and do things that normally aren’t possible. It’s a low-noise way to quietly break the rules, and when it shows up outside an installer, it deserves attention.
@@ -12,19 +12,19 @@ Windows plays a quiet shell game with 32-bit processes: every time they reach fo
 ## 🧬 How Attackers Abuse It
 Let’s say you’ve got a 32-bit malware dropper running on a 64-bit machine. It wants to copy a payload into `C:\Windows\System32`. Sounds simple, right? Except… it’s not.
 
-Windows steps in and says, “Hold up—you’re a 32-bit process. I’ll just redirect that to `C:\Windows\SysWOW64` instead.” That’s automatic. Invisible. Built into the OS. And it stops your payload from landing where you want it.
+Windows steps in and says, “Hold up, you’re a 32-bit process. I’ll just redirect that to `C:\Windows\SysWOW64` instead.” That’s automatic. Invisible. Built into the OS. And it stops your payload from landing where you want it.
 
-To solve this malware do? It calls `Wow64DisableWow64FsRedirection`. Boom—redirection is off. Now when it writes to `System32`, it actually hits `System32`. That means it can:
+To solve this malware do? It calls `Wow64DisableWow64FsRedirection`. Boom, redirection is off. Now when it writes to `System32`, it actually hits `System32`. That means it can:
 
  - Drop a 64-bit DLL where a legit 64-bit process will load it
  - Bypass EDRs that only monitor WOW64 paths for 32-bit processes
  - Load system tools (like regsvr32.exe or rundll32.exe) from the real folder, not the 32-bit one
  - Masquerade as a normal installer while laying down files in sensitive spots
 
-After it’s done? The malware can flip redirection back on like nothing happened using `Wow64RevertWow64FsRedirection`. One call to slip past the bouncer, another to blend back into the crowd. It’s not flashy. It’s not noisy. But it rewrites what you think you’re seeing—and that makes it dangerous.
+After it’s done? The malware can flip redirection back on like nothing happened using `Wow64RevertWow64FsRedirection`. One call to slip past the bouncer, another to blend back into the crowd. It’s not flashy. It’s not noisy. But it rewrites what you think you’re seeing, and that makes it dangerous.
 
 ** Why not just compile malware for 64-bits? **
-Most malware authors could go full 64-bit, but why bother? 32-bit code runs everywhere—on 32- and 64-bit Windows alike. It’s the ultimate compatibility hack. Build one 32-bit loader and it just works, no matter the system. No juggling different versions, no worrying about bitness mismatches. It’s simpler, cleaner, and lets them focus on the payload instead of the platform. When they need to play in the 64-bit world, they just call `Wow64DisableWow64FsRedirection` and slip right in. Smart, stealthy, and annoyingly effective.
+Most malware authors could go full 64-bit, but why bother? 32-bit code runs everywhere, on 32- and 64-bit Windows alike. It’s the ultimate compatibility hack. Build one 32-bit loader and it just works, no matter the system. No juggling different versions, no worrying about bitness mismatches. It’s simpler, cleaner, and lets them focus on the payload instead of the platform. When they need to play in the 64-bit world, they just call `Wow64DisableWow64FsRedirection` and slip right in. Smart, stealthy, and annoyingly effective.
 
 ## 🛡️ Detection Opportunities
 Watch for 32-bit processes calling `Wow64DisableWow64FsRedirection`, that’s your first red flag. Legitimate software rarely needs to disable file system redirection except during installs or specific compatibility scenarios. If you see it in a running app that’s not an installer or updater, start asking questions.

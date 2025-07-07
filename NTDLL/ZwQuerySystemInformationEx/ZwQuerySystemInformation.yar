@@ -19,7 +19,7 @@ rule Detect_ZwQuerySystemInformationEx_Usage
 
     condition:
         // Presence of the function name string in ASCII or wide char format
-        any of ($func_name) or
+        $func_name
         
         // Presence of obfuscated string fragments related to function name plus signs of export table parsing
         (any of ($obf_*) and any of ($export_parse_*)) or

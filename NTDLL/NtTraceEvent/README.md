@@ -35,7 +35,8 @@ The chain usually starts with `GetModuleHandle("ntdll.dll")` or `LoadLibrary("nt
 
 The goal? Spam the telemetry pipeline with garbage, or worse, make your malware look like a trusted app by spoofing its trace signatures. You’re not disabling ETW. You’re corrupting it from within. It’s quieter than patching, subtler than blocking, and a nightmare for defenders trying to separate signal from noise.
 
-** EVENT_TRACE_HEADER **
+**EVENT_TRACE_HEADER**
+
 At the heart of abusing `NtTraceEvent` or `EtwTraceEvent` is this dirty little trick: you can craft your own `EVENT_TRACE_HEADER` structure, point it at some bogus payload, slap on a provider GUID, and make Windows log it like it came from a legit source.
 
 Here’s the bare bones of how the malicious struct might look in memory:

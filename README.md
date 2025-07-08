@@ -7,7 +7,8 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 
 ## ADVAPI32.DLL
 - [AdjustTokenPrivileges](./ADVAPI32/AdjustTokenPrivileges/)
-- `ControlService`
+- `ChangeServiceConfig2`
+- [ControlService](./ADVAPI32/ControlService/)
 - `CreateService`
 - `CredEnumerateW`
 - `CredReadW`
@@ -86,6 +87,8 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 
 ## PSAPI.DLL
 - [EnumProcessModules](./PSAPI/EnumProcessModules/)
+- `GetModuleInformation`
+- `GetProcessMemoryInfo`
 
 ## SETUPAPI.DLL
 - [InstallHinfSection](./SETUPAPI/InstallHinfSection/)

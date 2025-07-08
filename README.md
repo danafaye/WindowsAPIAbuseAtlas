@@ -43,6 +43,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 
 ## NETAPI32.DLL
 - [NetLocalGroupGetMembers](./NETAPI32/NetLocalGroupGetMembers/)
+- [NetRemoteTOD](./NETAPI32/NetRemoteTOD/)
 - `NetSessionEnum`
 - [NetUserAdd](./NETAPI32/NetUserAdd/)
 - `NetWkstaUserEnum`

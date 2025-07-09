@@ -38,7 +38,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `SetProcessMitigationPolicy`
 - [SetThreadContext](./KERNEL32/SetThreadContext/)
 - [UpdateProcThreadAttribute](./KERNEL32/UpdateProcThreadAttribute/)
-- `VirtualAllocEx`
+- [VirtualAllocEx](./KERNEL32/VirtualAllocEx/)
 - [WriteProcessMemory](./KERNEL32/WriteProcessMemory/)
 - [WriteProfileString](./KERNEL32/WriteProfileString/)
 

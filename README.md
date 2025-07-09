@@ -39,7 +39,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [SetThreadContext](./KERNEL32/SetThreadContext/)
 - [UpdateProcThreadAttribute](./KERNEL32/UpdateProcThreadAttribute/)
 - `VirtualAllocEx`
-- `WriteProcessMemory`
+- [WriteProcessMemory](./KERNEL32/WriteProcessMemory/)
 - [WriteProfileString](./KERNEL32/WriteProfileString/)
 
 ## NETAPI32.DLL

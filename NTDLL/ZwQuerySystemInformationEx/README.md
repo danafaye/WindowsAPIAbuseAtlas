@@ -1,6 +1,7 @@
 # 🕵️‍♂️ ZwQuerySystemInformationEx
 
-## 🚀 Executive Summ
+## 🚀 Executive Summary
+`ZwQuerySystemInformationEx` is one of those APIs that barely whispers when it’s used—but when it shows up, it speaks volumes. Undocumented, under-monitored, and rarely touched by standard software, it’s the kind of native syscall threat actors reach for when they want answers without leaving a trail. It quietly unlocks access to sensitive kernel structures, thread states, handle tables, and low-level process info—exactly the kind of telemetry malware needs for sandbox evasion, recon, and target profiling. Its rarity is its strength: defenders rarely log it, sandboxes rarely emulate it, and most EDRs don’t treat it as suspicious unless you’re already looking. That’s what makes it dangerous. If you see it, pay attention—this is not normal software behavior. This is tradecraft.
 
 ## 🔍 What is `ZwQuerySystemInformationEx` 
 This is the quiet, undocumented native syscall that lets you tap into the Windows kernel for low-level system details, offering more precision than you’ll find in most user-facing APIs. It’s not in the Win32 docs, and you won’t see it in your average developer’s toolkit. But for those who know where to look, it’s a hidden gem, feeding internal components precise data about processes, handles, and system state. It’s selective, elusive, and if you know how to ask, it’ll tell you exactly what you need to know.

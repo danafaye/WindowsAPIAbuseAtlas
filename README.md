@@ -23,6 +23,13 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [RegCreateKeyEx](./ADVAPI32/RegSetValueEx/)
 - [RegSetValueEx](./ADVAPI32/RegSetValueEx/)
 
+## FWPUCLNT.DLL
+- `FwpmCalloutAdd`
+- `FwpmCalloutRegister`
+- `FwpmEngineOpen`
+- `FwpmFilterAdd`
+- `FwpIpsecRoutine0`
+
 ## KERNEL32.DLL
 - [ConvertThreadToFiber](./KERNEL32/ConvertThreadToFiber/)
 - `CreateFiber`
@@ -33,6 +40,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [EnumSystemLocalesW](./KERNEL32/EnumSystemLocalesW/)
 - `LoadLibraryA/W`
 - `MapViewOfFile` + `LoadLibraryA/W`
+- `PssCaptureSnapshot`
 - `QueueUserAPC`
 - `SetDllDirectoryA/W` + `LoadLibrary`
 - `SetProcessMitigationPolicy`
@@ -92,6 +100,11 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 
 ## SETUPAPI.DLL
 - [InstallHinfSection](./SETUPAPI/InstallHinfSection/)
+- `SetupCopyOEMInf`
+- `SetupDiGetClassDevs`
+- `SetupDiEnumClassDeviceInfo`
+- `SetupInstallFile`
+- `SetupUninstallOEMInf`
 
 ## USER32.DLL
 - [LockWorkStation](./USER32/LockWorkStation/)

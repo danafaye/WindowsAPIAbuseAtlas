@@ -86,7 +86,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [NtSetInformationThread](./NTDLL/NtSetInformationThread/)
 - `NtSetInformationToken`
 - [NtTraceEvent](./NTDLL/NtTraceEvent/)
-- `NtUnmapViewOfSection`
+- [NtUnmapViewOfSection](./NTDLL/NtUnmapViewOfSection)
 - [NtWriteVirtualMemory](./NTDLL/NtWriteVirtualMemory/)
 - `RtlCreateUserThread`
 - `SetThreadContext` / `GetThreadContext`

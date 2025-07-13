@@ -9,18 +9,7 @@ int main() {
     DWORD result;
 
     // Open WFP engine
-    result = FwpmEngineOpen0(
-        NULL,
-        RPC_C_AUTHN_WINNT,
-        NULL,
-        NULL,
-        &engineHandle
-    );
-
-    if (result != ERROR_SUCCESS) {
-        printf("FwpmEngineOpen0 failed: %lu\n", result);
-        return 1;
-    }
+    result = FwpmEngineOpen0(NULL, RPC_C_AUTHN_WINNT, NULL, NULL, &engineHandle);
 
     // Define and add a sublayer (optional, for organization)
     FWPM_SUBLAYER0 sublayer = {0};
@@ -29,6 +18,12 @@ int main() {
     sublayer.displayData.description = L"Blocks HTTPS traffic";
     sublayer.flags = 0;
     sublayer.weight = 0x100;
+
+
+    if (result != ERROR_SUCCESS) {
+        printf("FwpmEngineOpen0 failed: %lu\n", result);
+        return 1;
+    }
 
     result = FwpmSubLayerAdd0(engineHandle, &sublayer, NULL);
     if (result != ERROR_SUCCESS) {

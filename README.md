@@ -23,10 +23,13 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [RegCreateKeyEx](./ADVAPI32/RegSetValueEx/)
 - [RegSetValueEx](./ADVAPI32/RegSetValueEx/)
 
+# AMSI.DLL
+- [AmsiScanBuffer](./AMSI/AmsiScanBuffer/)
+
 ## FWPUCLNT.DLL
 - `FwpmCalloutAdd`
 - `FwpmCalloutRegister`
-- `FwpmEngineOpen`
+- [FwpmEngineOpen](./FWPUCLNT/FwpmEngineOpen/)
 - `FwpmFilterAdd`
 - `FwpIpsecRoutine0`
 
@@ -88,7 +91,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [NtTraceEvent](./NTDLL/NtTraceEvent/)
 - [NtUnmapViewOfSection](./NTDLL/NtUnmapViewOfSection)
 - [NtWriteVirtualMemory](./NTDLL/NtWriteVirtualMemory/)
-- `RtlCreateUserThread`
+- [RtlCreateUserThread](./NTDLL/RtlCreateUserThread/)
 - `SetThreadContext` / `GetThreadContext`
 - [Wow64DisableWow64FsRedirection](./NTDLL/Wow64DisableWow64FsRedirection/)
 - [ZwQuerySystemInformationEx](./NTDLL/ZwQuerySystemInformationEx)

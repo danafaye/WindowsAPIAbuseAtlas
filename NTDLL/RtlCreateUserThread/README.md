@@ -1,4 +1,4 @@
-# 🛠️ RtlCreateUserThread: 
+# 🪡 RtlCreateUserThread: Quiet Threading
 
 ## 🚀 Executive Summary
 `RtlCreateUserThread` is the covert thread starter for attackers who need to move quietly inside Windows. By sidestepping the typical Win32 APIs, it lets malware inject and run code in remote processes with minimal noise and fewer hooks to trip alarms. This internal, low-level API is a favorite for stealthy process injection and memory-only payloads—making it a critical piece of the attacker’s toolkit and a must-know for defenders hunting silent thread creation.

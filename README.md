@@ -10,7 +10,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `ChangeServiceConfig2`
 - [ControlService](./ADVAPI32/ControlService/)
 - `CreateService`
-- `CredEnumerateW`
+- [CredEnumerateW](./ADVAPI32/CredEnumerateW/)
 - `CredReadW`
 - [CryptEnumProviders](./ADVAPI32/CryptEnumProviders/)
 - `DuplicateTokenEx`

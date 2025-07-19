@@ -13,7 +13,7 @@ rule Possible_EnumProcessModules_API_Usage
         $import2 = "EnumProcessModulesEx" ascii
         $dll = "psapi.dll" ascii
 
-    condition:p
+    condition:
         uint16(0) == 0x5A4D and // PE file
         filesize < 10MB and
         any of ($import*) and $dll

@@ -36,6 +36,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 ## KERNEL32.DLL
 - [ConvertThreadToFiber](./KERNEL32/ConvertThreadToFiber/)
 - `CreateFiber`
+- `CreateFile`
 - `CreateProcessAsUserW`
 - `CreateProcessInternalW`
 - `CreateProcessWithTokenW`
@@ -96,6 +97,9 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `SetThreadContext` / `GetThreadContext`
 - [Wow64DisableWow64FsRedirection](./NTDLL/Wow64DisableWow64FsRedirection/)
 - [ZwQuerySystemInformationEx](./NTDLL/ZwQuerySystemInformationEx)
+
+## OLE32.DLL
+- `CoCreateInstance`
 
 ## PSAPI.DLL
 - [EnumProcessModules](./PSAPI/EnumProcessModules/)

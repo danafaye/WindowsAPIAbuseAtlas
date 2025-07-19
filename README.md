@@ -99,7 +99,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [ZwQuerySystemInformationEx](./NTDLL/ZwQuerySystemInformationEx)
 
 ## OLE32.DLL
-- `CoCreateInstance`
+- [CoCreateInstance](./OLE32/CoCreateInstance/)
 
 ## PSAPI.DLL
 - [EnumProcessModules](./PSAPI/EnumProcessModules/)

@@ -42,7 +42,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `CreateProcessInternalW`
 - `CreateProcessWithTokenW`
 - [CreateRemoteThread](./KERNEL32/CreateRemoteThread/)
-- `EnumProcesses`
+- [EnumProcesses](./KERNEL32/EnumProcesses/)
 - [EnumSystemLocalesW](./KERNEL32/EnumSystemLocalesW/)
 - `LoadLibraryA/W`
 - `MapViewOfFile` + `LoadLibraryA/W`

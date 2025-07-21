@@ -5,7 +5,7 @@
 
 Malware routinely leverages EnumProcesses in the first moments of execution to scan the landscape for EDRs, sandboxes, or security tools. The output is often fed directly into conditional branching logic, allowing payloads to adapt, hide, or self-terminate based on who’s watching. On its own, it doesn’t seem dangerous. But when paired with APIs like OpenProcess, GetModuleBaseName, or ReadProcessMemory, it forms the backbone of process fingerprinting, selective targeting, and eventual code injection.
 
-Defenders should understand that EnumProcesses is not inherently malicious—but its context is. When used outside of diagnostics, with suspicious timing, or in rapid-fire stacks aimed at process mapping, it signals the beginning of an adversary’s runtime kill chain. From ransomware to RATs, red team frameworks to APT implants, this API shows up early and often—not because it’s loud, but because it works.
+Defenders should understand that EnumProcesses is not inherently malicious, but its context is. When used outside of diagnostics, with suspicious timing, or in rapid-fire stacks aimed at process mapping, it signals the beginning of an adversary’s runtime kill chain. From ransomware to RATs, red team frameworks to APT implants, this API shows up early and often, not because it’s loud, but because it works.
 
 
 ## 🔍 What is EnumProcesses?
@@ -20,11 +20,10 @@ While commonly referred to as `EnumProcesses`, modern Windows systems resolve th
 `EnumProcesses` is one of the first steps in process reconnaissance. Whether you're a red teamer mapping out viable targets for injection or a blue teamer scanning for anomalies in the runtime landscape, this API is where it often starts. On its own, `EnumProcesses` just hands back a list of process IDs, but paired with `OpenProcess`, `GetModuleBaseName`, or `ReadProcessMemory`, it becomes a powerful lens into what’s running, where, and why. Malware uses this to identify security tools, parent/child chains, or memory layouts worth hijacking. Defenders use it to catch suspicious modules, unknown parentage, or signs of process tampering. Understanding how this enumeration fits into both attack chains and analysis workflows is important because spotting its use (and what comes next) is often the difference between seeing malware start and catching it early.
 
 ## 🧬 How Attackers Abuse It
-In malicious hands, `EnumProcesses` is a surgical tool for runtime awareness. Malware leverages it early in execution to quietly sweep the system for high-value or high-risk processes—security products, EDR agents, sandbox monitors, or rival implants. It typically runs in combination with `OpenProcess`, `EnumProcessModules`, `GetModuleBaseName`, or `QueryFullProcessImageNameW` to fingerprint each PID and build a behavioral map of the environment. This intel is then used to trigger conditional execution: evade if certain tools are running, go dormant in sandboxed environments, or pivot only if specific parent-child relationships are detected (like explorer.exe or winlogon.exe). 
+In malicious hands, `EnumProcesses` is a surgical tool for runtime awareness. Malware leverages it early in execution to quietly sweep the system for high-value or high-risk processes, security products, EDR agents, sandbox monitors, or rival implants. It typically runs in combination with `OpenProcess`, `EnumProcessModules`, `GetModuleBaseName`, or `QueryFullProcessImageNameW` to fingerprint each PID and build a behavioral map of the environment. This intel is then used to trigger conditional execution: evade if certain tools are running, go dormant in sandboxed environments, or pivot only if specific parent-child relationships are detected (like explorer.exe or winlogon.exe). 
 
 In more advanced payloads, `EnumProcesses` is a precursor to process hollowing, token theft, or handle hijacking, as it helps attackers identify injection targets that offer privilege or stealth. 
 
-Because it's a legitimate API used by both benign software and security tooling, defenders must look for contextual abuse patterns like process enumeration followed immediately by high-privilege handle access or memory tampering.
 
 ## 🛡️ Detection Opportunities
 
@@ -45,7 +44,7 @@ See [EnumProcesses.yar](./EnumProcesses.yar).
  - **Out-of-Place Enumeration**: Legitimate software tends to enumerate during system diagnostics or monitoring. Seeing these calls in installers, macros, or unrelated utilities (image viewers, audio tools) is anomalous and suspicious.
 
 ## 🦠 Malware & Threat Actors Documented Abusing EnumProcesses
-`EnumProcesses` shows up again and again in malware, not because it's flashy, but because it's reliable and doesn't require any special privileges. It's the reconnaissance workhorse that quietly builds a list of running PIDs, forming the backbone of process discovery in everything from evasive loaders to post-exploitation toolkits. Whether malware is searching for security products, identifying high-value targets, or prepping for injection, this call often comes early. And while the behavioral indicators and API pairings listed here cover common abuse patterns, they’re far from exhaustive—attackers continually mix, layer, and repackage these primitives in new ways.
+`EnumProcesses` shows up again and again in malware, not because it's flashy, but because it's reliable and doesn't require any special privileges. It's the reconnaissance workhorse that quietly builds a list of running PIDs, forming the backbone of process discovery in everything from evasive loaders to post-exploitation toolkits. Whether malware is searching for security products, identifying high-value targets, or prepping for injection, this call often comes early. And while the behavioral indicators and API pairings listed here cover common abuse patterns, they’re far from exhaustive, attackers continually mix, layer, and repackage these primitives in new ways.
 
 ### **Ransomware**
 - Cuba

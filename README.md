@@ -24,6 +24,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [RegSetValueEx](./ADVAPI32/RegSetValueEx/)
 
 # AMSI.DLL
+- `AmsiInitialize`
 - [AmsiScanBuffer](./AMSI/AmsiScanBuffer/)
 
 ## FWPUCLNT.DLL
@@ -41,6 +42,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `CreateProcessInternalW`
 - `CreateProcessWithTokenW`
 - [CreateRemoteThread](./KERNEL32/CreateRemoteThread/)
+- `EnumProcesses`
 - [EnumSystemLocalesW](./KERNEL32/EnumSystemLocalesW/)
 - `LoadLibraryA/W`
 - `MapViewOfFile` + `LoadLibraryA/W`

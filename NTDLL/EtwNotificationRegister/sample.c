@@ -1,14 +1,6 @@
 #include <windows.h>
 #include <stdio.h>
 
-// These constants define the type of ETW provider notifications we can receive.
-// They are not officially documented in the Windows SDK.
-#define EtwNotificationTypeNoOp             0x00 // Not strictly a "type" but used for general registration
-#define EtwNotificationProviderRegistered   0x01
-#define EtwNotificationProviderUnregistered 0x02
-#define EtwNotificationProviderUpdated      0x03
-
-
 // Typedef for the callback function signature.
 // This function is called by the system when a provider registers/unregisters/updates.
 typedef ULONG (__fastcall *ETW_NOTIFICATION_CALLBACK)(
@@ -65,7 +57,7 @@ ULONG NTAPI EtwNotificationCallback(
 // Ensure you remove your manual GUID struct definition if it's still there
 const GUID MICROSOFT_WINDOWS_KERNEL_PROCESS_GUID = { 0x22fb2cd6, 0x0e7b, 0x4261, { 0x8c, 0x56, 0x11, 0x88, 0x4c, 0x0f, 0x22, 0x31 } };
 
-int main() { // This is the opening brace for main()
+int main() { 
     // Declare RegistrationHandle here
     PVOID RegistrationHandle = NULL; 
 
@@ -107,7 +99,7 @@ int main() { // This is the opening brace for main()
         return 1;
     }
 
-    printf("[+] Successfully registered for ETW provider notifications\n");
+    printf("[+] Successfully registered for ETW notifications\n");
     printf("    Press Enter to exit...\n");
 
     // Wait for user input while notifications may come in
@@ -122,4 +114,4 @@ int main() { // This is the opening brace for main()
     }
 
     return 0;
-} // This is the new closing brace for main()
+}

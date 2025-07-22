@@ -61,6 +61,7 @@ These technique don’t show up in every commodity loader, but when it does, it�
 
 ## 📚 Resources
 - [Geoff Chappell: EtwNotificationRegister](https://www.geoffchappell.com/studies/windows/win32/ntdll/api/etw/evntapi/notificationregister.htm)
+- [Hitcon Presention by Denis Legezo](https://hitcon.org/2022/slides/A%20new%20secret%20stash%20for%20fileless%20malware.pdf)
 - [Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas)
 
 > Open a PR or issue to help keep this list up to date!

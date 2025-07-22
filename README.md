@@ -66,7 +66,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 ## NTDLL.DLL
 - [DbgUiRemoteBreakin](./NTDLL/DbgUiRemoteBreakin/)
 - [EtwEventWrite](./NTDLL/EtwEventWrite/)
-- `EtwNotificationRegister`
+- [EtwNotificationRegister](./NTDLL/EtwNotificationRegister/)
 - `EtwProviderEnabled`
 - `LdrGetProcedureAddress`
 - `LdrLoadDll`

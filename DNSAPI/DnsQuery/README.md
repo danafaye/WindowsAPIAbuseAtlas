@@ -1,8 +1,7 @@
-# 🛠️ DnsQuery: 
+# 🛠️ DnsQuery: Name Resolution or Network Obfuscation?
 
 ## 🚀 Executive Summary
-
-
+`DnsQuery` is a deceptively routine API with outsized potential for abuse. While it plays a critical role in legitimate name resolution, its ability to query arbitrary DNS record types especially TXT and target custom DNS servers makes it a prime candidate for stealthy command-and-control (C2) activity. Malware authors increasingly turn to `DnsQuery` to exfiltrate data, stage payloads, and evade traditional network monitoring, all under the guise of normal DNS traffic. Its presence alone isn’t suspicious, but its context often is. This entry explores how attackers weaponize a seemingly benign API to tunnel signals through infrastructure defenders often overlook.
 
 ## 🔍 What is DnsQuery?
 `DnsQuery` is a user mode Windows API that allows applications to perform DNS lookups, translating human readable domain names (like example.com) into IP addresses the system can route to. It supports querying various DNS record types (A, AAAA, TXT, MX, others) and can resolve names using either the system configured DNS servers or custom ones supplied by the caller. `DnsQuery` is actually a common name for three function variants: `DnsQuery_A` (ANSI), `DnsQuery_W` (wide/Unicode), and `DnsQuery_UTF8`. These exist to support different character encodings based on the calling application's needs, something especially relevant for cross-language or internationalized software. Legitimately, this API powers everything from browsers fetching websites to email clients resolving mail servers. It's part of the `dnsapi.dll` library and offers more granular control than higher-level functions like getaddrinfo, making it a go-to for developers building network-aware applications, diagnostic tools, or custom DNS clients.

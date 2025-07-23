@@ -27,6 +27,9 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `AmsiInitialize`
 - [AmsiScanBuffer](./AMSI/AmsiScanBuffer/)
 
+# DNSAPI.DLL
+- `DnsQuery`
+
 ## FWPUCLNT.DLL
 - `FwpmCalloutAdd`
 - `FwpmCalloutRegister`

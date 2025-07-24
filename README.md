@@ -43,7 +43,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `CreateFile`
 - `CreateProcessAsUserW`
 - `CreateProcessInternalW`
-- `CreateProcessWithTokenW`
+- [CreateProcessWithTokenW](./KERNEL32/CreateProcessWithTokenW/)
 - [CreateRemoteThread](./KERNEL32/CreateRemoteThread/)
 - [CreateToolhelp32Snapshot](./KERNEL32/CreateToolhelp32Snapshot/)
 - [EnumProcesses](./KERNEL32/EnumProcesses/)
@@ -119,6 +119,9 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `SetupDiEnumClassDeviceInfo`
 - `SetupInstallFile`
 - `SetupUninstallOEMInf`
+
+## UIAUTOMATIONCORE
+-  [AddAutomationEventHandler](./UIAUTOMATIONCORE/AddAutomationEventHandler/) 
 
 ## USER32.DLL
 - [LockWorkStation](./USER32/LockWorkStation/)

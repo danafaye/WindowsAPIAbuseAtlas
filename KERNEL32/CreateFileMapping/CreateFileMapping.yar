@@ -17,6 +17,7 @@ rule Suspicious_CreateFileMapping_Usage
         $susp_section_name4 = "MsMpSvc" ascii nocase // mimicking legitimate service names used as masquerade
 
     condition:
+        (uint16(0) == 0x5A4D) and // PE file
         $createfilemapping and
         (1 of ($api*)) and
         (1 of ($susp*))

@@ -41,6 +41,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [ConvertThreadToFiber](./KERNEL32/ConvertThreadToFiber/)
 - `CreateFiber`
 - `CreateFile`
+- [CreateFileMapping](./KERNEL32/CreateFileMapping/)
 - `CreateProcessAsUserW`
 - `CreateProcessInternalW`
 - [CreateProcessWithTokenW](./KERNEL32/CreateProcessWithTokenW/)

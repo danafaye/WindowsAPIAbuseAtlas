@@ -12,6 +12,8 @@
 ## 🧬 How Attackers Abuse It
 In a malicious context, `CreateFileTransacted` offers a low-noise way to stage payloads, manipulate files, or prep components for execution; all under the protection of a transaction. An attacker can write a file to disk, scan it, modify it, even sign it, all without those changes becoming visible until the transaction is committed. This transactional limbo makes detection harder: file I/O happens, but nothing lands permanently unless explicitly finalized. Combine it with `CommitTransaction` or `RollbackTransaction`, and malware gains precise control over what persists and when. Some techniques use this to test code execution safely or to delay payload deployment until just the right moment. And while *Transactional NTFS (TxF)* is deprecated, it's still available on many systems (including Windows 11), offering a stealthy, rarely watched lane for file ops with built-in erase-on-fail.
 
+`CreateFileTransacted` and the broader TxF framework were deprecated starting in Windows 8, and most attackers (like most developers) moved on to more reliable, future proof techniques. But just because a tool falls out of favor doesn’t mean it’s gone. History shows that malware authors love to reach into the archive and revive forgotten APIs, especially the weird ones, precisely when defenders stop looking for them.
+
 ## 🛡️ Detection Opportunities
 
 Here are some sample YARA rules to detect suspicious use of `CreateFileTransacted`:
@@ -56,7 +58,6 @@ When a script engine (wscript.exe, powershell.exe) or an unexpected process dips
 
 > **Note:** This list isn’t exhaustive. It is possible more modern malware families and offensive security tools use `CreateFileTransacted`.
 
-`CreateFileTransacted` and TxF were deprecated by Microsoft starting Windows 8, limiting their use. Malware authors tend to prefer more reliable or forward-compatible methods, so TxF usage is a specialty technique often found in older or very targeted malware.
 
 ## 🧵 `CreateFileTransacted` and Friends
 Transactional NTFS and `CreateFileTransacted` still linger under the hood in Windows 11, but their rocky reliability and deprecated status have pushed most attackers to greener pastures. Modern operators ditch TxF for more predictable moves: carving out payload staging zones with `CreateFileMapping` and `MapViewOfFile`, injecting code using `WriteProcessMemory` or queuing APCs, and handling atomic file swaps with `MoveFileEx` plus sneaky timestomping via `SetFileInformationByHandle`. These APIs deliver stealth and stability without the headaches, which makes TxF a legacy footnote instead of a daily tool. If you spot TxF in the wild, it’s either old-school or someone’s really doubling down on stealth.

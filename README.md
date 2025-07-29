@@ -74,7 +74,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [EtwEventWrite](./NTDLL/EtwEventWrite/)
 - [EtwNotificationRegister](./NTDLL/EtwNotificationRegister/)
 - `EtwProviderEnabled`
-- `LdrGetProcedureAddress`
+- [LdrGetProcedureAddress](./NTDLL/LdrGetProcedureAddress/)
 - `LdrLoadDll`
 - `NtAllocateVirtualMemory`
 - `NtAlertResumeThread`

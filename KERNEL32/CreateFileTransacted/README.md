@@ -58,7 +58,6 @@ When a script engine (wscript.exe, powershell.exe) or an unexpected process dips
 
 > **Note:** This list isn’t exhaustive. It is possible more modern malware families and offensive security tools use `CreateFileTransacted`.
 
-
 ## 🧵 `CreateFileTransacted` and Friends
 Transactional NTFS and `CreateFileTransacted` still linger under the hood in Windows 11, but their rocky reliability and deprecated status have pushed most attackers to greener pastures. Modern operators ditch TxF for more predictable moves: carving out payload staging zones with `CreateFileMapping` and `MapViewOfFile`, injecting code using `WriteProcessMemory` or queuing APCs, and handling atomic file swaps with `MoveFileEx` plus sneaky timestomping via `SetFileInformationByHandle`. These APIs deliver stealth and stability without the headaches, which makes TxF a legacy footnote instead of a daily tool. If you spot TxF in the wild, it’s either old-school or someone’s really doubling down on stealth.
 

@@ -129,5 +129,6 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 
 ## USER32.DLL
 - [LockWorkStation](./USER32/LockWorkStation/)
+- [SetClipboardData](./USER32/SetClipboardData/)
 - [SetWindowsHookEx](./USER32/SetWindowsHookEx/)
 

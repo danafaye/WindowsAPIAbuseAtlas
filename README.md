@@ -135,3 +135,6 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [SetClipboardData](./USER32/SetClipboardData/)
 - [SetWindowsHookEx](./USER32/SetWindowsHookEx/)
 
+## WINSTA.DLL
+ - [WinStationQueryInformationW](./WINSTA/WinStationQueryInformationW/)
+

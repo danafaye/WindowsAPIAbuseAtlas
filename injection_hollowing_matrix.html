@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows Injection & Hollowing Matrix</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1 { font-size: 24px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: center; padding: 8px; border: 1px solid #ddd; }
+    td.tooltip { position: relative; cursor: pointer; }
+    td.tooltip:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      background: #333;
+      color: #fff;
+      padding: 5px;
+      border-radius: 5px;
+      white-space: pre-wrap;
+      z-index: 1000;
+      top: 100%;
+      left: 0;
+    }
+    .legend { margin-top: 20px; }
+    .legend span { display: inline-block; margin-right: 10px; padding: 5px 10px; border-radius: 4px; color: #fff; }
+    .common { background-color: green; }
+    .moderate { background-color: orange; }
+    .rare { background-color: red; }
+    .unknown { background-color: gray; }
+  </style>
+</head>
+<body>
+  <h1>Windows Injection & Hollowing Technique Matrix</h1>
+  <table id="matrix">
+    <thead>
+      <tr>
+        <th>Memory Technique \ Execution API</th>
+        <th>CreateRemoteThread</th>
+        <th>NtContinue</th>
+        <th>QueueUserAPC</th>
+        <th>SetThreadContext</th>
+        <th>LoadLibrary</th>
+        <th>CoCreateInstanceEx</th>
+        <th>NtCreateThreadEx</th>
+        <th>RtlCreateUserThread</th>
+        <th>NtQueueApcThread</th>
+        <th>ResumeThread</th>
+        <th>NtTestAlert</th>
+      </tr>
+    </thead>
+<tbody>
+<tr>
+  <td>CreateFileMapping</td>
+  <td class="tooltip moderate" data-tooltip="Used for file-backed or shared section mapping.">✅</td>
+  <td class="tooltip rare" data-tooltip="Rarely used in thread context injection.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Unclear utility for APC.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Rare in hollowing-style injection.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Not common for DLL path allocation.">❓</td>
+  <td class="tooltip unknown" data-tooltip="May support COM object data sharing.">❓</td>
+  <td class="tooltip moderate" data-tooltip="Used with section-based loaders.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Backs up manual mapping approaches.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Uncommon for APC targets.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Rarely paired with resume.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Seldom seen in alert state usage.">❓</td>
+</tr>
+<tr>
+  <td>CreateSection</td>
+  <td class="tooltip moderate" data-tooltip="Used to establish memory sections for inter-process injection.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used post-section creation.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Unusual for APC usage.">❓</td>
+  <td class="tooltip moderate" data-tooltip="Required in hollowing strategies.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Not typically linked to DLL injection.">❓</td>
+  <td class="tooltip rare" data-tooltip="Possible with COM object persistence.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Common for stealthy memory setup.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used with remote thread setups.">✅</td>
+  <td class="tooltip rare" data-tooltip="APC injection following section mapping.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used after replacing section content.">✅</td>
+  <td class="tooltip rare" data-tooltip="Edge-case usage in alertable section launch.">✅</td>
+</tr>
+<tr>
+  <td>DuplicateHandle</td>
+  <td class="tooltip moderate" data-tooltip="Used to get access to a remote process or thread handle.">✅</td>
+  <td class="tooltip rare" data-tooltip="Sometimes supports execution redirection.">✅</td>
+  <td class="tooltip rare" data-tooltip="Used to inject into threads not created by attacker.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Facilitates SetThreadContext if original thread is duplicated.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Not directly applicable for DLL injection.">❓</td>
+  <td class="tooltip unknown" data-tooltip="May be useful for COM hijack cleanup.">❓</td>
+  <td class="tooltip moderate" data-tooltip="Indirect utility in setup of target threads.">✅</td>
+  <td class="tooltip rare" data-tooltip="Less common in direct thread injection.">✅</td>
+  <td class="tooltip rare" data-tooltip="Potential use for pre-existing APC targets.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Used in advanced evasion techniques.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Rare linkage to alertable shellcode.">❓</td>
+</tr>
+<tr>
+  <td>NtAllocateVirtualMemory</td>
+  <td class="tooltip common" data-tooltip="Kernel-level equivalent of VirtualAllocEx.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used after memory setup for execution redirection.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Common in advanced injections.">✅</td>
+  <td class="tooltip common" data-tooltip="Used with shellcode execution via context change.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Indirect use possible.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Uncommon in COM-based injection.">❓</td>
+  <td class="tooltip common" data-tooltip="Paired with shellcode deployment.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Alternative to VirtualAllocEx.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used in stealth APC injections.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Works with early stage process hollowing.">✅</td>
+  <td class="tooltip rare" data-tooltip="Rare usage but technically possible.">✅</td>
+</tr>
+<tr>
+  <td>NtMapViewOfSection</td>
+  <td class="tooltip moderate" data-tooltip="Maps a file section into process memory; key for process hollowing.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used post-section mapping for execution.">✅</td>
+  <td class="tooltip rare" data-tooltip="Less common for APC injection.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Supports context changes in hollowing.">✅</td>
+  <td class="tooltip rare" data-tooltip="Rarely used for DLL loading.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Rare in COM scenarios.">❓</td>
+  <td class="tooltip moderate" data-tooltip="Supports stealthy hollowing techniques.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Pairs with reflective loaders.">✅</td>
+  <td class="tooltip rare" data-tooltip="Uncommon for APC shellcode.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used before resuming hollowed threads.">✅</td>
+  <td class="tooltip rare" data-tooltip="Rare alertable usage.">✅</td>
+</tr>
+<tr>
+  <td>NtProtectVirtualMemory</td>
+  <td class="tooltip moderate" data-tooltip="Used to make pages executable.">✅</td>
+  <td class="tooltip rare" data-tooltip="Prep step for execution redirection.">✅</td>
+  <td class="tooltip rare" data-tooltip="Sometimes used before APC injection.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Enables code execution.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Rare for DLL execution.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Uncommon in COM chain.">❓</td>
+  <td class="tooltip moderate" data-tooltip="Needed to set shellcode permissions.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Useful in stealth thread setups.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Supports stealthy APC shells.">✅</td>
+  <td class="tooltip rare" data-tooltip="Optional step before resume.">✅</td>
+  <td class="tooltip rare" data-tooltip="Enables shellcode to run.">✅</td>
+</tr>
+<tr>
+  <td>NtWriteVirtualMemory</td>
+  <td class="tooltip common" data-tooltip="Writes data into remote process memory; essential for injection.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used with context changes to execute payloads.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Supports APC shellcode injection.">✅</td>
+  <td class="tooltip common" data-tooltip="Often used before SetThreadContext execution.">✅</td>
+  <td class="tooltip rare" data-tooltip="Uncommon for DLL path loading.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Rare in COM-based injections.">❓</td>
+  <td class="tooltip common" data-tooltip="Used to prepare manual mapped code.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used with reflective loaders.">✅</td>
+  <td class="tooltip rare" data-tooltip="Shellcode queued for APC execution.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Executes after thread context setup.">✅</td>
+  <td class="tooltip rare" data-tooltip="Rare alertable state usage.">✅</td>
+</tr>
+<tr>
+  <td>OpenProcess</td>
+  <td class="tooltip common" data-tooltip="Opens handle to target process; prerequisite for many injections.">✅</td>
+  <td class="tooltip rare" data-tooltip="May precede NtContinue-based execution.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Required for APC thread targeting.">✅</td>
+  <td class="tooltip common" data-tooltip="Used before SetThreadContext.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Not directly related to DLL loading.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Uncommon in COM injection.">❓</td>
+  <td class="tooltip moderate" data-tooltip="Used in manual mapping setups.">✅</td>
+  <td class="tooltip rare" data-tooltip="Seldom used with reflective loaders.">✅</td>
+  <td class="tooltip rare" data-tooltip="Possible for APC shellcode injections.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used before resuming threads.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Rarely involved in alertable states.">❓</td>
+</tr>
+<tr>
+  <td>RtlCopyMemory</td>
+  <td class="tooltip moderate" data-tooltip="Copies bytes in memory; useful in manual mapping or shellcode loaders.">✅</td>
+  <td class="tooltip rare" data-tooltip="Sometimes used in stealth memory writes.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Rare in APC injection.">❓</td>
+  <td class="tooltip moderate" data-tooltip="Supports context-based code execution.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Uncommon in DLL loading.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Rare in COM injection.">❓</td>
+  <td class="tooltip moderate" data-tooltip="Used in manual and reflective loaders.">✅</td>
+  <td class="tooltip rare" data-tooltip="Rare but possible in stealth setups.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Uncommon for APC shellcode.">❓</td>
+  <td class="tooltip rare" data-tooltip="Supports resume-thread scenarios.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Rare in alertable thread usage.">❓</td>
+</tr>
+<tr>
+  <td>SetInformationProcess / NtSetInformationProcess</td>
+  <td class="tooltip rare" data-tooltip="Used to alter process info, sometimes for stealth or hollowing setups.">✅</td>
+  <td class="tooltip rare" data-tooltip="Used with NtContinue to redirect execution.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Rarely seen in APC injection chains.">❓</td>
+  <td class="tooltip rare" data-tooltip="Supports advanced hollowing techniques.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Uncommon in DLL injection scenarios.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Rare in COM-based attacks.">❓</td>
+  <td class="tooltip rare" data-tooltip="Used to hide or alter process info during manual mapping.">✅</td>
+  <td class="tooltip rare" data-tooltip="Sometimes used with stealth loaders.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Uncommon for APC queuing.">❓</td>
+  <td class="tooltip rare" data-tooltip="Used before resuming threads post-hollowing.">✅</td>
+  <td class="tooltip rare" data-tooltip="Rarely used in alertable states.">✅</td>
+</tr>
+<tr>
+  <td>VirtualAlloc</td>
+  <td class="tooltip common" data-tooltip="Allocates memory in local process.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used in combination with manual shellcode triggering.">✅</td>
+  <td class="tooltip rare" data-tooltip="Used if targeting current process with APC.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Useful with self-injection scenarios.">✅</td>
+  <td class="tooltip common" data-tooltip="Allocates memory for DLL path or loader stub.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Rare in COM scenarios.">❓</td>
+  <td class="tooltip moderate" data-tooltip="Used in manual mapping scenarios.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used with reflective loaders.">✅</td>
+  <td class="tooltip rare" data-tooltip="Shellcode in local memory then queued.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Executes after context manipulation.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Only when paired with alertable state.">❓</td>
+</tr>
+<tr>
+  <td>VirtualAllocEx</td>
+  <td class="tooltip common" data-tooltip="Allocates memory in a remote process; very common in injection.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used with manual shellcode execution.">✅</td>
+  <td class="tooltip rare" data-tooltip="Used in APC injection targeting remote processes.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Supports SetThreadContext for remote code execution.">✅</td>
+  <td class="tooltip common" data-tooltip="Allocates space for DLL path or shellcode in remote process.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Rare in COM scenarios.">❓</td>
+  <td class="tooltip moderate" data-tooltip="Key for manual mapping in remote processes.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used with reflective loaders in remote memory.">✅</td>
+  <td class="tooltip rare" data-tooltip="Shellcode queued via APC in remote memory.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Executes after thread context or remote thread creation.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Only when paired with alertable state.">❓</td>
+</tr>
+
+<tr>
+  <td>VirtualAllocExNuma</td>
+  <td class="tooltip rare" data-tooltip="Rarely used variant targeting specific NUMA nodes.">✅</td>
+  <td class="tooltip rare" data-tooltip="Possible but limited to specific targets.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Unusual for APC injection.">❓</td>
+  <td class="tooltip rare" data-tooltip="Low-prevalence variant.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Unseen in standard injection chains.">❓</td>
+  <td class="tooltip unknown" data-tooltip="No known usage.">❓</td>
+  <td class="tooltip rare" data-tooltip="Obscure shellcode allocation path.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Limited documentation.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Rarely queued.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Rare control flow method.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Potential in alertable NUMA environments.">❓</td>
+</tr>
+<tr>
+  <td>VirtualFree / VirtualFreeEx</td>
+  <td class="tooltip rare" data-tooltip="Frees allocated memory; part of cleanup or stealth techniques.">✅</td>
+  <td class="tooltip rare" data-tooltip="Sometimes paired with NtContinue for cleanup.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Rarely used in APC chains.">❓</td>
+  <td class="tooltip rare" data-tooltip="Used in thread context cleanups.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Rarely linked to DLL loading.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Rarely relevant in COM hijacking.">❓</td>
+  <td class="tooltip rare" data-tooltip="May be part of manual mapping cleanup.">✅</td>
+  <td class="tooltip rare" data-tooltip="Rarely used with reflective loaders.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Rare APC use.">❓</td>
+  <td class="tooltip rare" data-tooltip="Sometimes used before resuming threads.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Rarely used in alertable states.">❓</td>
+</tr>
+<tr>
+  <td>WriteProcessMemory</td>
+  <td class="tooltip common" data-tooltip="User-mode API to write into another process’s memory; widely used.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Pairs with context changes and thread resuming.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used in APC injection chains.">✅</td>
+  <td class="tooltip common" data-tooltip="Used before context-based execution.">✅</td>
+  <td class="tooltip rare" data-tooltip="Uncommon for DLL loading directly.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Rare in COM scenarios.">❓</td>
+  <td class="tooltip common" data-tooltip="Supports manual mapping and shellcode deployment.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Works with reflective loaders.">✅</td>
+  <td class="tooltip rare" data-tooltip="Queues shellcode for APC execution.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Follows thread context setups.">✅</td>
+  <td class="tooltip rare" data-tooltip="Rarely used in alertable state.">✅</td>
+</tr>
+<tr>
+  <td>ZwAllocateVirtualMemory</td>
+  <td class="tooltip common" data-tooltip="Kernel-level allocation of virtual memory; powerful in advanced injection.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used with execution redirection techniques.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Supports stealthy APC injections.">✅</td>
+  <td class="tooltip common" data-tooltip="Used prior to shellcode execution.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Rare in DLL injection.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Rare in COM hijacking.">❓</td>
+  <td class="tooltip common" data-tooltip="Used for manual mapping setups.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Paired with reflective loaders.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used in APC injection chains.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used before resuming threads.">✅</td>
+  <td class="tooltip rare" data-tooltip="Rare usage in alertable states.">✅</td>
+</tr>
+<tr>
+  <td>ZwMapViewOfSection</td>
+  <td class="tooltip moderate" data-tooltip="Similar to NtMapViewOfSection; used in low-level memory mapping.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used post-section mapping for execution.">✅</td>
+  <td class="tooltip rare" data-tooltip="Rare APC injection.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used in hollowing techniques.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Rare for DLL path loading.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Rare in COM injection.">❓</td>
+  <td class="tooltip moderate" data-tooltip="Supports stealth hollowing.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Paired with reflective loaders.">✅</td>
+  <td class="tooltip rare" data-tooltip="Rare APC shellcode.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used before thread resume.">✅</td>
+  <td class="tooltip rare" data-tooltip="Rare alertable usage.">✅</td>
+</tr>
+<tr>
+  <td>ZwUnmapViewOfSection</td>
+  <td class="tooltip moderate" data-tooltip="Unmaps a previously mapped section; used in hollowing cleanup.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Often used before resuming hollowed process.">✅</td>
+  <td class="tooltip rare" data-tooltip="Rarely used in APC injections.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used to clean memory after hollowing.">✅</td>
+  <td class="tooltip unknown" data-tooltip="Uncommon for DLL unloading.">❓</td>
+  <td class="tooltip unknown" data-tooltip="Rare in COM attacks.">❓</td>
+  <td class="tooltip moderate" data-tooltip="Used in stealth hollowing.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used with reflective loaders.">✅</td>
+  <td class="tooltip rare" data-tooltip="Rare APC shellcode cleanup.">✅</td>
+  <td class="tooltip moderate" data-tooltip="Used before resuming threads.">✅</td>
+  <td class="tooltip rare" data-tooltip="Rarely used in alertable states.">✅</td>
+</tr>
+</tbody>
+
+
+<!-- ... -->
+    </tbody>
+  </table>
+
+  <div class="legend">
+    <strong>Legend:</strong>
+    <span class="common">Common</span>
+    <span class="moderate">Moderate</span>
+    <span class="rare">Rare</span>
+    <span class="unknown">Unknown/Unconfirmed</span>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#matrix').DataTable({
+        paging: false,
+        info: false,
+        searching: false,
+        ordering: false
+      });
+    });
+  </script>
+</body>
+</html>

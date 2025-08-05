@@ -9,14 +9,14 @@ rule Suspicious_OpenDesktop_Abuse
         reference = "Windows API Abuse Atlas - OpenDesktop"
 
     strings:
-        $opendesktop = "OpenDesktopA" ascii
-        $opendesktopW = "OpenDesktopW" ascii
-        $switchdesktop = "SwitchDesktop" ascii
-        $setthreaddesktop = "SetThreadDesktop" ascii
-        $creatdesktop = "CreateDesktopA" ascii
-        $winlogon_str = "Winlogon" ascii nocase
-        $disconnect_str = "Disconnect" ascii nocase
-        $securedesktop_str = "Secure" ascii nocase
+        $opendesktop = "OpenDesktopA" ascii wide
+        $opendesktopW = "OpenDesktopW" ascii wide
+        $switchdesktop = "SwitchDesktop" ascii wide
+        $setthreaddesktop = "SetThreadDesktop" ascii wide
+        $creatdesktop = "CreateDesktopA" ascii wide
+        $winlogon_str = "Winlogon" ascii wide
+        $disconnect_str = "Disconnect" ascii wide
+        $securedesktop_str = "Secure" ascii wide
 
     condition:
          uint16(0) == 0x5A4D and // Check for MZ header

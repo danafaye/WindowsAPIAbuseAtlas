@@ -30,7 +30,7 @@ Correlate with prior token manipulation or logon activity. High-value detections
 
 Here are some sample YARA rules to detect suspicious use of `CreateProcessAsUserW`:
 
-See [CreateProcessAsUserW.yar](./CreateProcessAsUserW.yar).
+See [CreateProcessAsUserW.yar](./CreateProcessAsUser.yar).
 
 > **Note:** Use these YARA rules at your own risk. They are loosely scoped and intended primarily for threat hunting and research purposes; **NOT** for deployment in detection systems that require a low false positive rate. Please review and test in your environment before use.
 

@@ -1,4 +1,4 @@
-# 🛠️ CreateProcessAsUserW: 
+# 🫥 CreateProcessAsUserW: Token-powered stealth execution
 
 ## 🚀 Executive Summary
 `CreateProcessAsUserW` lets a process launch another process under a different user token. It is typically used to spawn a child with different privileges. While it’s critical for legitimate applications like task schedulers or remote management tools, it’s also a popular choice for attackers looking to pivot laterally, evade controls, or execute payloads under stolen credentials.
@@ -11,7 +11,6 @@ This API is highly valued in offensive workflows for privilege separation, evasi
 
 ## 🧬 How Attackers Abuse It
 Attackers commonly pair this API with stolen credentials or impersonation tokens to spawn privileged processes. This is especially useful in:
-
  - Lateral movement scenarios
  - Bypassing application whitelisting
  - Launching processes that inherit a less suspicious context (SYSTEM or an admin)

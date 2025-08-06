@@ -11,6 +11,8 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [AdjustTokenPrivileges](./ADVAPI32/AdjustTokenPrivileges/)
 - `ChangeServiceConfig2`
 - [ControlService](./ADVAPI32/ControlService/)
+- [CreateProcessAsUserW](./ADVAPI32/CreateProcessAsUser/)
+- [CreateProcessWithTokenW](./ADVAPI32/CreateProcessWithTokenW/)
 - `CreateService`
 - [CredEnumerateW](./ADVAPI32/CredEnumerateW/)
 - `CredReadW`
@@ -45,9 +47,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `CreateFile`
 - [CreateFileMapping](./KERNEL32/CreateFileMapping/)
 - [CreateFileTransacted](./KERNEL32/CreateFileTransacted/)
-- [CreateProcessAsUserW](./KERNEL32/CreateProcessAsUser/)
 - `CreateProcessInternalW`
-- [CreateProcessWithTokenW](./KERNEL32/CreateProcessWithTokenW/)
 - [CreateRemoteThread](./KERNEL32/CreateRemoteThread/)
 - [CreateToolhelp32Snapshot](./KERNEL32/CreateToolhelp32Snapshot/)
 - [EnumProcesses](./KERNEL32/EnumProcesses/)

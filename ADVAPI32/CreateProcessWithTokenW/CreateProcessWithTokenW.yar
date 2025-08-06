@@ -2,22 +2,24 @@
 // for threat hunting and research purposes — not for deployment in detection systems that 
 // require a low false positive rate. Please review and test in your environment before use.
 
-rule CreateProcessWithTokenW_AbusePattern
+
+rule Suspicious_CreateProcessWithTokenW_Usage
 {
     meta:
-        description = "Detects common abuse patterns of CreateProcessWithTokenW in malware"
         author = "Windows API Abuse Atlas"
+        description = "Detects use of CreateProcessWithTokenW with suspicious token manipulation patterns"
+        reference = "https://github.com/danafaye/WindowsAPIAbuseAtlas"
 
     strings:
-        $api1 = "CreateProcessWithTokenW" ascii
-        $api2 = "DuplicateTokenEx" ascii
-        $api3 = "OpenProcessToken" ascii
-        $api4 = "LogonUser" ascii
-        $api5 = "SeAssignPrimaryTokenPrivilege" ascii
-        $cmd  = /cmd\.exe|powershell\.exe|wscript\.exe/i
+        $api1 = "CreateProcessWithToken" ascii wide
+        $api2 = "DuplicateTokenEx" ascii wide
+        $api3 = "OpenProcessToken" ascii wide
+        $api4 = "OpenProcess" ascii wide
+        $api5 = "LookupPrivilegeValue" ascii wide
+        $lolbin1 = "cmd.exe" ascii wide
+        $lolbin2 = "powershell.exe" ascii wide
+        $lolbin3 = "rundll32.exe" ascii wide
 
     condition:
-        uint16(0) == 0x5A4D and
-        filesize < 5MB and
-        all of ($api*) and $cmd
+        all of ($api*) and 1 of ($lolbin*) and filesize < 5MB
 }

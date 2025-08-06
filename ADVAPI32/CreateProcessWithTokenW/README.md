@@ -1,112 +1,76 @@
-# 🛠️ CreateProcessWithTokenW: Launching Like a Local Admin (Even When You’re Not)
+# 🪪 CreateProcessWithTokenW: The Fake ID
 
 ## 🚀 Executive Summary
-`CreateProcessWithTokenW` is a high-value weapon in the attacker’s arsenal, enabling them to run malicious code under stolen or elevated user tokens with surgical precision. By hijacking tokens from privileged accounts, adversaries bypass User Account Control (UAC), evade detection, and blend malicious processes seamlessly into legitimate user sessions. This API, often paired with token theft and duplication routines, is central to stealthy privilege escalation, lateral movement, and persistence strategies. For defenders, spotting its misuse is crucial—it marks moments when attackers gain footholds with escalated privileges, making it a prime target for early detection and disruption.
+`CreateProcessWithTokenW` is a powerful API that enables launching a process with a specified user token, often used to impersonate another user or elevate privileges. While this behavior is useful for legitimate administrative tasks, it is frequently abused by attackers to escalate privileges, bypass UAC, or move laterally with stolen tokens. Its misuse is common in malware, red team tools, and APT tradecraft. Understanding this API—and the patterns around its abuse—helps defenders recognize stealthy privilege transitions and detect attacks that rely on hijacking execution context.
 
 ## 🔍 What is CreateProcessWithTokenW?
-`CreateProcessWithTokenW` is a Windows API in `advapi32.dll` that lets a process launch a new process using the security token of another user. Essentially, it enables starting a process with the identity and privileges of someone else—like SYSTEM or a domain admin—if their token can be acquired. While legitimate uses include services launching tasks under different accounts, attackers exploit it to impersonate high-privilege users and run code under those contexts.
+`CreateProcessWithTokenW` serves as a critical component in Windows for managing process execution under specific security contexts. Its primary legitimate function is to launch a new process with an explicitly provided access token, rather than inheriting the token of the calling process. This capability is indispensable for secure applications, such as services that need to execute user-specific processes, or for applications requiring precise privilege delegation. By allowing a program to create a process that runs with the privileges of a different user or with a modified set of privileges, `CreateProcessWithTokenW` facilitates secure impersonation and compartmentalization, ensuring that operations are performed with the minimum necessary permissions.
 
 ## 🚩 Why It Matters
-Seeing `CreateProcessWithTokenW` in suspicious contexts is a major red flag for defenders. It signals that an attacker may be executing code with elevated privileges, often bypassing User Account Control (UAC) and avoiding user prompts. Because it allows malicious processes to blend into normal user sessions by masquerading under stolen tokens, detecting its misuse can uncover critical stages of an attack such as token theft, privilege escalation, or lateral movement.
+Understanding this API is crucial because its powerful capabilities for privilege management and execution context switching can be, and often are, co-opted for malicious purposes. Familiarity with its proper usage helps in distinguishing legitimate system behavior from attempts at privilege escalation, lateral movement, or stealthy execution, making it a key area for those analyzing system activity.
 
 ## 🧬 How Attackers Abuse It
-Attackers combine `CreateProcessWithTokenW` with token theft APIs like `LogonUser`, `OpenProcessToken`, and `DuplicateTokenEx` to capture or clone high-privilege tokens. After adjusting privileges (like `SeAssignPrimaryTokenPrivilege`), they spawn new processes under these tokens, executing payloads stealthily with elevated rights. This approach avoids UAC prompts and visible user switches, enabling attackers to run shells, scripts, or malware while hiding the true source of execution.
+ - **Token Theft**: Malware identifies a high-privilege process (via [EnumProcesses](https://github.com/danafaye/WindowsAPIAbuseAtlas/tree/main/KERNEL32/EnumProcesses) or [CreateToolhelp32Snapshot](https://github.com/danafaye/WindowsAPIAbuseAtlas/tree/main/KERNEL32/CreateToolhelp32Snapshot)), opens a handle (OpenProcess), then extracts and duplicates its access token using OpenProcessToken and DuplicateTokenEx.
+ - **Elevated Execution**: With a stolen or duplicated elevated token, `CreateProcessWithTokenW` is invoked to spawn a new process (cmd.exe, rundll32.exe, or a malicious payload), now running under Administrator or SYSTEM.
+ - **UAC Bypass**: Attackers may hijack auto-elevated tokens (from trusted processes like schtasks.exe or compmgmtlauncher.exe) to silently launch elevated processes without triggering a UAC prompt.
+ - **Lateral Movement**: If an attacker obtains a domain token with administrative rights on remote hosts, they may combine `CreateProcessWithTokenW` with remote execution methods (DCOM, WMI, or PsExec-style behavior) to launch payloads across systems.
+ - **Stealth**: The spawned process may mimic legitimate binaries (svchost.exe) and inherit security attributes from the stolen token, aiding in detection evasion and forensic obfuscation.
 
-## 👀 Sample Behavior & API Sequences
-### 🔺 Privilege Escalation & UAC Bypass
-Attackers love abusing `CreateProcessWithTokenW` to either escalate privileges or silently bypass UAC. Both tricks rely on grabbing or duplicating a high-privilege token, then spinning up a process—usually a SYSTEM shell or admin tool—without needing a password or showing any prompts.
+## 🛡️ Detection Opportunities
+Here are some sample YARA rules to detect suspicious use of `CreateProcessWithTokenW`:
 
-| API Call                         | What It Does                                                    |
-|----------------------------------|----------------------------------------------------------------|
-| `OpenProcess` / `LogonUser`      | Grab a handle to a SYSTEM process or authenticate as an admin  |
-| `OpenProcessToken` / `DuplicateTokenEx` | Steal and duplicate the token with `TOKEN_PRIMARY` access           |
-| `AdjustTokenPrivileges`          | Enable key privileges like `SeAssignPrimaryTokenPrivilege`     |
-| `CreateProcessWithTokenW`        | Launch an elevated process (like `cmd.exe`) using that token  |
-
-**Very similar, but slightly different:**  
-- **Privilege escalation** usually means stealing tokens from SYSTEM processes.  
-- **UAC bypass** means authenticating as an admin and launching elevated processes silently.
-
-If you see `CreateProcessWithTokenW` combined with token theft or `LogonUser`, it’s a huge red flag for post-exploitation activity.
-
-### 🔺 Lateral Movement
-This call chain looks a lot like the UAC bypass flow. Attackers use it after grabbing credentials or tokens from a remote system to impersonate domain or privileged users and move laterally. They spin up new processes under those stolen tokens to run tools, access resources, or pivot—all while blending in with normal traffic. 
-
-| API Call                | Description                                                                 |
-|-------------------------|-----------------------------------------------------------------------------|
-| `LogonUser`             | Logs in with stolen domain credentials to obtain a valid access token       |
-| `DuplicateTokenEx`      | Duplicates the logon token as a `TOKEN_PRIMARY` for process creation        |
-| `AdjustTokenPrivileges` | Enables any necessary privileges (like `SeImpersonatePrivilege`)           |
-| `CreateProcessWithTokenW` | Spawns a process (like `cmd.exe`, `powershell.exe`) under the remote user’s context |
-
-### 🔺 Stealthy Execution
-Attackers use this chain to quietly run malicious code under a high-privilege token, keeping a low profile and avoiding obvious user context changes. The payload runs under a trusted, elevated token with minimal footprints in sessions or process trees; classic for advanced post-exploitation and stealthy backdoors.
-
-
-| API Call                | Description                                                                 |
-|-------------------------|-----------------------------------------------------------------------------|
-| `OpenProcess`           | Open a handle to a high-privilege or SYSTEM process                         |
-| `OpenProcessToken`      | Retrieve the process’s access token                                         |
-| `DuplicateTokenEx`      | Duplicate the token with `TOKEN_PRIMARY` rights                             |
-| `SetThreadToken`        | (Optional) Impersonate the token on the current thread                      |
-| `CreateProcessWithTokenW` | Launch the malicious payload or command shell under the duplicated token   |
-| `WriteProcessMemory`    | (Optional) Inject shellcode or payload into the new process                 |
-| `CreateRemoteThread`    | (Optional) Execute injected code stealthily                                |
-
-## 🛡️ How to Spot CreateProcessWithTokenW Abuse
-
-### 🔹 YARA
-Here are some sample YARA rules to detect suspicious use of `CreateProcessWithTokenW':
-
-See [CreateProcessWithTokenW.yar](./CreateProcessWithTokenW)
+See [CreateProcessWithTokenW.yar](./CreateProcessWithTokenW.yar).
 
 > **Note:** Use these YARA rules at your own risk. They are loosely scoped and intended primarily for threat hunting and research purposes; **NOT** for deployment in detection systems that require a low false positive rate. Please review and test in your environment before use.
 
-`CreateProcessWithTokenW` is a sneaky little troublemaker—but defenders have tricks up their sleeves to catch it red-handed. Here’s how to spot this stealthy move before attackers get comfortable:
+### 🐾 Behavioral Indicators
+ - Privilege escalation from low-privileged processes: Unexpected cmd.exe, powershell.exe, or renamed binaries running as SYSTEM or Administrator.
+ - Token manipulation chain: `OpenProcess` → `OpenProcessToken` → `DuplicateTokenEx` → `CreateProcessWithTokenW`, especially targeting lsass.exe, winlogon.exe, or services.exe.
+ - Abnormal parent-child relationships: Scripting engines or non-elevated processes spawning elevated children.
+ - Usage by non-standard binaries: Rare or unsigned executables importing or resolving `CreateProcessWithTokenW`.
 
-- **API Call Combo:** Keep your eyes peeled for suspicious combos like `LogonUser` + `DuplicateTokenEx` + `CreateProcessWithTokenW`. That’s the hacker’s recipe for token theft followed by stealthy process creation.
+#### Reverse Engineering Clues
+ - Imports from advapi32.dll for token-related APIs.
+ - Code scanning for elevated processes ([EnumProcesses](https://github.com/danafaye/WindowsAPIAbuseAtlas/tree/main/KERNEL32/EnumProcesses), [CreateToolhelp32Snapshot](https://github.com/danafaye/WindowsAPIAbuseAtlas/tree/main/KERNEL32/CreateToolhelp32Snapshot)).
+ - Hardcoded elevation targets: cmd.exe, powershell.exe, or LOLBins like fodhelper.exe.
+ - References to token privileges: `SeImpersonatePrivilege`, `LOGON32_LOGON_INTERACTIVE`, etc.
 
-- **Token Oddities:** Watch for processes launched under unexpected or mismatched tokens—like a user-level process spawning SYSTEM-level children, or weird parent-child relationships that don’t add up in process trees or Sysmon logs.
+#### Defensive Strategies
+ - Audit token operations: Monitor Event IDs 4624, 4672, 4688. Alert on unexpected token duplication or privilege usage.
+ - Restrict impersonation privileges: Limit access to `SeImpersonatePrivilege` and `SeAssignPrimaryTokenPrivilege`.
+ - Harden UAC: Disable auto-elevation where feasible.
+ - EDR detection logic: Correlate token theft APIs with suspicious process creation.
+ - Enable LSASS protection (RunAsPPL) to prevent SYSTEM token theft.
 
-- **No UAC Prompt? No Thanks:** If a process suddenly appears elevated without a UAC prompt or consent event, it’s probably not a friendly ghost.
+## 🦠 Malware & Threat Actors Documented Abusing CreateProcessWithTokenW
 
-- **Privilege Escalation Flags:** Monitor for token privilege changes (`SeAssignPrimaryTokenPrivilege`, `SeImpersonatePrivilege`) right before process creation—that’s a red flag waving hard.
+### **Ransomware**
+ - Anubis
+ - 8Base
+ - DragonForce 
 
-- **Suspicious Parentage:** `CreateProcessWithTokenW` abuse often involves masquerading as trusted processes. If you see something like `explorer.exe` spawning a weird admin shell, time to investigate.
+### **Commodity Loaders & RATs**
+ - Bumblebee Loader
+ - CosmicDuke
+ - Warzone
 
-- **Timeline Jumps:** Rapid-fire sequences of token-related calls followed immediately by new process creation? Classic “token hijack and deploy” dance moves.
-
-In short: if `CreateProcessWithTokenW` is part of the story, dig deeper. Attackers rely on blending in ... your job is to shine a spotlight on their hiding spots. That said, Not all `CreateProcessWithTokenW` activity is malicious—legit tools use it too. To separate signal from noise, look for unusual parent-child relationships (like `explorer.exe` spawning `cmd.exe`), mismatched user contexts, and odd timing (like bursts during off-hours). Correlate with command-line args, binary paths, and logon events. Baseline normal usage in your environment, and treat anything outside that norm—especially involving LOLBins or unsigned executables—as high-priority for review.
-
-## 🦠 Malware & Threat Actors Documented Abusing `CreateProcessWithTokenW` Patching
-
-This technique has been around for quite a while (since about 2001) and is pretty well understood among security researchers and attackers alike. So, it’s a bit surprising that explicit mentions of `CreateProcessWithTokenW` don’t pop up more often in technical write-ups. The likely reason? There’s a natural bias toward highlighting new, flashy, or novel techniques in reporting. Plus, including every single detail, especially well-known ones—would make write-ups unwieldy and far more time-consuming to produce. As a result, many analyses gloss over these “classic” moves, assuming readers already get the picture or focusing on the novel twists instead.
-
-### Ransomware
-- 8Base
-- Makop Ransomware
-
-### Commondity Loaders & RATs
- - AsyncRAT 
- - NetSupport Manager RAT
- - NjRAT
-
-### APT & Threat Actor Toolkits
- - APT41 (Barium)
+### **APT & Threat Actor Toolkits**
+ - APT28
  - Lazarus Group
- - Turla
+ - SideWinder
 
-### Red Team & Open Source Tools
- - Cobalt Strike
- - Metasploit Framework
- - SharpSploit
- - PowerSploit (specifically Invoke-TokeManipulation)
+### **Red Team & Open Source Tools**
+ - Brute Ratel
+ - Metasploit
+ - PowerShell Empire
+
+> **Note:** This list isn’t exhaustive. It is possible more modern malware families and offensive security tools use `CreateProcessWithTokenW`.
 
 ## 🧵 `CreateProcessWithTokenW` and Friends
-`CreateProcessWithTokenW` rarely works alone in attacker toolkits—it’s part of a family of APIs that manipulate tokens and launch processes under alternate security contexts. Attackers often swap or combine it with functions like `CreateProcessAsUserW`, `CreateProcessWithLogonW`, and lower-level native calls such as `NtCreateUserProcess` to bypass restrictions or evade detection. Token-related APIs like `OpenProcessToken`, `DuplicateTokenEx`, and `SetTokenInformation` frequently pave the way by stealing or modifying access tokens before handing them off to these process creation calls. Understanding the interplay between these “friends” is key for defenders hunting stealthy privilege escalations and lateral movement, since adversaries flexibly switch between them depending on the environment and security controls in place.
+Several Windows APIs offer similar functionality to `CreateProcessWithTokenW`, enabling attackers to spawn new processes under different security contexts. `CreateProcessAsUserW` is functionally close and equally abusable, requiring slightly different privileges (`SeAssignPrimaryTokenPrivilege`). Internally, both may invoke `CreateProcessInternalW`, which handles much of the actual process creation logic. `CreateProcess` itself is the simpler variant, typically used without explicit token manipulation but still relevant in chains where the current process is already running in an elevated context. Together, these APIs form a family of process launch functions that, when paired with token theft or privilege manipulation, provide multiple avenues for stealthy privilege escalation and lateral movement.
 
+## 📚 Resources
+- [Microsoft Docs: CreateProcessWithTokenW](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createprocesswithtokenw)
+- [Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas)
 
-### Resources
- - [Microsoft](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createprocesswithtokenw)
- - [MITRE](https://attack.mitre.org/techniques/T1134/002/)
- - [Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas)
+> Open a PR or issue to help keep this list up to date!

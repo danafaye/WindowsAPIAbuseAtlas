@@ -45,7 +45,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `CreateFile`
 - [CreateFileMapping](./KERNEL32/CreateFileMapping/)
 - [CreateFileTransacted](./KERNEL32/CreateFileTransacted/)
-- `CreateProcessAsUserW`
+- [CreateProcessAsUserW](./KERNEL32/CreateProcessAsUser/)
 - `CreateProcessInternalW`
 - [CreateProcessWithTokenW](./KERNEL32/CreateProcessWithTokenW/)
 - [CreateRemoteThread](./KERNEL32/CreateRemoteThread/)

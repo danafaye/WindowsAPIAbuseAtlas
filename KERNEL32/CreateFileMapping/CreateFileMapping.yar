@@ -2,7 +2,6 @@
 // for threat hunting and research purposes — not for deployment in detection systems that 
 // require a low false positive rate. Please review and test in your environment before use.
 
-
 rule Suspicious_CreateFileMapping_Usage
 {
     meta:

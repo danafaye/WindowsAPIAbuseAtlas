@@ -65,6 +65,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [WriteProfileString](./KERNEL32/WriteProfileString/)
 
 ## NETAPI32.DLL
+- [DsGetDcName](./NETAPI32/DsGetDcName/)
 - [NetLocalGroupGetMembers](./NETAPI32/NetLocalGroupGetMembers/)
 - [NetRemoteTOD](./NETAPI32/NetRemoteTOD/)
 - `NetSessionEnum`

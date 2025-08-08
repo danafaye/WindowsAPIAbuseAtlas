@@ -22,14 +22,16 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `LsaOpenPolicy`
 - [LsaRetrievePrivateData](./ADVAPI32/LsaRetrievePrivateData/)
 - `OpenProcessToken`
-- `OpenSCManager`
+- [OpenSCManager](./ADVAPI32/OpenSCManager/)
 - `QueryServiceStatusEx`
 - [RegCreateKeyEx](./ADVAPI32/RegSetValueEx/)
 - [RegSetValueEx](./ADVAPI32/RegSetValueEx/)
 
 # AMSI.DLL
 - `AmsiInitialize`
+- `AmsiOpenSession`
 - [AmsiScanBuffer](./AMSI/AmsiScanBuffer/)
+- `AmsiScanString`
 
 # DNSAPI.DLL
 - [DnsQuery](./DNSAPI/DnsQuery/)

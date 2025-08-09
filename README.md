@@ -130,6 +130,9 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `SetupInstallFile`
 - `SetupUninstallOEMInf`
 
+## SHELL32.DLL
+- [ShellExecute](./SHELL32/ShellExecute/)
+
 ## UIAUTOMATIONCORE
 -  [AddAutomationEventHandler](./UIAUTOMATIONCORE/AddAutomationEventHandler/) 
 

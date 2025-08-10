@@ -21,7 +21,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `ImpersonateLoggedOnUser`
 - `LsaOpenPolicy`
 - [LsaRetrievePrivateData](./ADVAPI32/LsaRetrievePrivateData/)
-- `OpenProcessToken`
+- [OpenProcessToken](./ADVAPI32/OpenProcessToken/)
 - [OpenSCManager](./ADVAPI32/OpenSCManager/)
 - `QueryServiceStatusEx`
 - [RegCreateKeyEx](./ADVAPI32/RegSetValueEx/)

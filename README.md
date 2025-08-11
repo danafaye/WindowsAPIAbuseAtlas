@@ -80,7 +80,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [EtwNotificationRegister](./NTDLL/EtwNotificationRegister/)
 - [EtwProviderEnabled](./NTDLL/EtwProviderEnabled/)
 - [LdrGetProcedureAddress](./NTDLL/LdrGetProcedureAddress/)
-- `LdrLoadDll`
+- [LdrLoadDll](./NTDLL/LdrLoadDll/)
 - `NtAllocateVirtualMemory`
 - `NtAlertResumeThread`
 - [NtCreateSection](./NTDLL/NtCreateSection/)

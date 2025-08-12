@@ -49,6 +49,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `CreateFile`
 - [CreateFileMapping](./KERNEL32/CreateFileMapping/)
 - [CreateFileTransacted](./KERNEL32/CreateFileTransacted/)
+- [CreateNamedPipe](./KERNEL32/CreateNamedPipe/)
 - `CreateProcessInternalW`
 - [CreateRemoteThread](./KERNEL32/CreateRemoteThread/)
 - [CreateToolhelp32Snapshot](./KERNEL32/CreateToolhelp32Snapshot/)

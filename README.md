@@ -133,7 +133,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 
 ## SHELL32.DLL
 - [ShellExecute](./SHELL32/ShellExecute/)
-- `SHGetFolderPath`
+- [SHGetFolderPath](./SHELL32/SHGetKnownFolderPath/)
 
 ## UIAUTOMATIONCORE
 -  [AddAutomationEventHandler](./UIAUTOMATIONCORE/AddAutomationEventHandler/) 

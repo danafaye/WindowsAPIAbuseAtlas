@@ -1,4 +1,4 @@
-# 🛠️ CreateNamedPipe: 
+# 🛠️ CreateNamedPipe
 
 ## 🚀 Executive Summary
 On the surface, `CreateNamedPipe` is just plumbing ... build a pipe, send some data, close it. In reality, it’s a secret back alley of Windows, tucked away in the `\\.\pipe\` namespace, where processes can pass messages beyond the prying eyes of most defenders. Used properly, it keeps legitimate software talking to itself without tripping over the network stack. Used maliciously, it’s a silent courier, shuttling payloads, keys, and commands in and out of view.
@@ -33,30 +33,32 @@ Unusually named pipes, especially those with random strings or misleading system
 ## 🦠 Malware & Threat Actors Documented Abusing CreateNamedPipe
 
 ### **Ransomware**
-  Couldn't find any in the ransomware itself.
+ - Couldn't find any in the ransomware itself.
 
 ### **Commodity Loaders & RATs**
-  BazarLoader
-  TrickBot
-  Quasar RAT
+ - BazarLoader
+ - TrickBot
+ - Quasar RAT
 
 ### **APT & Threat Actor Toolkits**
-   APT29
-   Lazarus Group
-   OilRig
+ - APT29
+ - Lazarus Group
+ - OilRig
 
 ### **Red Team & Open Source Tools**
-  Cobalt Strike
-  Empire
-  Metasploit
+ - Cobalt Strike
+ - Empire
+ - Metasploit
 
 > **Note:** This list isn’t exhaustive. It is possible more modern malware families and offensive security tools use `CreateNamedPipe`.
 
 ## 🧵 `CreateNamedPipe` and Friends
-This call rarely works alone. It’s often followed by `ConnectNamedPipe` to wait for incoming clients, `CallNamedPipe` for a quick connect > send > receive > disconnect sequence, `WaitNamedPipe` to stall until an endpoint is ready, and `CreateFile` on the client side to join the conversation. Together, they make a tidy little IPC toolkit that works just as well for malware as it does for system services.
+This call rarely works alone. It’s often followed by `ConnectNamedPipe` to wait for incoming clients, `CallNamedPipe` for a quick connect → send → receive → disconnect sequence, `WaitNamedPipe` to stall until an endpoint is ready, and `CreateFile` on the client side to join the conversation. Together, they make a tidy little IPC toolkit that works just as well for malware as it does for system services.
+
+But when you see `CreateNamedPipe` paired with `CreateIoCompletionPort`, that’s a sign of something more sophisticated. `CreateIoCompletionPort` hooks the pipe into an asynchronous I/O model, allowing a single thread to efficiently manage multiple simultaneous pipe connections without blocking. This combo is a favorite of advanced malware and post exploitation frameworks looking to scale up their local C2 or staging channels with minimal resource usage and maximum stealth. It’s the difference between a simple whisper and a well organized conversation happening behind the scenes, out of sight.
 
 ## 📚 Resources
-  [Microsoft Docs: CreateNamedPipe](https://learn.microsoft.com/en us/windows/win32/api/winbase/nf winbase createnamedpipea)
-  [Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas)
+  - [Microsoft Docs: CreateNamedPipe](https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-createnamedpipea)
+   - [Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas)
 
 > Open a PR or issue to help keep this list up to date!

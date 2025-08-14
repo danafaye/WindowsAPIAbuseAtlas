@@ -66,7 +66,7 @@ See [GetModuleFileNameEx.yar](./GetModuleFileNameEx.yar).
 From a detection standpoint, these APIs form overlapping capability zones; if one is blocked, an adversary can often pivot to another with minimal code changes. This functional redundancy is exactly why defenders need to consider the entire class of “process image path retrieval” APIs rather than just hunting for a single call. Whether it’s `GetModuleFileNameEx` pulling the full path, `GetModuleBaseName` grabbing just the name, or `QueryFullProcessImageName` bypassing module handles entirely, the end result is the same: attackers gain a clear view of what’s running and where, setting the stage for informed targeting or evasion.
 
 ## 📚 Resources
-  [Microsoft Docs: GetModuleFileNameEx](https://learn.microsoft.com/en-us/windows/win32/api/psapi/nf-psapi-getmodulefilenameexa)
-  [Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas)
+ - [Microsoft Docs: GetModuleFileNameEx](https://learn.microsoft.com/en-us/windows/win32/api/psapi/nf-psapi-getmodulefilenameexa)
+ - [Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas)
 
 > Open a PR or issue to help keep this list up to date!

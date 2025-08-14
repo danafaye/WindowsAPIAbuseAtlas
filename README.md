@@ -120,6 +120,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 
 ## PSAPI.DLL
 - [EnumProcessModules](./PSAPI/EnumProcessModules/)
+- [GetModuleFileNameEx](./PSAPI/GetModuleFileNameEx/)
 - `GetModuleInformation`
 - `GetProcessMemoryInfo`
 
@@ -133,7 +134,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 
 ## SHELL32.DLL
 - [ShellExecute](./SHELL32/ShellExecute/)
-- [SHGetFolderPath](./SHELL32/SHGetKnownFolderPath/)
+- [SHGetKnownFolderPath](./SHELL32/SHGetKnownFolderPath/)
 
 ## UIAUTOMATIONCORE
 -  [AddAutomationEventHandler](./UIAUTOMATIONCORE/AddAutomationEventHandler/) 

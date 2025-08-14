@@ -52,7 +52,7 @@ See [SHGetKnownFolderPath.yar](./SHGetKnownFolderPath.yar).
 Related APIs include SHGetFolderPath (legacy), SHGetKnownFolderIDList (returns ITEMIDLIST), and ExpandEnvironmentStrings (environment variable–based path resolution).
 
 ## 📚 Resources
-  [Microsoft Docs: SHGetKnownFolderPath](https://learn.microsoft.com/en us/windows/win32/api/shlobj_core/nf shlobj_core shgetknownfolderpath)
+  [Microsoft Docs: SHGetKnownFolderPath](https://learn.microsoft.com/en-us/windows/win32/api/shlobj_core/nf-shlobj_core-shgetknownfolderpath)
   [Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas)
 
 > Open a PR or issue to help keep this list up to date!

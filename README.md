@@ -17,7 +17,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [CredEnumerateW](./ADVAPI32/CredEnumerateW/)
 - `CredReadW`
 - [CryptEnumProviders](./ADVAPI32/CryptEnumProviders/)
-- `DuplicateTokenEx`
+- [DuplicateTokenEx](./ADVAPI32/DuplicateTokenEx/)
 - `ImpersonateLoggedOnUser`
 - `LsaOpenPolicy`
 - [LsaRetrievePrivateData](./ADVAPI32/LsaRetrievePrivateData/)

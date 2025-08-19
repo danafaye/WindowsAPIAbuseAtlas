@@ -31,7 +31,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `AmsiInitialize`
 - `AmsiOpenSession`
 - [AmsiScanBuffer](./AMSI/AmsiScanBuffer/)
-- `AmsiScanString`
+- [AmsiScanString](./AMSI/AmsiScanString/)
 
 # DNSAPI.DLL
 - [DnsQuery](./DNSAPI/DnsQuery/)

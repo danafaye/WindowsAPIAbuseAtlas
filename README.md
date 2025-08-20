@@ -60,7 +60,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `MapViewOfFile` + `LoadLibraryA/W`
 - [PssCaptureSnapshot](./KERNEL32/PssCaptureSnapshot/)
 - `QueueUserAPC`
-- `SetDllDirectoryA/W` + `LoadLibrary`
+- [SetDllDirectory](./KERNEL32/SetDllDirectory/)
 - `SetProcessMitigationPolicy`
 - [SetThreadContext](./KERNEL32/SetThreadContext/)
 - [UpdateProcThreadAttribute](./KERNEL32/UpdateProcThreadAttribute/)

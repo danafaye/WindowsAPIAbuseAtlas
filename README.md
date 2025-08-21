@@ -62,6 +62,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `QueueUserAPC`
 - [SetDllDirectory](./KERNEL32/SetDllDirectory/)
 - `SetProcessMitigationPolicy`
+- [SetSearchPathMode](./KERNEL32/SetSearchPathMode/)
 - [SetThreadContext](./KERNEL32/SetThreadContext/)
 - [UpdateProcThreadAttribute](./KERNEL32/UpdateProcThreadAttribute/)
 - [VirtualAllocEx](./KERNEL32/VirtualAllocEx/)

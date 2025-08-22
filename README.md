@@ -113,7 +113,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `SetThreadContext` / `GetThreadContext`
 - [Wow64DisableWow64FsRedirection](./NTDLL/Wow64DisableWow64FsRedirection/)
 - [ZwQuerySystemInformationEx](./NTDLL/ZwQuerySystemInformationEx)
-- `ZwUnmapViewOfSection`
+- [ZwUnmapViewOfSection](./NTDLL/ZwUnmapViewOfSection/)
 
 ## OLE32.DLL
 - [CoCreateInstance](./OLE32/CoCreateInstance/)

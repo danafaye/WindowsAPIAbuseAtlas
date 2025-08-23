@@ -127,6 +127,11 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `GetModuleInformation`
 - `GetProcessMemoryInfo`
 
+## RASAPI32.DLL
+- [RasEnumConnections](./RASAPI32/RasEnumConnections/)
+- `RasGetEntryDialParams`
+- `RasGetEntryProperties`
+
 ## SETUPAPI.DLL
 - [InstallHinfSection](./SETUPAPI/InstallHinfSection/)
 - `SetupCopyOEMInf`

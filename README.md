@@ -25,6 +25,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [OpenSCManager](./ADVAPI32/OpenSCManager/)
 - `QueryServiceStatusEx`
 - [RegCreateKeyEx](./ADVAPI32/RegSetValueEx/)
+- [RegEnumKeyEx](./ADVAPI32/RegEnumKeyEx/)
 - [RegSetValueEx](./ADVAPI32/RegSetValueEx/)
 
 # AMSI.DLL

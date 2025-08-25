@@ -19,7 +19,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [CryptEnumProviders](./ADVAPI32/CryptEnumProviders/)
 - [DuplicateTokenEx](./ADVAPI32/DuplicateTokenEx/)
 - `ImpersonateLoggedOnUser`
-- `LsaOpenPolicy`
+- [LsaOpenPolicy](./ADVAPI32/LsaOpenPolicy/)
 - [LsaRetrievePrivateData](./ADVAPI32/LsaRetrievePrivateData/)
 - [OpenProcessToken](./ADVAPI32/OpenProcessToken/)
 - [OpenSCManager](./ADVAPI32/OpenSCManager/)
@@ -100,7 +100,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [NtQueryInformationProcess](./NTDLL/NtQueryInformationProcess/)
 - [NtQueryVirtualMemory](./NTDLL/NtQueryVirtualMemory/)
 - `NtRaiseHardError`
-- [NtReadVirtualMemory](./NTDLL/NtReadVirtualMemory/)
+- [NtReadVirtualMemory](./NTDLL/NtReadVirtualMeemory/)
 - `NtResumeThread`
 - `NtSetDebugFilterState`
 - `NtSetInformationFile`

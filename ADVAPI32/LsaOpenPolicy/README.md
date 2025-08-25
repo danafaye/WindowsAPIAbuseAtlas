@@ -12,7 +12,7 @@ The function takes in a target system name, a desired access level, and spits ou
 Once you can open the policy object, you’re not just playing in the shallow end anymore. You can start grabbing secrets stored in LSA, enumerate trust paths for lateral movement, and even change what accounts are allowed to do on the system. It’s rarely the final step. It’s the enabler. Think of it as the pivot point between having basic access and taking control of security-critical information.
 
 ## 🧬 How Attackers Abuse It
-Attackers typically don’t call LsaOpenPolicy` just to feel accomplished. They call it because it’s the required first step to use other juicy functions like `LsaRetrievePrivateData` or `LsaAddAccountRights`. For example, credential dumping tools like Mimikatz use this call to get their initial policy handle before they start pulling secrets out of memory. Others abuse it to enumerate trust relationships across domains, which helps map the environment for further compromise.
+Attackers typically don’t call `LsaOpenPolicy` just to feel accomplished. They call it because it’s the required first step to use other juicy functions like `LsaRetrievePrivateData` or `LsaAddAccountRights`. For example, credential dumping tools like Mimikatz use this call to get their initial policy handle before they start pulling secrets out of memory. Others abuse it to enumerate trust relationships across domains, which helps map the environment for further compromise.
 
 On its own, `LsaOpenPolicy` doesn’t steal anything. It just unlocks the ability to do so. That’s why defenders need to pay attention to what follows it.
 

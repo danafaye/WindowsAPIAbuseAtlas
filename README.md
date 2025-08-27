@@ -57,7 +57,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [EnumProcesses](./KERNEL32/EnumProcesses/)
 - [EnumSystemLocalesW](./KERNEL32/EnumSystemLocalesW/)
 - [GetSystemFirmwareTable](./KERNEL32/GetSystemFirmwareTable/)
-- `LoadLibraryA/W`
+- [LoadLibrary](./KERNEL32/LoadLibrary/)
 - `MapViewOfFile` + `LoadLibraryA/W`
 - [PssCaptureSnapshot](./KERNEL32/PssCaptureSnapshot/)
 - `QueueUserAPC`

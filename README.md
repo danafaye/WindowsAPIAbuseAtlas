@@ -88,7 +88,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `NtAllocateVirtualMemory`
 - `NtAlertResumeThread`
 - [NtCreateSection](./NTDLL/NtCreateSection/)
-- `NtCreateThreadEx`
+- [NtCreateThreadEx](./NTDLL/NtCreateThreadEx/)
 - [NtDeviceIoControlFile](./NTDLL/NtDeviceIoControlFile/)
 - [NtImpersonateThread](./NTDLL/NtImpersonateThread/)
 - [NtLoadDriver](./NTDLL/NtLoadDriver/)

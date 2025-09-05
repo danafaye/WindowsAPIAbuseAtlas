@@ -46,6 +46,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 
 ## KERNEL32.DLL
 - [ConvertThreadToFiber](./KERNEL32/ConvertThreadToFiber/)
+- CreateEvent
 - `CreateFiber`
 - `CreateFile`
 - [CreateFileMapping](./KERNEL32/CreateFileMapping/)

@@ -71,6 +71,9 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [WriteProcessMemory](./KERNEL32/WriteProcessMemory/)
 - [WriteProfileString](./KERNEL32/WriteProfileString/)
 
+## MPR.DLL
+- `WNetAddConnection2`
+
 ## NETAPI32.DLL
 - [DsGetDcName](./NETAPI32/DsGetDcName/)
 - [NetLocalGroupGetMembers](./NETAPI32/NetLocalGroupGetMembers/)
@@ -88,6 +91,8 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [LdrLoadDll](./NTDLL/LdrLoadDll/)
 - `NtAllocateVirtualMemory`
 - `NtAlertResumeThread`
+- `NtAlpcConnectPort`
+- `NtCreateKey`
 - [NtCreateSection](./NTDLL/NtCreateSection/)
 - [NtCreateThreadEx](./NTDLL/NtCreateThreadEx/)
 - [NtDeviceIoControlFile](./NTDLL/NtDeviceIoControlFile/)

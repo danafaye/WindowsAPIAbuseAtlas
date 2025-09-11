@@ -42,7 +42,7 @@ See [CreateProcessAsUserW.yar](./CreateProcessAsUser.yar).
 
 ## 🦠 Malware & Threat Actors Documented Abusing CreateProcessAsUserW
 
-### **Ransomw
+### **Ransomware**
  - Ryuk
  - Conti
 

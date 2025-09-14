@@ -68,6 +68,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [SetThreadContext](./KERNEL32/SetThreadContext/)
 - [UpdateProcThreadAttribute](./KERNEL32/UpdateProcThreadAttribute/)
 - [VirtualAllocEx](./KERNEL32/VirtualAllocEx/)
+- [VirtualProtectEx](./KERNEL32/VirtualProtectEx/)
 - [WriteProcessMemory](./KERNEL32/WriteProcessMemory/)
 - [WriteProfileString](./KERNEL32/WriteProfileString/)
 
@@ -91,8 +92,8 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [LdrLoadDll](./NTDLL/LdrLoadDll/)
 - `NtAllocateVirtualMemory`
 - `NtAlertResumeThread`
-- [NtAlpcConnectPort](./NTDLL/NtAlpcConnectPort/)
-- [NtCreateKey](./NTDLL/NtCreateKey/)
+- [NtAlpcConnectPort]
+- `NtCreateKey`
 - [NtCreateSection](./NTDLL/NtCreateSection/)
 - [NtCreateThreadEx](./NTDLL/NtCreateThreadEx/)
 - [NtDeviceIoControlFile](./NTDLL/NtDeviceIoControlFile/)

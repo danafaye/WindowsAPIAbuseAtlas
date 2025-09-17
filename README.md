@@ -93,7 +93,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `NtAllocateVirtualMemory`
 - `NtAlertResumeThread`
 - [NtAlpcConnectPort]
-- `NtCreateKey`
+- [NtCreateKey](./NTDLL/NtCreateKey/)
 - [NtCreateSection](./NTDLL/NtCreateSection/)
 - [NtCreateThreadEx](./NTDLL/NtCreateThreadEx/)
 - [NtDeviceIoControlFile](./NTDLL/NtDeviceIoControlFile/)
@@ -106,7 +106,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [NtQueueApcThread](./NTDLL/NtQueueApcThread/)
 - [NtQueryInformationProcess](./NTDLL/NtQueryInformationProcess/)
 - [NtQueryVirtualMemory](./NTDLL/NtQueryVirtualMemory/)
-- `NtRaiseHardError`
+- [NtRaiseHardError](./NTDLL/NtRaiseHardError)
 - [NtReadVirtualMemory](./NTDLL/NtReadVirtualMeemory/)
 - `NtResumeThread`
 - `NtSetDebugFilterState`
@@ -154,6 +154,9 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 
 ## UIAUTOMATIONCORE
 -  [AddAutomationEventHandler](./UIAUTOMATIONCORE/AddAutomationEventHandler/) 
+
+## URLMON.DLL
+- URLDownloadToFile
 
 ## USER32.DLL
 - [LockWorkStation](./USER32/LockWorkStation/)

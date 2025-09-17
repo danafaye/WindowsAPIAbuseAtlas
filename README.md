@@ -92,7 +92,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [LdrLoadDll](./NTDLL/LdrLoadDll/)
 - `NtAllocateVirtualMemory`
 - `NtAlertResumeThread`
-- [NtAlpcConnectPort]
+- [NtAlpcConnectPort](./NTDLL/NtAlpcConnectPort/)
 - [NtCreateKey](./NTDLL/NtCreateKey/)
 - [NtCreateSection](./NTDLL/NtCreateSection/)
 - [NtCreateThreadEx](./NTDLL/NtCreateThreadEx/)

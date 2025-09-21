@@ -1,4 +1,4 @@
-# 📥 URLDownloadToFile
+# 📥URLDownloadToFile
 
 ## 🚀 Executive Summary
 `URLDownloadToFile` is the small but handy Win32 API that lets a process reach out to an HTTP/HTTPS (and `file:`) URL and save what it finds to disk. It's a one line convenience for legitimate updaters, installers, and benign utilities, and a one line convenience for attackers who want to fetch payloads without the ceremony of WinINet/WinHTTP plumbing. Because it’s so simple, it shows up often in commodity malware, quick and dirty loaders, and scripted post exploitation activities. That simplicity is its power and also the reason defenders should watch it: a lone call to URLDownloadToFile is rarely malicious by itself, but combined with odd process ancestry, unusual download destinations, or defensive evasion behavior it’s a clear hunting signal.

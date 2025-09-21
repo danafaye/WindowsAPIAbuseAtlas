@@ -114,7 +114,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `NtSetInformationProcess`
 - [NtSetInformationThread](./NTDLL/NtSetInformationThread/)
 - `NtSetInformationToken`
-- [NtSuspendProcess]
+- [NtSuspendProcess](./NTDLL/NtSuspendProcess/)
 - [NtTraceEvent](./NTDLL/NtTraceEvent/)
 - [NtUnmapViewOfSection](./NTDLL/NtUnmapViewOfSection)
 - [NtWriteVirtualMemory](./NTDLL/NtWriteVirtualMemory/)

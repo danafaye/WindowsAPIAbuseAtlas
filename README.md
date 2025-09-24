@@ -90,7 +90,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [EtwProviderEnabled](./NTDLL/EtwProviderEnabled/)
 - [LdrGetProcedureAddress](./NTDLL/LdrGetProcedureAddress/)
 - [LdrLoadDll](./NTDLL/LdrLoadDll/)
-- `NtAllocateVirtualMemory`
+- [NtAllocateVirtualMemory](./NTDLL/NtAllocateVirtualMemory/)
 - `NtAlertResumeThread`
 - [NtAlpcConnectPort](./NTDLL/NtAlpcConnectPort/)
 - [NtCreateKey](./NTDLL/NtCreateKey/)

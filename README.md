@@ -102,6 +102,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [NtLoadDriver](./NTDLL/NtLoadDriver/)
 - [NtMapViewOfSection](./NTDLL/NtMapViewOfSection/)
 - `NtOpenFile`
+- [NtOpenProcessToken](./NTDLL/NtOpenProcessToken/)
 - `NtOpenThread`
 - [NtProtectVirtualMemory](./NTDLL/NtProtectVirtualMemory/)
 - [NtQueueApcThread](./NTDLL/NtQueueApcThread/)

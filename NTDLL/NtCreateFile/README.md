@@ -58,7 +58,7 @@ See [NtCreateFile.yar](./NtCreateFile.yar).
 Think of these as the “family” of file and device entry points: `CreateFileA`/`CreateFileW`, `ZwCreateFile`/`NtOpenFile`, `NtReadFile`/`NtWriteFile`, `NtQueryAttributesFile`, `DeviceIoControl`, and the various file-mapping APIs. Plus the named pipe and device namespace helpers; all expose overlapping functionality or work on the same kernel objects that `NtCreateFile` does, so they’re the natural places to look when you want other ways to open, query, map, or control the same targets.
 
 ## 📚 Resources
-- [Microsoft Docs: NtCreateFile]()
+- [Microsoft Docs: NtCreateFile](https://learn.microsoft.com/en-us/windows/win32/api/winternl/nf-winternl-ntcreatefile)
 - [Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas)
 
 > Open a PR or issue to help keep this list up to date!

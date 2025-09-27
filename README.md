@@ -93,6 +93,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [NtAllocateVirtualMemory](./NTDLL/NtAllocateVirtualMemory/)
 - `NtAlertResumeThread`
 - [NtAlpcConnectPort](./NTDLL/NtAlpcConnectPort/)
+- [NtCreateFile](./NTDLL/NtCreateFile/)
 - [NtCreateKey](./NTDLL/NtCreateKey/)
 - [NtCreateSection](./NTDLL/NtCreateSection/)
 - [NtCreateThreadEx](./NTDLL/NtCreateThreadEx/)

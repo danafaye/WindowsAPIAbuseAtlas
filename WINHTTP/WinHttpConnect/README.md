@@ -1,4 +1,4 @@
-# 🛠️ WinHttpConnect
+# 🔌 WinHttpConnect
 
 ## 🚀 Executive Summary
 `WinHttpConnect` is the little backstage door that network enabled malware loves to slip through when it wants to talk to the internet without bothering the user interface. In plain English: it’s the call a program uses to establish a connection handle to a remote HTTP(S) server after it’s created a `WinHTTP` session. Attackers lean on it for command and control chatter, payload downloads, and quiet exfiltration because it’s a documented, supported API that plays nicely with Windows networking stacks and can be called from services and headless processes. 

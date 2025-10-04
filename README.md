@@ -113,7 +113,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - `NtResumeThread`
 - `NtSetDebugFilterState`
 - `NtSetInformationFile`
-- `NtSetInformationProcess`
+- [NtSetInformationProcess](./NTDLL/NtSetInformationProcess/)
 - [NtSetInformationThread](./NTDLL/NtSetInformationThread/)
 - `NtSetInformationToken`
 - [NtSuspendProcess](./NTDLL/NtSuspendProcess/)

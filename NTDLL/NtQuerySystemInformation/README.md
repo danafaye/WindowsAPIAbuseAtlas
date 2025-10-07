@@ -57,7 +57,7 @@ See [NtQuerySystemInformation.yar](./NtQuerySystemInformation.yar).
 People use this alongside or instead of `Win32` helpers like `CreateToolhelp32Snapshot`/`Process32First`. After locating a target with `NtQuerySystemInformation`, an actor might move to `NtQueryInformationProcess`, `ReadProcessMemory`, `NtDuplicateObject`, or token manipulation calls to actually carry out injection, credential theft, or handle hijacking.
 
 ## 📚 Resources
-- [Microsoft Docs: NtQuerySystemInformation]()
+- [Microsoft Docs: NtQuerySystemInformation](https://learn.microsoft.com/en-us/windows/win32/api/winternl/nf-winternl-ntquerysysteminformation)
 - [Windows API Abuse Atlas](https://github.com/danafaye/WindowsAPIAbuseAtlas)
 
 > Open a PR or issue to help keep this list up to date!

@@ -32,12 +32,24 @@ See [NtQuerySystemInformation.yar](./NtQuerySystemInformation.yar).
 ## 🦠 Malware & Threat Actors Documented Abusing NtQuerySystemInformation
 
 ### **Ransomware**
+ - BlackMatter
+ - DarkSide
+ - LockBit
 
 ### **Commodity Loaders & RATs**
+ - Bumblebee
+ - IcedID
+ - QakBot
 
 ### **APT & Threat Actor Toolkits**
+ - APT28 (Fancy Bear)
+ - APT34 (OilRig) 
+ - APT41 (Double Dragon)
 
 ### **Red Team & Open Source Tools**
+ - Cobalt Strike
+ - Mimikatz
+ - Process Exploer and Process Hacker
 
 > **Note:** This list isn’t exhaustive. It is possible more modern malware families and offensive security tools use `NtQuerySystemInformation`.
 

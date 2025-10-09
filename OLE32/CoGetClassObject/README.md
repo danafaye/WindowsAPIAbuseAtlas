@@ -1,4 +1,4 @@
-# 🛠️ CoGetClassObject: 
+# 🏭 CoGetClassObject: 
 
 ## 🚀 Executive Summary
 `CoGetClassObject` is the COM workhorse that hands callers a class factory for a given CLSID so they can create instances of COM objects. It’s a subtle API, rarely front and center in malware writeups, but it sits at the hinge of many COM based attack patterns: object hijacking, surrogate-based code execution, out of process activation, and privilege escalation pathways that rely on unexpected COM activation contexts. When defenders see unexpected `CoGetClassObject` activity (especially from low privileged processes requesting objects that load code in system processes or from unusual file paths), treat it like a sniff of COM abuse: it frequently precedes persistence, lateral movement, or in-memory code execution via trusted hosts like dllhost.exe or svchost.exe.

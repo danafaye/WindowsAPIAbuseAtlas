@@ -130,7 +130,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 ## OLE32.DLL
 - [CoCreateInstance](./OLE32/CoCreateInstance/)
 - [CoCreateInstanceEx](./OLE32/CoCreateInstanceEx/)
-- `CoGetClassObject`
+- [CoGetClassObject](./OLE32/CoGetClassObject/)
 - `CoSetProxyBlanket`
 
 ## PSAPI.DLL

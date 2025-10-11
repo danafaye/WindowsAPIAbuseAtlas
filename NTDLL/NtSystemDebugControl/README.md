@@ -34,7 +34,7 @@ Those commands paired with odd buffer sizes, undocumented numeric codes, or unus
 
 Here are some sample YARA rules to detect suspicious use of `NtSystemDebugControl`:
 
-See [NtSystemDebugControl.yar](./NtSystemDebugControl.yar).
+See [NtSystemDebugControl.yar](https://github.com/danafaye/WindowsAPIAbuseAtlas/blob/main/NTDLL/NtSystemDebugControl/NtSystemDebugControl.yar).
 
 > **Note:** Use these YARA rules at your own risk. They are loosely scoped and intended primarily for threat hunting and research purposes; **NOT** for deployment in detection systems that require a low false positive rate. Please review and test in your environment before use.
 

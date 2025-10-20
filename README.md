@@ -122,6 +122,7 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [NtTraceEvent](./NTDLL/NtTraceEvent/)
 - [NtUnmapViewOfSection](./NTDLL/NtUnmapViewOfSection)
 - [NtWriteVirtualMemory](./NTDLL/NtWriteVirtualMemory/)
+- [RtlCreateUserProcess](./NTDLL/RtlCreateUserProcess/)
 - [RtlCreateUserThread](./NTDLL/RtlCreateUserThread/)
 - `SetThreadContext` / `GetThreadContext`
 - [Wow64DisableWow64FsRedirection](./NTDLL/Wow64DisableWow64FsRedirection/)

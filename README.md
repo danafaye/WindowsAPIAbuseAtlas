@@ -34,6 +34,9 @@ This is a living roadmap. As I knock out each entry, I’ll link it here, and I 
 - [AmsiScanBuffer](./AMSI/AmsiScanBuffer/)
 - [AmsiScanString](./AMSI/AmsiScanString/)
 
+# DBGHELP
+- [MiniDumpWriteDump](./DBGHELP/MiniDumpWriteDump/)
+
 # DNSAPI.DLL
 - [DnsQuery](./DNSAPI/DnsQuery/)
 
